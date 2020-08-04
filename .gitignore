@@ -1,0 +1,6 @@
+.idea/
+__pycache__/
+model.h5
+model.u5
+preprocessing/__pycache__/
+venv/

@@ -1,0 +1,48 @@
+##2020-05-05
+
+    model = Sequential()
+    model.add(Masking(mask_value=special_value, input_shape=(max_seq_len, Xpad.shape[2])))
+    model.add(LSTM(128, input_shape=(max_seq_len, 31)))
+    model.add(Dropout(0.2))
+    model.add(Dense(32,activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(5, activation='softmax'))
+    opt = tf.keras.optimizers.Adam(lr=1e-3, decay=1e-5)
+    model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
+    history=model.fit(Xpad, y, epochs=3,batch_size=5,validation_split=0.3)
+    #### loss: 1.2476 - accuracy: 0.4694 - val_loss: 3.0362 - val_accuracy: 0.0159
+
+    model = Sequential()
+    model.add(Masking(mask_value=special_value, input_shape=(max_seq_len, Xpad.shape[2])))
+    model.add(LSTM(128, input_shape=(max_seq_len, 31)))
+    model.add(Dropout(0.2))
+    model.add(Dense(32,activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(5, activation='softmax'))
+    opt = tf.keras.optimizers.Adam(lr=1e-3, decay=1e-5)
+    model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
+    history=model.fit(Xpad, y, epochs=3,batch_size=294,validation_split=0.3)
+    #### Epoch 1/3
+294/294 [==============================] - 5s 18ms/sample - loss: 1.7921 - accuracy: 0.2041 - val_loss: 1.5889 - val_accuracy: 0.2619
+Epoch 2/3
+294/294 [==============================] - 1s 5ms/sample - loss: 1.6535 - accuracy: 0.2687 - val_loss: 1.6859 - val_accuracy: 0.2143
+Epoch 3/3
+294/294 [==============================] - 1s 5ms/sample - loss: 1.5955 - accuracy: 0.2687 - val_loss: 1.7790 - val_accuracy: 0.1508
+    #### COMMENTS: Tried without batches
+
+    model = Sequential()
+    model.add(Masking(mask_value=special_value, input_shape=(max_seq_len, Xpad.shape[2])))
+    model.add(LSTM(128, input_shape=(max_seq_len, 31)))
+    model.add(Dropout(0.2))
+    model.add(Dense(5, activation='softmax'))
+    opt = tf.keras.optimizers.Adam(lr=1e-3, decay=1e-5)
+    model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
+    history=model.fit(Xpad, y, epochs=3,batch_size=294,validation_split=0.3)
+    #### Epoch 1/3
+294/294 [==============================] - 5s 17ms/sample - loss: 1.7862 - accuracy: 0.1633 - val_loss: 2.1823 - val_accuracy: 0.1667
+Epoch 2/3
+294/294 [==============================] - 2s 5ms/sample - loss: 1.6172 - accuracy: 0.2687 - val_loss: 2.2272 - val_accuracy: 0.1429
+Epoch 3/3
+294/294 [==============================] - 1s 5ms/sample - loss: 1.5378 - accuracy: 0.2959 - val_loss: 2.2723 - val_accuracy: 0.1349
+    #### COMMENTS: dropped dense layer
+
