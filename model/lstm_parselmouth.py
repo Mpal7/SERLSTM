@@ -27,7 +27,8 @@ data_path = emovo_path_cleaned
 class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp
-features = ("mfcc","deltas","formants","pitch")
+#"mfcc","deltas","formants","pitch","intensity"
+features = ("mfcc")
 splits = 5
 augment = False
 signal_mode = 'fp'
@@ -63,12 +64,28 @@ def get_feature_vector_from_formants(filepath,feature_vector):
 def get_feature_vector_from_pitch(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
+    #compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
     pitch = signal.to_pitch_ac()
     x_sample = pitch.selected_array['frequency']
     x_sample = x_sample/np.linalg.norm(x_sample)
     x_sample = np.pad(x_sample, ((0, feature_vector.shape[0]-len(x_sample))), 'constant',constant_values=100)
     x_sample = np.reshape(x_sample, (len(x_sample), 1))
     x_sample = np.concatenate((feature_vector,x_sample),axis=1)
+    return x_sample
+
+def get_feature_vector_from_intensity(filepath,feature_vector):
+    path = (filepath)
+    signal = parselmouth.Sound(path)
+    x_intensity_local =[]
+    #try also to_intensity() and then slicing
+    intensity = signal.to_intensity(time_step=0.01, minimum_pitch=150)
+    for x in intensity.xs():
+        x_intensity_local.append(intensity.get_value(time=x))
+    x_sample = np.array(x_intensity_local)
+    x_sample = x_sample / np.linalg.norm(x_sample)
+    x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
+    x_sample = np.reshape(x_sample, (len(x_sample), 1))
+    x_sample = np.concatenate((feature_vector, x_sample), axis=1)
     return x_sample
 
 def padding(X):
@@ -143,6 +160,8 @@ def get_data(data_path: str,class_labels: Tuple, augment: bool, mfcc_len: int = 
                 feature_vector = get_feature_vector_from_formants(filepath,feature_vector)
             if 'pitch' in features:
                 feature_vector = get_feature_vector_from_pitch(filepath, feature_vector)
+            if 'intensity' in features:
+                feature_vector = get_feature_vector_from_intensity(filepath,feature_vector)
             data.append(feature_vector)
             labels.append(i)
             names.append(filename)
@@ -184,7 +203,6 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
     es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=15)
     mc=ModelCheckpoint(emovo_path_cleaned+'best_epoch.h5', monitor='val_loss', mode='min', save_best_only=True,verbose=1)
-    history=model.fit(x_train, y_train, batch_size=32, epochs=50,callbacks=[es,mc],validation_data=[x_test,y_test_train])
     history=model.fit(x_train, y_train, batch_size=32, epochs=epochs_n,callbacks=[es,mc],validation_data=[x_test,y_test_train])
     #retrieve from history best loss and relative acc from early stopping
     best_epoch = np.argmin(history.history['val_loss']) + 1

@@ -44,8 +44,9 @@ concatenated=np.concatenate((mel_coefficients,x_sample),axis=1)
 "queste sono le differenze con git diff"
 
 a = [[1, 2], [3, 4]]
-print(np.array(a).shape)
 b=np.pad(a,((0,1),(0,0)),'constant')
-print(b.shape)
-pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=False)
-print(pitch.get_number_of_frames())
+pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
+intensity = sound.to_intensity(time_step=0.01,minimum_pitch=150)
+print(pitch)
+print(mel_coefficients.shape)
+print(intensity)

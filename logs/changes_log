@@ -126,3 +126,8 @@ not good with minibatches and online, therefore need to check if padding messes 
 ##2020-17-07
 ##added
 -Saved best model for ES
+
+##2020-08-05
+##added
+-formants pitch intensity
+-augmentation for full padding

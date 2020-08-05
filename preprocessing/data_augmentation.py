@@ -10,7 +10,8 @@ directory_from =r'F:\EMOVO\clean_5_vad_silence/'
 main_directory = r'F:\EMOVO\\'
 write = False #write augmented data in folder
 mean_signal_length=32000
-pad_sli= True
+augm1= False
+augm2= False
 
 #this module it's intended for data augmentation to use parselmouth features
 
@@ -66,29 +67,36 @@ def dyn_change(data):
  dyn_change = np.random.uniform(low=1.5,high=3)
  return (data * dyn_change)
 
-def augmentation_pad_sli():
-    if write == True:
-        for file in os.listdir(r'F:\EMOVO\clean_5_vad_silence/'):
-            fs, data = wav.read(directory_from + file)
-            signal_pitch = pitch_augmentation(data, fs)
-            signal_pitch_noise = noise(signal_pitch)
-            padsli_signal = padding_slicing(signal_pitch_noise)
-            padsli_signal = padsli_signal.astype(np.int16)
-            wav.write(r'F:\EMOVO\clean_5_vad_silence_augmented/pitch_noise_padsli_'+file, fs, padsli_signal)
-
-#augmentation_pad_sli()
-
-def pad_sli_maker():
-    if pad_sli == True:
+#
+def pitch_noise_augm_writer():
+    if augm1 == True:
         class_labels_origin = ("Sad", "Happy", "Angry", "Neutral", "Scared")
         _CLASS_LABELS = ("Sad1", "Happy1", "Angry1", "Neutral1", "Scared1")
         for e in class_labels_origin:
             for file in tqdm(os.listdir(main_directory + e)):
                 fs, data = wav.read(directory_from + file)
-                padsli_signal = padding_slicing(data)
-                padsli_signal = padsli_signal.astype(np.int16)
-                wav.write(main_directory + _CLASS_LABELS[class_labels_origin.index(e)] + '/'+ file, fs, padsli_signal)
-#pad_sli_maker()
+                pitch_signal = pitch_augmentation(data,fs)
+                noise_signal = noise(pitch_signal)
+                noise_signal = noise_signal.astype(np.int16)
+                wav.write(main_directory + _CLASS_LABELS[class_labels_origin.index(e)] + '/pitch-noise-'+file, fs, noise_signal)
+
+def pitch_noise_and_pitch_shift_augm_writer():
+    if augm2 == True:
+        class_labels_origin = ("Sad", "Happy", "Angry", "Neutral", "Scared")
+        _CLASS_LABELS = ("Sad2", "Happy2", "Angry2", "Neutral2", "Scared2")
+        for e in class_labels_origin:
+            for file in tqdm(os.listdir(main_directory + e)):
+                fs, data = wav.read(directory_from + file)
+                pitch_signal = pitch_augmentation(data,fs)
+                noise_signal = noise(pitch_signal)
+                noise_signal = noise_signal.astype(np.int16)
+                wav.write(main_directory + _CLASS_LABELS[class_labels_origin.index(e)] + '/pitch-noise-'+ file, fs, noise_signal)
+                pitch_signal = pitch_augmentation(data, fs)
+                shift_signal = shift(pitch_signal)
+                shift_signal = shift_signal.astype(np.int16)
+                wav.write(
+                    main_directory + _CLASS_LABELS[class_labels_origin.index(e)] + '/pitch-shift-' + file,
+                    fs, shift_signal)
 
 
 
