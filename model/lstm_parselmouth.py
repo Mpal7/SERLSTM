@@ -24,7 +24,7 @@ emovo_path_cleaned = r'F:\EMOVO/'
 #emovo_path_cleaned = r'C:\Users\mp95\Desktop\EMOVO/'
 db = 'EMOVO.CSV'
 data_path = emovo_path_cleaned
-class_labels = ("Sad", "Happy", "Angry", "Neutral")
+class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp
 #"mfcc","deltas","formants","pitch","intensity"
@@ -201,11 +201,11 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 
 
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
-    es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=15)
-    mc=ModelCheckpoint(emovo_path_cleaned+'best_epoch.h5', monitor='val_loss', mode='min', save_best_only=True,verbose=1)
-    history=model.fit(x_train, y_train, batch_size=32, epochs=epochs_n,callbacks=[es,mc],validation_data=[x_test,y_test_train])
-    #retrieve from history best loss and relative acc from early stopping
-    best_epoch = np.argmin(history.history['val_loss']) + 1
+    es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
+    mc=ModelCheckpoint(emovo_path_cleaned+'best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=1)
+    history=model.fit(x_train, y_train, batch_size=96, epochs=epochs_n,callbacks=[es,mc],validation_data=[x_test,y_test_train])
+    #retrieve from history best acc and relative loss from early stopping
+    best_epoch = np.argmax(history.history['val_accuracy']) + 1
     acc.append(history.history['val_accuracy'][best_epoch-1])
     loss.append(history.history['val_loss'][best_epoch-1])
     print('best epoch:',best_epoch, ' loss:',loss[-1],' acc:',acc[-1])
