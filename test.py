@@ -50,3 +50,7 @@ intensity = sound.to_intensity(time_step=0.01,minimum_pitch=150)
 print(pitch)
 print(mel_coefficients.shape)
 print(intensity)
+
+a = [1,0.8,1]
+a = np.array(a)
+b=np.std(a)

@@ -12,7 +12,6 @@ import sys
 import numpy as np
 from keras import Sequential
 from keras.layers import LSTM as KERAS_LSTM, Dense, Dropout,Masking
-from preprocessing.data_augmentation import pitch_augmentation,noise,shift
 from tqdm import tqdm
 from keras.callbacks import EarlyStopping,ModelCheckpoint
 from keras.models import load_model
@@ -30,7 +29,6 @@ class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
 #"mfcc","deltas","formants","pitch","intensity"
 features = ("mfcc")
 splits = 5
-augment = False
 signal_mode = 'fp'
 special_value = 100
 routine_it = 5
@@ -131,7 +129,7 @@ def get_feature_vector_from_deltas(data):
     feature_vector = concatenated[:, permutation]
     return feature_vector
 
-def get_data(data_path: str,class_labels: Tuple, augment: bool, mfcc_len: int = 39) -> \
+def get_data(data_path: str,class_labels: Tuple, mfcc_len: int = 39) -> \
         Tuple[np.ndarray, np.ndarray]:
     data = []
     labels = []
@@ -165,18 +163,7 @@ def get_data(data_path: str,class_labels: Tuple, augment: bool, mfcc_len: int = 
             data.append(feature_vector)
             labels.append(i)
             names.append(filename)
-            if augment:
-                signal_pitch = pitch_augmentation(signal, fs)
-                signal_noise_pitch = noise(signal_pitch)
-                feature_vector = get_feature_vector_from_mfcc(signal_noise_pitch, fs,
-                                                              mfcc_len=mfcc_len)
-                data.append(feature_vector)
-                labels.append(i)
-                signal_shift_pitch = shift(signal_pitch)
-                feature_vector = get_feature_vector_from_mfcc(signal_shift_pitch, fs,
-                                                              mfcc_len=mfcc_len)
-                data.append(feature_vector)
-                labels.append(i)
+            names.append(filename)
         sys.stderr.write("ended reading folder %s\n" % directory)
         os.chdir('../..')
     os.chdir(cur_dir)
@@ -216,13 +203,12 @@ def lstm():
     Multiple_it_acc_te = []
     Multiple_it_loss_te = []
     counter = 0
-    data, labels = get_data(data_path, class_labels=class_labels,
-                            augment=augment)
+    data, labels = get_data(data_path, class_labels=class_labels)
 
     if signal_mode == 'fp':
         data = padding(data)
 
-    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",epochs_n,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",augment,"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
+    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",epochs_n,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
 
     for i in range(0,routine_it):
         it = 0
