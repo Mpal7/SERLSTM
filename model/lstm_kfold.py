@@ -32,7 +32,7 @@ augment = False
 signal_mode = 'fp'
 special_value = 100
 routine_it = 50
-epochs_n = 50
+epochs_n = 80
 
 def padding(X):
     # Padding
@@ -135,7 +135,7 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 
 
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
-    es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
+    es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=15)
     mc=ModelCheckpoint(emovo_path_cleaned+'best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=1)
     history=model.fit(x_train, y_train, batch_size=32, epochs=epochs_n,callbacks=[es,mc],validation_data=[x_test,y_test_train])
     #retrieve from history best acc and relative loss from early stopping
@@ -156,7 +156,7 @@ def lstm():
     if signal_mode == 'fp':
         data = padding(data)
 
-    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",epochs_n,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",augment,"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
+    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",32,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",augment,"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
 
     for i in range(0,routine_it):
         print('\n###### ITERATION NUMBER ',i+1,' ##########')
@@ -196,18 +196,18 @@ def lstm():
             best_epoch = load_model(emovo_path_cleaned + 'best_epoch.h5')
             evaluate(best_epoch, x_test, y_test)
         print('\n\n ############# AVERAGE EVALUATIONS ############')
-        print("\n######### MEAN LOSS OVER THE" + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
+        print("\n######### MEAN LOSS OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
         print("######### MEAN ACCURACY OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(acc)) + "  ###########")
         print("######### STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(loss)) + "  ###########")
         print("######### STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(acc)) + "  ###########")
         Multiple_it_acc_te.append(np.mean(acc))
         Multiple_it_loss_te.append(np.mean(loss))
         print("\n####MEAN LOSSES OF THE FIRST ",counter," ITERATIONS: ", Multiple_it_loss_te, " MEAN ACC OF THE FIRST ",counter," ITERATIONS: ",
-          np.mean(Multiple_it_acc_te)," #####")
+          Multiple_it_acc_te," #####")
         acc_std = np.std(Multiple_it_acc_te)
         loss_std = np.std(Multiple_it_loss_te)
-        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter, " ITERATIONS: ", Multiple_it_loss_te, " ACC STANDARD DEVIATIONS OF THE FIRST ", counter,
-              " ITERATIONS: ",Multiple_it_acc_te," #####")
+        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter, " ITERATIONS: ", acc_std, " ACC STANDARD DEVIATIONS OF THE FIRST ", counter,
+              " ITERATIONS: ",loss_std," #####")
         counter = counter+1
     print("\n####LOSS OVER ",counter," ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ",counter," ITERATIONS:",
           np.mean(Multiple_it_acc_te)," #####")

@@ -131,3 +131,9 @@ not good with minibatches and online, therefore need to check if padding messes 
 ##added
 -formants pitch intensity
 -augmentation for full padding
+
+##2020-09-05
+##changed
+-prints
+##added
+-pysptk for lpc feature extraction

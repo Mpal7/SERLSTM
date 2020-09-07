@@ -29,7 +29,7 @@ class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
 #"mfcc","deltas","formants","pitch","intensity"
 features = ("mfcc")
 splits = 5
-signal_mode = 'fp'
+signal_mode = 'sp'
 special_value = 100
 routine_it = 5
 epochs_n = 50
@@ -147,11 +147,6 @@ def get_data(data_path: str,class_labels: Tuple, mfcc_len: int = 39) -> \
                 signal = signal_slicing_padding(signal)
             feature_vector = get_feature_vector_from_mfcc(signal,fs,
                                                           mfcc_len=mfcc_len)
-            feature_vector = get_feature_vector_from_deltas(feature_vector)
-            feature_vector = get_feature_vector_from_formants(filepath,feature_vector)
-            if 'mfcc' in features:
-                feature_vector = get_feature_vector_from_mfcc(signal, fs,
-                                                              mfcc_len=mfcc_len)
             if 'deltas' in features:
                 feature_vector = get_feature_vector_from_deltas(feature_vector)
             if 'formants' in features:
@@ -246,13 +241,29 @@ def lstm():
             train(x_train, y_train, x_test, y_test_train, model, acc, loss)
             best_epoch = load_model(emovo_path_cleaned + 'best_epoch.h5')
             evaluate(best_epoch, x_test, y_test)
-        print('\n\n ############# AVERAGE EVALUATION ############')
-        print("######### MEAN LOSS OVER " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
-        print("######### MEAN ACCURACY OVER " + str(splits) + " FOLDERS: " + str(np.mean(acc)) + "  ###########")
-        Multiple_it_acc_te.append(np.mean(loss))
-        Multiple_it_loss_te.append(np.mean(acc))
-        counter = counter+1
-    print("####LOSS OVER ",counter," ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ",counter," ITERATIONS:",
-          np.mean(Multiple_it_acc_te))
+        print('\n\n ############# AVERAGE EVALUATIONS ############')
+        print("\n######### MEAN LOSS OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
+        print("######### MEAN ACCURACY OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(acc)) + "  ###########")
+        print(
+            "######### STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(loss)) + "  ###########")
+        print(
+            "######### STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(acc)) + "  ###########")
+        Multiple_it_acc_te.append(np.mean(acc))
+        Multiple_it_loss_te.append(np.mean(loss))
+        print("\n####MEAN LOSSES OF THE FIRST ", counter, " ITERATIONS: ", Multiple_it_loss_te,
+              " MEAN ACC OF THE FIRST ", counter, " ITERATIONS: ",
+              Multiple_it_acc_te, " #####")
+        acc_std = np.std(Multiple_it_acc_te)
+        loss_std = np.std(Multiple_it_loss_te)
+        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter, " ITERATIONS: ", acc_std,
+              " ACC STANDARD DEVIATIONS OF THE FIRST ", counter,
+              " ITERATIONS: ", loss_std, " #####")
+        counter = counter + 1
+    print("\n####LOSS OVER ", counter, " ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ", counter,
+          " ITERATIONS:",
+          np.mean(Multiple_it_acc_te), " #####")
+    print("####LOSS STANDARD DEVIATION OVER ", counter, " ITERATIONS: ", np.std(Multiple_it_loss_te),
+          " ACC STANDARD DEVIATION OVER ", counter, " ITERATIONS:",
+          np.std(Multiple_it_acc_te), "#####")
 
 lstm()
