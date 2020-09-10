@@ -16,8 +16,11 @@ from tqdm import tqdm
 from keras.callbacks import EarlyStopping,ModelCheckpoint
 from keras.models import load_model
 from parselmouth.praat import call
+import sys
+from spafe.features.lpc import  lpc, lpcc
 
 
+#parameters
 mean_signal_length = 32000
 emovo_path_cleaned = r'F:\EMOVO/'
 #emovo_path_cleaned = r'C:\Users\mp95\Desktop\EMOVO/'
@@ -25,9 +28,9 @@ db = 'EMOVO.CSV'
 data_path = emovo_path_cleaned
 class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
 #parselmouth can be used only with full padding without altering original files
-#fp o sp
+#fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
-features = ("mfcc","pitch")
+features = ("mfcc","lpcc")
 splits = 5
 signal_mode = 'fp'
 special_value = 100
@@ -51,45 +54,94 @@ def get_feature_vector_from_formants(filepath,feature_vector):
         for f in range(1, 4):
             local_formant.append(formant.get_value_at_time(f, x))
     formant_array = np.reshape(local_formant, (formant.get_number_of_frames(), 3))
-    #padding array to match mfcc/deltas length with special masking value
-    formant_array = np.pad(formant_array, ((0, feature_vector.shape[0]-formant_array.shape[0]), (0, 0)), 'constant',constant_values=(0,100))
+    #padding array to match first feature in features array length with special masking value
+    if features.index('formants') is not 0:
+        if formant_array.shape[0] < feature_vector.shape[0]:
+            formant_array = np.pad(formant_array, ((0, feature_vector.shape[0] - formant_array.shape[0]), (0, 0)),
+                                   'constant', constant_values=(0, 100))
+        elif formant_array.shape[0] > feature_vector.shape[0]:
+            pad_len = formant_array.shape[0] - feature_vector.shape[0]
+            pad_len //= 2
+            formant_array = formant_array[pad_len:pad_len + feature_vector.shape[0]]
     #standardization
     for i in range(0, 3):
         formant_array[:, i] = formant_array[:, i] / np.linalg.norm(formant_array[:, i])
-    formant_array=np.concatenate((feature_vector, formant_array), axis=1)
+    if features.index('formants') is not 0:
+        formant_array = np.concatenate((feature_vector, formant_array), axis=1)
     return formant_array
 
 def get_feature_vector_from_pitch(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
     #compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
-    pitch = signal.to_pitch_ac(time_step=0.01,pitch_floor= 150)
+    pitch = signal.to_pitch_ac()
     x_sample = pitch.selected_array['frequency']
     x_sample = x_sample/np.linalg.norm(x_sample)
-    if len(x_sample) < feature_vector.shape[0]:
-        x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
-    elif len(x_sample) > feature_vector.shape[0]:
-        pad_len = len(x_sample) - feature_vector.shape[0]
-        pad_len //= 2
-        x_sample = x_sample[pad_len:pad_len + feature_vector.shape[0]]
+    if features.index('pitch') is not 0:
+        if len(x_sample) < feature_vector.shape[0]:
+            x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
+        elif len(x_sample) > feature_vector.shape[0]:
+            pad_len = len(x_sample) - feature_vector.shape[0]
+            pad_len //= 2
+            x_sample = x_sample[pad_len:pad_len + feature_vector.shape[0]]
     x_sample = np.reshape(x_sample, (len(x_sample), 1))
-    x_sample = np.concatenate((feature_vector,x_sample),axis=1)
+    if features.index('pitch') is not 0:
+        x_sample = np.concatenate((feature_vector,x_sample),axis=1)
     return x_sample
 
 def get_feature_vector_from_intensity(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
     x_intensity_local =[]
-    #try also to_intensity() and then slicing
     intensity = signal.to_intensity(time_step=0.01, minimum_pitch=150)
     for x in intensity.xs():
         x_intensity_local.append(intensity.get_value(time=x))
     x_sample = np.array(x_intensity_local)
     x_sample = x_sample / np.linalg.norm(x_sample)
-    x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
+    if features.index('intensity') is not 0:
+        if len(x_sample) < feature_vector.shape[0]:
+            x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
+        if len(x_sample) > feature_vector.shape[0]:
+            pad_len = len(x_sample) - feature_vector.shape[0]
+            pad_len //= 2
+            x_sample = x_sample[pad_len:pad_len + feature_vector.shape[0]]
     x_sample = np.reshape(x_sample, (len(x_sample), 1))
-    x_sample = np.concatenate((feature_vector, x_sample), axis=1)
+    if features.index('intensity') is not 0:
+        x_sample = np.concatenate((feature_vector, x_sample), axis=1)
     return x_sample
+
+def get_feature_vector_from_mfcc(signal,fs):
+    #window 0.2 , stride 0.1
+    mel_coefficients = mfcc(signal, fs, frame_stride=0.1,num_cepstral=13)
+    mel_coefficients_for_deltas = mel_coefficients
+    return mel_coefficients,mel_coefficients_for_deltas
+
+def get_feature_vector_from_deltas(data):
+    delta1 = librosa.feature.delta(data)
+    concatenated=np.concatenate((data, delta1), axis=1)
+    permutation = []
+    for i in range(0, int(concatenated.shape[1] / 2)):
+        permutation.append(i)
+        permutation.append(13 + i)
+    permutation = np.array(permutation)
+    feature_vector = concatenated[:, permutation]
+    return feature_vector
+
+def get_feature_vector_from_lpcc(signal,fs,feature_vector):
+    # compute lpccs
+    x_sample = lpcc(sig=signal, fs=fs, win_len=0.02, win_hop=0.01, num_ceps=13, lifter=0, normalize=True)
+    if features.index('lpcc') is not 0:
+        if x_sample.shape[0] < feature_vector.shape[0]:
+            x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - x_sample.shape[0]), (0, 0)),
+                                   'constant', constant_values=(0, 100))
+        if x_sample.shape[0] > feature_vector.shape[0]:
+            pad_len = x_sample.shape[0] - feature_vector.shape[0]
+            pad_len //= 2
+            x_sample = x_sample[pad_len:pad_len + feature_vector.shape[0]]
+    if features.index('lpcc') is not 0:
+        x_sample = np.concatenate((feature_vector, x_sample), axis=1)
+    return x_sample
+
 
 def padding(X):
     # Padding
@@ -97,6 +149,7 @@ def padding(X):
     for e in X:
         if e.shape[0] > max_seq_len:
             max_seq_len = e.shape[0]
+            print(max_seq_len)
     X_pad = np.full((len(X), max_seq_len, X[0].shape[1]), fill_value=special_value)
     for s, x in enumerate(X):
         seq_len = x.shape[0]
@@ -119,22 +172,8 @@ def signal_slicing_padding(signal):
         signal = signal[pad_len:pad_len + mean_signal_length]
     return signal
 
-def get_feature_vector_from_mfcc(signal,fs,mfcc_len: int = 39) -> np.ndarray:
-    mel_coefficients = mfcc(signal, fs, frame_stride=0.1,num_cepstral=mfcc_len)
-    return mel_coefficients
 
-def get_feature_vector_from_deltas(data):
-    delta1 = librosa.feature.delta(data)
-    concatenated=np.concatenate((data, delta1), axis=1)
-    permutation = []
-    for i in range(0, int(concatenated.shape[1] / 2)):
-        permutation.append(i)
-        permutation.append(39 + i)
-    permutation = np.array(permutation)
-    feature_vector = concatenated[:, permutation]
-    return feature_vector
-
-def get_data(data_path: str,class_labels: Tuple, mfcc_len: int = 13) -> \
+def get_data(data_path: str,class_labels: Tuple) -> \
         Tuple[np.ndarray, np.ndarray]:
     data = []
     labels = []
@@ -148,12 +187,21 @@ def get_data(data_path: str,class_labels: Tuple, mfcc_len: int = 13) -> \
         for filename in tqdm(os.listdir()):
             filepath = os.getcwd() + '/' + filename
             fs, signal = wav.read(filepath)
+            feature_vector=[]
             if signal_mode == 'sp':
                 signal = signal_slicing_padding(signal)
-            feature_vector = get_feature_vector_from_mfcc(signal,fs,
-                                                          mfcc_len=mfcc_len)
+            if 'mfcc' in features:
+                if features.index('mfcc') is not 0:
+                    sys.exit("\n###### please put mfcc as the first element of the feature array, aborting execution... ######")
+                else:
+                    feature_vector, mel_coefficients = get_feature_vector_from_mfcc(signal, fs)
+            if 'lpcc' in features:
+                feature_vector = get_feature_vector_from_lpcc(signal,fs,feature_vector)
             if 'deltas' in features:
-                feature_vector = get_feature_vector_from_deltas(feature_vector)
+                if 'mfcc' in features:
+                    feature_vector = get_feature_vector_from_deltas(mel_coefficients)
+                else:
+                    sys.exit("\n ###### can't compute deltas without mfcc, aborting execution ######")
             if 'formants' in features:
                 feature_vector = get_feature_vector_from_formants(filepath,feature_vector)
             if 'pitch' in features:
