@@ -27,9 +27,9 @@ class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp
 #"mfcc","deltas","formants","pitch","intensity"
-features = ("mfcc")
+features = ("mfcc","pitch")
 splits = 5
-signal_mode = 'sp'
+signal_mode = 'fp'
 special_value = 100
 routine_it = 5
 epochs_n = 50
@@ -63,10 +63,15 @@ def get_feature_vector_from_pitch(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
     #compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
-    pitch = signal.to_pitch_ac()
+    pitch = signal.to_pitch_ac(time_step=0.01,pitch_floor= 150)
     x_sample = pitch.selected_array['frequency']
     x_sample = x_sample/np.linalg.norm(x_sample)
-    x_sample = np.pad(x_sample, ((0, feature_vector.shape[0]-len(x_sample))), 'constant',constant_values=100)
+    if len(x_sample) < feature_vector.shape[0]:
+        x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
+    elif len(x_sample) > feature_vector.shape[0]:
+        pad_len = len(x_sample) - feature_vector.shape[0]
+        pad_len //= 2
+        x_sample = x_sample[pad_len:pad_len + feature_vector.shape[0]]
     x_sample = np.reshape(x_sample, (len(x_sample), 1))
     x_sample = np.concatenate((feature_vector,x_sample),axis=1)
     return x_sample
@@ -115,7 +120,7 @@ def signal_slicing_padding(signal):
     return signal
 
 def get_feature_vector_from_mfcc(signal,fs,mfcc_len: int = 39) -> np.ndarray:
-    mel_coefficients = mfcc(signal, fs, num_cepstral=mfcc_len)
+    mel_coefficients = mfcc(signal, fs, frame_stride=0.1,num_cepstral=mfcc_len)
     return mel_coefficients
 
 def get_feature_vector_from_deltas(data):
@@ -129,7 +134,7 @@ def get_feature_vector_from_deltas(data):
     feature_vector = concatenated[:, permutation]
     return feature_vector
 
-def get_data(data_path: str,class_labels: Tuple, mfcc_len: int = 39) -> \
+def get_data(data_path: str,class_labels: Tuple, mfcc_len: int = 13) -> \
         Tuple[np.ndarray, np.ndarray]:
     data = []
     labels = []

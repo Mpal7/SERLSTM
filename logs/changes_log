@@ -137,3 +137,7 @@ not good with minibatches and online, therefore need to check if padding messes 
 -prints
 ##added
 -pysptk for lpc feature extraction
+
+##2020-09-10
+##added
+-lpcc extraction using pysptk
