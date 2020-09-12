@@ -11,7 +11,7 @@ from sklearn.model_selection import StratifiedKFold
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking,Attention
+from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking
 from tqdm import tqdm
 from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
 from tensorflow.keras.models import load_model
@@ -234,7 +234,7 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
     es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
-    mc=ModelCheckpoint(emovo_path_cleaned+'best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=1)
+    mc=ModelCheckpoint('best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=1)
     history=model.fit(x_train, y_train, batch_size=96, epochs=epochs_n,callbacks=[es,mc],validation_data=(x_test,y_test_train))
     #retrieve from history best acc and relative loss from early stopping
     best_epoch = np.argmax(history.history['val_accuracy']) + 1
@@ -270,7 +270,7 @@ def lstm():
             y_train = np.array(y_train)
             y_test = np.array(y_test)
             if it > 0:
-                model.load_weights(emovo_path_cleaned + 'model.u5')
+                model.load_weights('model.u5')
             y_train = np_utils.to_categorical(y_train)
             y_test_train = np_utils.to_categorical(y_test)
             if it == 0:
@@ -279,20 +279,18 @@ def lstm():
                 value_input = tf.keras.Input(shape=(None,), dtype='int32')
                 model = Sequential()
                 input_shape = x_train[0].shape
-                print(input_shape[0],input_shape[1])
-                model.add(Masking(mask_value=special_value, input_shape=(None, input_shape[1])))
-                model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1]),return_sequences=True))
-                model.add(Attention(causal=True))
+                model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
+                model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1])))
                 model.add(Dropout(0.5))
                 model.add(Dense(32, activation='tanh'))
                 model.add(Dense(len(class_labels), activation='softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='adam',
                               metrics=['accuracy'])
                 print(model.summary(), file=sys.stderr)
-                model.save_weights(emovo_path_cleaned + 'model.u5')
+                model.save_weights('model.u5')
             it += 1
             train(x_train, y_train, x_test, y_test_train, model, acc, loss)
-            best_epoch = load_model(emovo_path_cleaned + 'best_epoch.h5')
+            best_epoch = load_model('best_epoch.h5')
             evaluate(best_epoch, x_test, y_test)
         print('\n\n ############# AVERAGE EVALUATIONS ############')
         print("\n######### MEAN LOSS OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
@@ -318,4 +316,5 @@ def lstm():
     print("####LOSS STANDARD DEVIATION OVER ", counter, " ITERATIONS: ", np.std(Multiple_it_loss_te),
           " ACC STANDARD DEVIATION OVER ", counter, " ITERATIONS:",
           np.std(Multiple_it_acc_te), "#####")
+
 lstm()

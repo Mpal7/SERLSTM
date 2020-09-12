@@ -4,3 +4,7 @@ model.h5
 model.u5
 preprocessing/__pycache__/
 venv/
+model/best_epoch.h5
+model/checkpoint
+model/model.u5.data-00000-of-00001
+model/model.u5.index
