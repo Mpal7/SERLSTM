@@ -141,5 +141,6 @@ not good with minibatches and online, therefore need to check if padding messes 
 ##2020-09-10
 ##added
 -lpcc extraction using pysptk
+-updated to tensorflow 2.3
 ##changed
 -feature extraction for independent analysis (not requiring mfcc to be present)

@@ -8,13 +8,13 @@ from typing import Tuple
 import numpy
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import StratifiedKFold
-import sys
 import numpy as np
-from keras import Sequential
-from keras.layers import LSTM as KERAS_LSTM, Dense, Dropout,Masking
+import tensorflow as tf
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking,Attention
 from tqdm import tqdm
-from keras.callbacks import EarlyStopping,ModelCheckpoint
-from keras.models import load_model
+from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
+from tensorflow.keras.models import load_model
 from parselmouth.praat import call
 import sys
 from spafe.features.lpc import  lpc, lpcc
@@ -30,12 +30,12 @@ class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
-features = ("mfcc","lpcc")
+features = ("mfcc")
 splits = 5
 signal_mode = 'fp'
 special_value = 100
 routine_it = 5
-epochs_n = 50
+epochs_n = 80
 
 
 def get_feature_vector_from_formants(filepath,feature_vector):
@@ -149,7 +149,6 @@ def padding(X):
     for e in X:
         if e.shape[0] > max_seq_len:
             max_seq_len = e.shape[0]
-            print(max_seq_len)
     X_pad = np.full((len(X), max_seq_len, X[0].shape[1]), fill_value=special_value)
     for s, x in enumerate(X):
         seq_len = x.shape[0]
@@ -165,7 +164,7 @@ def signal_slicing_padding(signal):
         pad_rem = pad_len % 2
         pad_len //= 2
         signal = np.pad(signal, (pad_len, pad_len + pad_rem),
-                        'constant', constant_values=0)
+                        'constant', constant_values=100)
     else:
         pad_len = s_len - mean_signal_length
         pad_len //= 2
@@ -227,8 +226,6 @@ def predict(model, samples: numpy.ndarray) -> Tuple:
 
 def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
     predictions = predict(model, x_test)
-    print(y_test)
-    print(predictions)
     print('Accuracy:%.3f\n' % accuracy_score(y_pred=predictions,
                                              y_true=y_test))
     print('Confusion matrix:\n', confusion_matrix(y_pred=predictions,
@@ -238,7 +235,7 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
     es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
     mc=ModelCheckpoint(emovo_path_cleaned+'best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=1)
-    history=model.fit(x_train, y_train, batch_size=96, epochs=epochs_n,callbacks=[es,mc],validation_data=[x_test,y_test_train])
+    history=model.fit(x_train, y_train, batch_size=96, epochs=epochs_n,callbacks=[es,mc],validation_data=(x_test,y_test_train))
     #retrieve from history best acc and relative loss from early stopping
     best_epoch = np.argmax(history.history['val_accuracy']) + 1
     acc.append(history.history['val_accuracy'][best_epoch-1])
@@ -278,11 +275,14 @@ def lstm():
             y_test_train = np_utils.to_categorical(y_test)
             if it == 0:
                 print('Starting LSTM')
+                query_input = tf.keras.Input(shape=(None,), dtype='int32')
+                value_input = tf.keras.Input(shape=(None,), dtype='int32')
                 model = Sequential()
                 input_shape = x_train[0].shape
-                if signal_mode == 'fp':
-                    model.add(Masking(mask_value=special_value, input_shape=(None, input_shape[1])))
-                model.add(KERAS_LSTM(128,input_shape=(input_shape[0], input_shape[1])))
+                print(input_shape[0],input_shape[1])
+                model.add(Masking(mask_value=special_value, input_shape=(None, input_shape[1])))
+                model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1]),return_sequences=True))
+                model.add(Attention(causal=True))
                 model.add(Dropout(0.5))
                 model.add(Dense(32, activation='tanh'))
                 model.add(Dense(len(class_labels), activation='softmax'))
@@ -318,5 +318,4 @@ def lstm():
     print("####LOSS STANDARD DEVIATION OVER ", counter, " ITERATIONS: ", np.std(Multiple_it_loss_te),
           " ACC STANDARD DEVIATION OVER ", counter, " ITERATIONS:",
           np.std(Multiple_it_acc_te), "#####")
-
 lstm()
