@@ -1,0 +1,421 @@
+fname,gender,ID_speaker,emotion,sentence,type
+gio-f1-b1.wav,female,4,joy,Gli operai si alzano presto,short
+gio-f1-b2.wav,female,4,joy,I vigili sono muniti di pistola,short
+gio-f1-b3.wav,female,4,joy,La cascata fa molto rumore,short
+gio-f1-d1.wav,female,4,joy,Sabato sera cosa fara?,domanda
+gio-f1-d2.wav,female,4,joy,Porti con te quella cosa?,domanda
+gio-f1-l1.wav,female,4,joy,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+gio-f1-l2.wav,female,4,joy,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+gio-f1-l3.wav,female,4,joy,Un attimo dopo s e incamminato ed e inciampato,long
+gio-f1-l4.wav,female,4,joy,Vorrei il numero telefonico del Signor Piatti,long
+gio-f1-n1.wav,female,4,joy,La casa forte vuole col pane,nosense
+gio-f1-n2.wav,female,4,joy,La forza trova il passo e l aglio rosso,nosense
+gio-f1-n3.wav,female,4,joy,Il gatto sta scorrendo nella pera,nosense
+gio-f1-n4.wav,female,4,joy,Insalata pastasciutta coscia d agnello limoncello,nosense
+gio-f1-n5.wav,female,4,joy,Uno quarantatre dieci mille cinquantasette venti,nosense
+gio-f2-b1.wav,female,5,joy,Gli operai si alzano presto,short
+gio-f2-b2.wav,female,5,joy,I vigili sono muniti di pistola,short
+gio-f2-b3.wav,female,5,joy,La cascata fa molto rumore,short
+gio-f2-d1.wav,female,5,joy,Sabato sera cosa fara?,domanda
+gio-f2-d2.wav,female,5,joy,Porti con te quella cosa?,domanda
+gio-f2-l1.wav,female,5,joy,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+gio-f2-l2.wav,female,5,joy,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+gio-f2-l3.wav,female,5,joy,Un attimo dopo s e incamminato ed e inciampato,long
+gio-f2-l4.wav,female,5,joy,Vorrei il numero telefonico del Signor Piatti,long
+gio-f2-n1.wav,female,5,joy,La casa forte vuole col pane,nosense
+gio-f2-n2.wav,female,5,joy,La forza trova il passo e l aglio rosso,nosense
+gio-f2-n3.wav,female,5,joy,Il gatto sta scorrendo nella pera,nosense
+gio-f2-n4.wav,female,5,joy,Insalata pastasciutta coscia d agnello limoncello,nosense
+gio-f2-n5.wav,female,5,joy,Uno quarantatre dieci mille cinquantasette venti,nosense
+gio-f3-b1.wav,female,6,joy,Gli operai si alzano presto,short
+gio-f3-b2.wav,female,6,joy,I vigili sono muniti di pistola,short
+gio-f3-b3.wav,female,6,joy,La cascata fa molto rumore,short
+gio-f3-d1.wav,female,6,joy,Sabato sera cosa fara?,domanda
+gio-f3-d2.wav,female,6,joy,Porti con te quella cosa?,domanda
+gio-f3-l1.wav,female,6,joy,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+gio-f3-l2.wav,female,6,joy,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+gio-f3-l3.wav,female,6,joy,Un attimo dopo s e incamminato ed e inciampato,long
+gio-f3-l4.wav,female,6,joy,Vorrei il numero telefonico del Signor Piatti,long
+gio-f3-n1.wav,female,6,joy,La casa forte vuole col pane,nosense
+gio-f3-n2.wav,female,6,joy,La forza trova il passo e l aglio rosso,nosense
+gio-f3-n3.wav,female,6,joy,Il gatto sta scorrendo nella pera,nosense
+gio-f3-n4.wav,female,6,joy,Insalata pastasciutta coscia d agnello limoncello,nosense
+gio-f3-n5.wav,female,6,joy,Uno quarantatre dieci mille cinquantasette venti,nosense
+gio-m1-b1.wav,male,1,joy,Gli operai si alzano presto,short
+gio-m1-b2.wav,male,1,joy,I vigili sono muniti di pistola,short
+gio-m1-b3.wav,male,1,joy,La cascata fa molto rumore,short
+gio-m1-d1.wav,male,1,joy,Sabato sera cosa fara?,domanda
+gio-m1-d2.wav,male,1,joy,Porti con te quella cosa?,domanda
+gio-m1-l1.wav,male,1,joy,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+gio-m1-l2.wav,male,1,joy,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+gio-m1-l3.wav,male,1,joy,Un attimo dopo s e incamminato ed e inciampato,long
+gio-m1-l4.wav,male,1,joy,Vorrei il numero telefonico del Signor Piatti,long
+gio-m1-n1.wav,male,1,joy,La casa forte vuole col pane,nosense
+gio-m1-n2.wav,male,1,joy,La forza trova il passo e l aglio rosso,nosense
+gio-m1-n3.wav,male,1,joy,Il gatto sta scorrendo nella pera,nosense
+gio-m1-n4.wav,male,1,joy,Insalata pastasciutta coscia d agnello limoncello,nosense
+gio-m1-n5.wav,male,1,joy,Uno quarantatre dieci mille cinquantasette venti,nosense
+gio-m2-b1.wav,male,2,joy,Gli operai si alzano presto,short
+gio-m2-b2.wav,male,2,joy,I vigili sono muniti di pistola,short
+gio-m2-b3.wav,male,2,joy,La cascata fa molto rumore,short
+gio-m2-d1.wav,male,2,joy,Sabato sera cosa fara?,domanda
+gio-m2-d2.wav,male,2,joy,Porti con te quella cosa?,domanda
+gio-m2-l1.wav,male,2,joy,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+gio-m2-l2.wav,male,2,joy,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+gio-m2-l3.wav,male,2,joy,Un attimo dopo s e incamminato ed e inciampato,long
+gio-m2-l4.wav,male,2,joy,Vorrei il numero telefonico del Signor Piatti,long
+gio-m2-n1.wav,male,2,joy,La casa forte vuole col pane,nosense
+gio-m2-n2.wav,male,2,joy,La forza trova il passo e l aglio rosso,nosense
+gio-m2-n3.wav,male,2,joy,Il gatto sta scorrendo nella pera,nosense
+gio-m2-n4.wav,male,2,joy,Insalata pastasciutta coscia d agnello limoncello,nosense
+gio-m2-n5.wav,male,2,joy,Uno quarantatre dieci mille cinquantasette venti,nosense
+gio-m3-b1.wav,male,3,joy,Gli operai si alzano presto,short
+gio-m3-b2.wav,male,3,joy,I vigili sono muniti di pistola,short
+gio-m3-b3.wav,male,3,joy,La cascata fa molto rumore,short
+gio-m3-d1.wav,male,3,joy,Sabato sera cosa fara?,domanda
+gio-m3-d2.wav,male,3,joy,Porti con te quella cosa?,domanda
+gio-m3-l1.wav,male,3,joy,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+gio-m3-l2.wav,male,3,joy,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+gio-m3-l3.wav,male,3,joy,Un attimo dopo s e incamminato ed e inciampato,long
+gio-m3-l4.wav,male,3,joy,Vorrei il numero telefonico del Signor Piatti,long
+gio-m3-n1.wav,male,3,joy,La casa forte vuole col pane,nosense
+gio-m3-n2.wav,male,3,joy,La forza trova il passo e l aglio rosso,nosense
+gio-m3-n3.wav,male,3,joy,Il gatto sta scorrendo nella pera,nosense
+gio-m3-n4.wav,male,3,joy,Insalata pastasciutta coscia d agnello limoncello,nosense
+gio-m3-n5.wav,male,3,joy,Uno quarantatre dieci mille cinquantasette venti,nosense
+neu-f1-b1.wav,female,4,neutrality,Gli operai si alzano presto,short
+neu-f1-b2.wav,female,4,neutrality,I vigili sono muniti di pistola,short
+neu-f1-b3.wav,female,4,neutrality,La cascata fa molto rumore,short
+neu-f1-d1.wav,female,4,neutrality,Sabato sera cosa fara?,domanda
+neu-f1-d2.wav,female,4,neutrality,Porti con te quella cosa?,domanda
+neu-f1-l1.wav,female,4,neutrality,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+neu-f1-l2.wav,female,4,neutrality,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+neu-f1-l3.wav,female,4,neutrality,Un attimo dopo s e incamminato ed e inciampato,long
+neu-f1-l4.wav,female,4,neutrality,Vorrei il numero telefonico del Signor Piatti,long
+neu-f1-n1.wav,female,4,neutrality,La casa forte vuole col pane,nosense
+neu-f1-n2.wav,female,4,neutrality,La forza trova il passo e l aglio rosso,nosense
+neu-f1-n3.wav,female,4,neutrality,Il gatto sta scorrendo nella pera,nosense
+neu-f1-n4.wav,female,4,neutrality,Insalata pastasciutta coscia d agnello limoncello,nosense
+neu-f1-n5.wav,female,4,neutrality,Uno quarantatre dieci mille cinquantasette venti,nosense
+neu-f2-b1.wav,female,5,neutrality,Gli operai si alzano presto,short
+neu-f2-b2.wav,female,5,neutrality,I vigili sono muniti di pistola,short
+neu-f2-b3.wav,female,5,neutrality,La cascata fa molto rumore,short
+neu-f2-d1.wav,female,5,neutrality,Sabato sera cosa fara?,domanda
+neu-f2-d2.wav,female,5,neutrality,Porti con te quella cosa?,domanda
+neu-f2-l1.wav,female,5,neutrality,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+neu-f2-l2.wav,female,5,neutrality,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+neu-f2-l3.wav,female,5,neutrality,Un attimo dopo s e incamminato ed e inciampato,long
+neu-f2-l4.wav,female,5,neutrality,Vorrei il numero telefonico del Signor Piatti,long
+neu-f2-n1.wav,female,5,neutrality,La casa forte vuole col pane,nosense
+neu-f2-n2.wav,female,5,neutrality,La forza trova il passo e l aglio rosso,nosense
+neu-f2-n3.wav,female,5,neutrality,Il gatto sta scorrendo nella pera,nosense
+neu-f2-n4.wav,female,5,neutrality,Insalata pastasciutta coscia d agnello limoncello,nosense
+neu-f2-n5.wav,female,5,neutrality,Uno quarantatre dieci mille cinquantasette venti,nosense
+neu-f3-b1.wav,female,6,neutrality,Gli operai si alzano presto,short
+neu-f3-b2.wav,female,6,neutrality,I vigili sono muniti di pistola,short
+neu-f3-b3.wav,female,6,neutrality,La cascata fa molto rumore,short
+neu-f3-d1.wav,female,6,neutrality,Sabato sera cosa fara?,domanda
+neu-f3-d2.wav,female,6,neutrality,Porti con te quella cosa?,domanda
+neu-f3-l1.wav,female,6,neutrality,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+neu-f3-l2.wav,female,6,neutrality,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+neu-f3-l3.wav,female,6,neutrality,Un attimo dopo s e incamminato ed e inciampato,long
+neu-f3-l4.wav,female,6,neutrality,Vorrei il numero telefonico del Signor Piatti,long
+neu-f3-n1.wav,female,6,neutrality,La casa forte vuole col pane,nosense
+neu-f3-n2.wav,female,6,neutrality,La forza trova il passo e l aglio rosso,nosense
+neu-f3-n3.wav,female,6,neutrality,Il gatto sta scorrendo nella pera,nosense
+neu-f3-n4.wav,female,6,neutrality,Insalata pastasciutta coscia d agnello limoncello,nosense
+neu-f3-n5.wav,female,6,neutrality,Uno quarantatre dieci mille cinquantasette venti,nosense
+neu-m1-b1.wav,male,1,neutrality,Gli operai si alzano presto,short
+neu-m1-b2.wav,male,1,neutrality,I vigili sono muniti di pistola,short
+neu-m1-b3.wav,male,1,neutrality,La cascata fa molto rumore,short
+neu-m1-d1.wav,male,1,neutrality,Sabato sera cosa fara?,domanda
+neu-m1-d2.wav,male,1,neutrality,Porti con te quella cosa?,domanda
+neu-m1-l1.wav,male,1,neutrality,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+neu-m1-l2.wav,male,1,neutrality,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+neu-m1-l3.wav,male,1,neutrality,Un attimo dopo s e incamminato ed e inciampato,long
+neu-m1-l4.wav,male,1,neutrality,Vorrei il numero telefonico del Signor Piatti,long
+neu-m1-n1.wav,male,1,neutrality,La casa forte vuole col pane,nosense
+neu-m1-n2.wav,male,1,neutrality,La forza trova il passo e l aglio rosso,nosense
+neu-m1-n3.wav,male,1,neutrality,Il gatto sta scorrendo nella pera,nosense
+neu-m1-n4.wav,male,1,neutrality,Insalata pastasciutta coscia d agnello limoncello,nosense
+neu-m1-n5.wav,male,1,neutrality,Uno quarantatre dieci mille cinquantasette venti,nosense
+neu-m2-b1.wav,male,2,neutrality,Gli operai si alzano presto,short
+neu-m2-b2.wav,male,2,neutrality,I vigili sono muniti di pistola,short
+neu-m2-b3.wav,male,2,neutrality,La cascata fa molto rumore,short
+neu-m2-d1.wav,male,2,neutrality,Sabato sera cosa fara?,domanda
+neu-m2-d2.wav,male,2,neutrality,Porti con te quella cosa?,domanda
+neu-m2-l1.wav,male,2,neutrality,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+neu-m2-l2.wav,male,2,neutrality,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+neu-m2-l3.wav,male,2,neutrality,Un attimo dopo s e incamminato ed e inciampato,long
+neu-m2-l4.wav,male,2,neutrality,Vorrei il numero telefonico del Signor Piatti,long
+neu-m2-n1.wav,male,2,neutrality,La casa forte vuole col pane,nosense
+neu-m2-n2.wav,male,2,neutrality,La forza trova il passo e l aglio rosso,nosense
+neu-m2-n3.wav,male,2,neutrality,Il gatto sta scorrendo nella pera,nosense
+neu-m2-n4.wav,male,2,neutrality,Insalata pastasciutta coscia d agnello limoncello,nosense
+neu-m2-n5.wav,male,2,neutrality,Uno quarantatre dieci mille cinquantasette venti,nosense
+neu-m3-b1.wav,male,3,neutrality,Gli operai si alzano presto,short
+neu-m3-b2.wav,male,3,neutrality,I vigili sono muniti di pistola,short
+neu-m3-b3.wav,male,3,neutrality,La cascata fa molto rumore,short
+neu-m3-d1.wav,male,3,neutrality,Sabato sera cosa fara?,domanda
+neu-m3-d2.wav,male,3,neutrality,Porti con te quella cosa?,domanda
+neu-m3-l1.wav,male,3,neutrality,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+neu-m3-l2.wav,male,3,neutrality,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+neu-m3-l3.wav,male,3,neutrality,Un attimo dopo s e incamminato ed e inciampato,long
+neu-m3-l4.wav,male,3,neutrality,Vorrei il numero telefonico del Signor Piatti,long
+neu-m3-n1.wav,male,3,neutrality,La casa forte vuole col pane,nosense
+neu-m3-n2.wav,male,3,neutrality,La forza trova il passo e l aglio rosso,nosense
+neu-m3-n3.wav,male,3,neutrality,Il gatto sta scorrendo nella pera,nosense
+neu-m3-n4.wav,male,3,neutrality,Insalata pastasciutta coscia d agnello limoncello,nosense
+neu-m3-n5.wav,male,3,neutrality,Uno quarantatre dieci mille cinquantasette venti,nosense
+pau-f1-b1.wav,female,4,fear,Gli operai si alzano presto,short
+pau-f1-b2.wav,female,4,fear,I vigili sono muniti di pistola,short
+pau-f1-b3.wav,female,4,fear,La cascata fa molto rumore,short
+pau-f1-d1.wav,female,4,fear,Sabato sera cosa fara?,domanda
+pau-f1-d2.wav,female,4,fear,Porti con te quella cosa?,domanda
+pau-f1-l1.wav,female,4,fear,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+pau-f1-l2.wav,female,4,fear,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+pau-f1-l3.wav,female,4,fear,Un attimo dopo s e incamminato ed e inciampato,long
+pau-f1-l4.wav,female,4,fear,Vorrei il numero telefonico del Signor Piatti,long
+pau-f1-n1.wav,female,4,fear,La casa forte vuole col pane,nosense
+pau-f1-n2.wav,female,4,fear,La forza trova il passo e l aglio rosso,nosense
+pau-f1-n3.wav,female,4,fear,Il gatto sta scorrendo nella pera,nosense
+pau-f1-n4.wav,female,4,fear,Insalata pastasciutta coscia d agnello limoncello,nosense
+pau-f1-n5.wav,female,4,fear,Uno quarantatre dieci mille cinquantasette venti,nosense
+pau-f2-b1.wav,female,5,fear,Gli operai si alzano presto,short
+pau-f2-b2.wav,female,5,fear,I vigili sono muniti di pistola,short
+pau-f2-b3.wav,female,5,fear,La cascata fa molto rumore,short
+pau-f2-d1.wav,female,5,fear,Sabato sera cosa fara?,domanda
+pau-f2-d2.wav,female,5,fear,Porti con te quella cosa?,domanda
+pau-f2-l1.wav,female,5,fear,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+pau-f2-l2.wav,female,5,fear,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+pau-f2-l3.wav,female,5,fear,Un attimo dopo s e incamminato ed e inciampato,long
+pau-f2-l4.wav,female,5,fear,Vorrei il numero telefonico del Signor Piatti,long
+pau-f2-n1.wav,female,5,fear,La casa forte vuole col pane,nosense
+pau-f2-n2.wav,female,5,fear,La forza trova il passo e l aglio rosso,nosense
+pau-f2-n3.wav,female,5,fear,Il gatto sta scorrendo nella pera,nosense
+pau-f2-n4.wav,female,5,fear,Insalata pastasciutta coscia d agnello limoncello,nosense
+pau-f2-n5.wav,female,5,fear,Uno quarantatre dieci mille cinquantasette venti,nosense
+pau-f3-b1.wav,female,6,fear,Gli operai si alzano presto,short
+pau-f3-b2.wav,female,6,fear,I vigili sono muniti di pistola,short
+pau-f3-b3.wav,female,6,fear,La cascata fa molto rumore,short
+pau-f3-d1.wav,female,6,fear,Sabato sera cosa fara?,domanda
+pau-f3-d2.wav,female,6,fear,Porti con te quella cosa?,domanda
+pau-f3-l1.wav,female,6,fear,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+pau-f3-l2.wav,female,6,fear,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+pau-f3-l3.wav,female,6,fear,Un attimo dopo s e incamminato ed e inciampato,long
+pau-f3-l4.wav,female,6,fear,Vorrei il numero telefonico del Signor Piatti,long
+pau-f3-n1.wav,female,6,fear,La casa forte vuole col pane,nosense
+pau-f3-n2.wav,female,6,fear,La forza trova il passo e l aglio rosso,nosense
+pau-f3-n3.wav,female,6,fear,Il gatto sta scorrendo nella pera,nosense
+pau-f3-n4.wav,female,6,fear,Insalata pastasciutta coscia d agnello limoncello,nosense
+pau-f3-n5.wav,female,6,fear,Uno quarantatre dieci mille cinquantasette venti,nosense
+pau-m1-b1.wav,male,1,fear,Gli operai si alzano presto,short
+pau-m1-b2.wav,male,1,fear,I vigili sono muniti di pistola,short
+pau-m1-b3.wav,male,1,fear,La cascata fa molto rumore,short
+pau-m1-d1.wav,male,1,fear,Sabato sera cosa fara?,domanda
+pau-m1-d2.wav,male,1,fear,Porti con te quella cosa?,domanda
+pau-m1-l1.wav,male,1,fear,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+pau-m1-l2.wav,male,1,fear,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+pau-m1-l3.wav,male,1,fear,Un attimo dopo s e incamminato ed e inciampato,long
+pau-m1-l4.wav,male,1,fear,Vorrei il numero telefonico del Signor Piatti,long
+pau-m1-n1.wav,male,1,fear,La casa forte vuole col pane,nosense
+pau-m1-n2.wav,male,1,fear,La forza trova il passo e l aglio rosso,nosense
+pau-m1-n3.wav,male,1,fear,Il gatto sta scorrendo nella pera,nosense
+pau-m1-n4.wav,male,1,fear,Insalata pastasciutta coscia d agnello limoncello,nosense
+pau-m1-n5.wav,male,1,fear,Uno quarantatre dieci mille cinquantasette venti,nosense
+pau-m2-b1.wav,male,2,fear,Gli operai si alzano presto,short
+pau-m2-b2.wav,male,2,fear,I vigili sono muniti di pistola,short
+pau-m2-b3.wav,male,2,fear,La cascata fa molto rumore,short
+pau-m2-d1.wav,male,2,fear,Sabato sera cosa fara?,domanda
+pau-m2-d2.wav,male,2,fear,Porti con te quella cosa?,domanda
+pau-m2-l1.wav,male,2,fear,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+pau-m2-l2.wav,male,2,fear,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+pau-m2-l3.wav,male,2,fear,Un attimo dopo s e incamminato ed e inciampato,long
+pau-m2-l4.wav,male,2,fear,Vorrei il numero telefonico del Signor Piatti,long
+pau-m2-n1.wav,male,2,fear,La casa forte vuole col pane,nosense
+pau-m2-n2.wav,male,2,fear,La forza trova il passo e l aglio rosso,nosense
+pau-m2-n3.wav,male,2,fear,Il gatto sta scorrendo nella pera,nosense
+pau-m2-n4.wav,male,2,fear,Insalata pastasciutta coscia d agnello limoncello,nosense
+pau-m2-n5.wav,male,2,fear,Uno quarantatre dieci mille cinquantasette venti,nosense
+pau-m3-b1.wav,male,3,fear,Gli operai si alzano presto,short
+pau-m3-b2.wav,male,3,fear,I vigili sono muniti di pistola,short
+pau-m3-b3.wav,male,3,fear,La cascata fa molto rumore,short
+pau-m3-d1.wav,male,3,fear,Sabato sera cosa fara?,domanda
+pau-m3-d2.wav,male,3,fear,Porti con te quella cosa?,domanda
+pau-m3-l1.wav,male,3,fear,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+pau-m3-l2.wav,male,3,fear,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+pau-m3-l3.wav,male,3,fear,Un attimo dopo s e incamminato ed e inciampato,long
+pau-m3-l4.wav,male,3,fear,Vorrei il numero telefonico del Signor Piatti,long
+pau-m3-n1.wav,male,3,fear,La casa forte vuole col pane,nosense
+pau-m3-n2.wav,male,3,fear,La forza trova il passo e l aglio rosso,nosense
+pau-m3-n3.wav,male,3,fear,Il gatto sta scorrendo nella pera,nosense
+pau-m3-n4.wav,male,3,fear,Insalata pastasciutta coscia d agnello limoncello,nosense
+pau-m3-n5.wav,male,3,fear,Uno quarantatre dieci mille cinquantasette venti,nosense
+rab-f1-b1.wav,female,4,anger,Gli operai si alzano presto,short
+rab-f1-b2.wav,female,4,anger,I vigili sono muniti di pistola,short
+rab-f1-b3.wav,female,4,anger,La cascata fa molto rumore,short
+rab-f1-d1.wav,female,4,anger,Sabato sera cosa fara?,domanda
+rab-f1-d2.wav,female,4,anger,Porti con te quella cosa?,domanda
+rab-f1-l1.wav,female,4,anger,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+rab-f1-l2.wav,female,4,anger,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+rab-f1-l3.wav,female,4,anger,Un attimo dopo s e incamminato ed e inciampato,long
+rab-f1-l4.wav,female,4,anger,Vorrei il numero telefonico del Signor Piatti,long
+rab-f1-n1.wav,female,4,anger,La casa forte vuole col pane,nosense
+rab-f1-n2.wav,female,4,anger,La forza trova il passo e l aglio rosso,nosense
+rab-f1-n3.wav,female,4,anger,Il gatto sta scorrendo nella pera,nosense
+rab-f1-n4.wav,female,4,anger,Insalata pastasciutta coscia d agnello limoncello,nosense
+rab-f1-n5.wav,female,4,anger,Uno quarantatre dieci mille cinquantasette venti,nosense
+rab-f2-b1.wav,female,5,anger,Gli operai si alzano presto,short
+rab-f2-b2.wav,female,5,anger,I vigili sono muniti di pistola,short
+rab-f2-b3.wav,female,5,anger,La cascata fa molto rumore,short
+rab-f2-d1.wav,female,5,anger,Sabato sera cosa fara?,domanda
+rab-f2-d2.wav,female,5,anger,Porti con te quella cosa?,domanda
+rab-f2-l1.wav,female,5,anger,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+rab-f2-l2.wav,female,5,anger,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+rab-f2-l3.wav,female,5,anger,Un attimo dopo s e incamminato ed e inciampato,long
+rab-f2-l4.wav,female,5,anger,Vorrei il numero telefonico del Signor Piatti,long
+rab-f2-n1.wav,female,5,anger,La casa forte vuole col pane,nosense
+rab-f2-n2.wav,female,5,anger,La forza trova il passo e l aglio rosso,nosense
+rab-f2-n3.wav,female,5,anger,Il gatto sta scorrendo nella pera,nosense
+rab-f2-n4.wav,female,5,anger,Insalata pastasciutta coscia d agnello limoncello,nosense
+rab-f2-n5.wav,female,5,anger,Uno quarantatre dieci mille cinquantasette venti,nosense
+rab-f3-b1.wav,female,6,anger,Gli operai si alzano presto,short
+rab-f3-b2.wav,female,6,anger,I vigili sono muniti di pistola,short
+rab-f3-b3.wav,female,6,anger,La cascata fa molto rumore,short
+rab-f3-d1.wav,female,6,anger,Sabato sera cosa fara?,domanda
+rab-f3-d2.wav,female,6,anger,Porti con te quella cosa?,domanda
+rab-f3-l1.wav,female,6,anger,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+rab-f3-l2.wav,female,6,anger,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+rab-f3-l3.wav,female,6,anger,Un attimo dopo s e incamminato ed e inciampato,long
+rab-f3-l4.wav,female,6,anger,Vorrei il numero telefonico del Signor Piatti,long
+rab-f3-n1.wav,female,6,anger,La casa forte vuole col pane,nosense
+rab-f3-n2.wav,female,6,anger,La forza trova il passo e l aglio rosso,nosense
+rab-f3-n3.wav,female,6,anger,Il gatto sta scorrendo nella pera,nosense
+rab-f3-n4.wav,female,6,anger,Insalata pastasciutta coscia d agnello limoncello,nosense
+rab-f3-n5.wav,female,6,anger,Uno quarantatre dieci mille cinquantasette venti,nosense
+rab-m1-b1.wav,male,1,anger,Gli operai si alzano presto,short
+rab-m1-b2.wav,male,1,anger,I vigili sono muniti di pistola,short
+rab-m1-b3.wav,male,1,anger,La cascata fa molto rumore,short
+rab-m1-d1.wav,male,1,anger,Sabato sera cosa fara?,domanda
+rab-m1-d2.wav,male,1,anger,Porti con te quella cosa?,domanda
+rab-m1-l1.wav,male,1,anger,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+rab-m1-l2.wav,male,1,anger,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+rab-m1-l3.wav,male,1,anger,Un attimo dopo s e incamminato ed e inciampato,long
+rab-m1-l4.wav,male,1,anger,Vorrei il numero telefonico del Signor Piatti,long
+rab-m1-n1.wav,male,1,anger,La casa forte vuole col pane,nosense
+rab-m1-n2.wav,male,1,anger,La forza trova il passo e l aglio rosso,nosense
+rab-m1-n3.wav,male,1,anger,Il gatto sta scorrendo nella pera,nosense
+rab-m1-n4.wav,male,1,anger,Insalata pastasciutta coscia d agnello limoncello,nosense
+rab-m1-n5.wav,male,1,anger,Uno quarantatre dieci mille cinquantasette venti,nosense
+rab-m2-b1.wav,male,2,anger,Gli operai si alzano presto,short
+rab-m2-b2.wav,male,2,anger,I vigili sono muniti di pistola,short
+rab-m2-b3.wav,male,2,anger,La cascata fa molto rumore,short
+rab-m2-d1.wav,male,2,anger,Sabato sera cosa fara?,domanda
+rab-m2-d2.wav,male,2,anger,Porti con te quella cosa?,domanda
+rab-m2-l1.wav,male,2,anger,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+rab-m2-l2.wav,male,2,anger,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+rab-m2-l3.wav,male,2,anger,Un attimo dopo s e incamminato ed e inciampato,long
+rab-m2-l4.wav,male,2,anger,Vorrei il numero telefonico del Signor Piatti,long
+rab-m2-n1.wav,male,2,anger,La casa forte vuole col pane,nosense
+rab-m2-n2.wav,male,2,anger,La forza trova il passo e l aglio rosso,nosense
+rab-m2-n3.wav,male,2,anger,Il gatto sta scorrendo nella pera,nosense
+rab-m2-n4.wav,male,2,anger,Insalata pastasciutta coscia d agnello limoncello,nosense
+rab-m2-n5.wav,male,2,anger,Uno quarantatre dieci mille cinquantasette venti,nosense
+rab-m3-b1.wav,male,3,anger,Gli operai si alzano presto,short
+rab-m3-b2.wav,male,3,anger,I vigili sono muniti di pistola,short
+rab-m3-b3.wav,male,3,anger,La cascata fa molto rumore,short
+rab-m3-d1.wav,male,3,anger,Sabato sera cosa fara?,domanda
+rab-m3-d2.wav,male,3,anger,Porti con te quella cosa?,domanda
+rab-m3-l1.wav,male,3,anger,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+rab-m3-l2.wav,male,3,anger,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+rab-m3-l3.wav,male,3,anger,Un attimo dopo s e incamminato ed e inciampato,long
+rab-m3-l4.wav,male,3,anger,Vorrei il numero telefonico del Signor Piatti,long
+rab-m3-n1.wav,male,3,anger,La casa forte vuole col pane,nosense
+rab-m3-n2.wav,male,3,anger,La forza trova il passo e l aglio rosso,nosense
+rab-m3-n3.wav,male,3,anger,Il gatto sta scorrendo nella pera,nosense
+rab-m3-n4.wav,male,3,anger,Insalata pastasciutta coscia d agnello limoncello,nosense
+rab-m3-n5.wav,male,3,anger,Uno quarantatre dieci mille cinquantasette venti,nosense
+tri-f1-b1.wav,female,4,sadness,Gli operai si alzano presto,short
+tri-f1-b2.wav,female,4,sadness,I vigili sono muniti di pistola,short
+tri-f1-b3.wav,female,4,sadness,La cascata fa molto rumore,short
+tri-f1-d1.wav,female,4,sadness,Sabato sera cosa fara?,domanda
+tri-f1-d2.wav,female,4,sadness,Porti con te quella cosa?,domanda
+tri-f1-l1.wav,female,4,sadness,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+tri-f1-l2.wav,female,4,sadness,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+tri-f1-l3.wav,female,4,sadness,Un attimo dopo s e incamminato ed e inciampato,long
+tri-f1-l4.wav,female,4,sadness,Vorrei il numero telefonico del Signor Piatti,long
+tri-f1-n1.wav,female,4,sadness,La casa forte vuole col pane,nosense
+tri-f1-n2.wav,female,4,sadness,La forza trova il passo e l aglio rosso,nosense
+tri-f1-n3.wav,female,4,sadness,Il gatto sta scorrendo nella pera,nosense
+tri-f1-n4.wav,female,4,sadness,Insalata pastasciutta coscia d agnello limoncello,nosense
+tri-f1-n5.wav,female,4,sadness,Uno quarantatre dieci mille cinquantasette venti,nosense
+tri-f2-b1.wav,female,5,sadness,Gli operai si alzano presto,short
+tri-f2-b2.wav,female,5,sadness,I vigili sono muniti di pistola,short
+tri-f2-b3.wav,female,5,sadness,La cascata fa molto rumore,short
+tri-f2-d1.wav,female,5,sadness,Sabato sera cosa fara?,domanda
+tri-f2-d2.wav,female,5,sadness,Porti con te quella cosa?,domanda
+tri-f2-l1.wav,female,5,sadness,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+tri-f2-l2.wav,female,5,sadness,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+tri-f2-l3.wav,female,5,sadness,Un attimo dopo s e incamminato ed e inciampato,long
+tri-f2-l4.wav,female,5,sadness,Vorrei il numero telefonico del Signor Piatti,long
+tri-f2-n1.wav,female,5,sadness,La casa forte vuole col pane,nosense
+tri-f2-n2.wav,female,5,sadness,La forza trova il passo e l aglio rosso,nosense
+tri-f2-n3.wav,female,5,sadness,Il gatto sta scorrendo nella pera,nosense
+tri-f2-n4.wav,female,5,sadness,Insalata pastasciutta coscia d agnello limoncello,nosense
+tri-f2-n5.wav,female,5,sadness,Uno quarantatre dieci mille cinquantasette venti,nosense
+tri-f3-b1.wav,female,6,sadness,Gli operai si alzano presto,short
+tri-f3-b2.wav,female,6,sadness,I vigili sono muniti di pistola,short
+tri-f3-b3.wav,female,6,sadness,La cascata fa molto rumore,short
+tri-f3-d1.wav,female,6,sadness,Sabato sera cosa fara?,domanda
+tri-f3-d2.wav,female,6,sadness,Porti con te quella cosa?,domanda
+tri-f3-l1.wav,female,6,sadness,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+tri-f3-l2.wav,female,6,sadness,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+tri-f3-l3.wav,female,6,sadness,Un attimo dopo s e incamminato ed e inciampato,long
+tri-f3-l4.wav,female,6,sadness,Vorrei il numero telefonico del Signor Piatti,long
+tri-f3-n1.wav,female,6,sadness,La casa forte vuole col pane,nosense
+tri-f3-n2.wav,female,6,sadness,La forza trova il passo e l aglio rosso,nosense
+tri-f3-n3.wav,female,6,sadness,Il gatto sta scorrendo nella pera,nosense
+tri-f3-n4.wav,female,6,sadness,Insalata pastasciutta coscia d agnello limoncello,nosense
+tri-f3-n5.wav,female,6,sadness,Uno quarantatre dieci mille cinquantasette venti,nosense
+tri-m1-b1.wav,male,1,sadness,Gli operai si alzano presto,short
+tri-m1-b2.wav,male,1,sadness,I vigili sono muniti di pistola,short
+tri-m1-b3.wav,male,1,sadness,La cascata fa molto rumore,short
+tri-m1-d1.wav,male,1,sadness,Sabato sera cosa fara?,domanda
+tri-m1-d2.wav,male,1,sadness,Porti con te quella cosa?,domanda
+tri-m1-l1.wav,male,1,sadness,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+tri-m1-l2.wav,male,1,sadness,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+tri-m1-l3.wav,male,1,sadness,Un attimo dopo s e incamminato ed e inciampato,long
+tri-m1-l4.wav,male,1,sadness,Vorrei il numero telefonico del Signor Piatti,long
+tri-m1-n1.wav,male,1,sadness,La casa forte vuole col pane,nosense
+tri-m1-n2.wav,male,1,sadness,La forza trova il passo e l aglio rosso,nosense
+tri-m1-n3.wav,male,1,sadness,Il gatto sta scorrendo nella pera,nosense
+tri-m1-n4.wav,male,1,sadness,Insalata pastasciutta coscia d agnello limoncello,nosense
+tri-m1-n5.wav,male,1,sadness,Uno quarantatre dieci mille cinquantasette venti,nosense
+tri-m2-b1.wav,male,2,sadness,Gli operai si alzano presto,short
+tri-m2-b2.wav,male,2,sadness,I vigili sono muniti di pistola,short
+tri-m2-b3.wav,male,2,sadness,La cascata fa molto rumore,short
+tri-m2-d1.wav,male,2,sadness,Sabato sera cosa fara?,domanda
+tri-m2-d2.wav,male,2,sadness,Porti con te quella cosa?,domanda
+tri-m2-l1.wav,male,2,sadness,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+tri-m2-l2.wav,male,2,sadness,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+tri-m2-l3.wav,male,2,sadness,Un attimo dopo s e incamminato ed e inciampato,long
+tri-m2-l4.wav,male,2,sadness,Vorrei il numero telefonico del Signor Piatti,long
+tri-m2-n1.wav,male,2,sadness,La casa forte vuole col pane,nosense
+tri-m2-n2.wav,male,2,sadness,La forza trova il passo e l aglio rosso,nosense
+tri-m2-n3.wav,male,2,sadness,Il gatto sta scorrendo nella pera,nosense
+tri-m2-n4.wav,male,2,sadness,Insalata pastasciutta coscia d agnello limoncello,nosense
+tri-m2-n5.wav,male,2,sadness,Uno quarantatre dieci mille cinquantasette venti,nosense
+tri-m3-b1.wav,male,3,sadness,Gli operai si alzano presto,short
+tri-m3-b2.wav,male,3,sadness,I vigili sono muniti di pistola,short
+tri-m3-b3.wav,male,3,sadness,La cascata fa molto rumore,short
+tri-m3-d1.wav,male,3,sadness,Sabato sera cosa fara?,domanda
+tri-m3-d2.wav,male,3,sadness,Porti con te quella cosa?,domanda
+tri-m3-l1.wav,male,3,sadness,L autunno prossimo Tony partira per la Spagna: nella prima meta di ottobre,long
+tri-m3-l2.wav,male,3,sadness,Ora prendo la felpa di la ed esco per fare una passeggiata,long
+tri-m3-l3.wav,male,3,sadness,Un attimo dopo s e incamminato ed e inciampato,long
+tri-m3-l4.wav,male,3,sadness,Vorrei il numero telefonico del Signor Piatti,long
+tri-m3-n1.wav,male,3,sadness,La casa forte vuole col pane,nosense
+tri-m3-n2.wav,male,3,sadness,La forza trova il passo e l aglio rosso,nosense
+tri-m3-n3.wav,male,3,sadness,Il gatto sta scorrendo nella pera,nosense
+tri-m3-n4.wav,male,3,sadness,Insalata pastasciutta coscia d agnello limoncello,nosense
+tri-m3-n5.wav,male,3,sadness,Uno quarantatre dieci mille cinquantasette venti,nosense

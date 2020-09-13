@@ -66,10 +66,9 @@ def sentence_type_csv(emodb_filename):
 
 def add_length_df(df):
     df.set_index('fname', inplace=True)
-
     # adding length for each .wav sample
     for f in df.index:
-        rate, signal = wavfile.read(r'F:\EMOVO\merged\\' + f)
+        rate, signal = wavfile.read(r'F:\EMOVO\merged_5/' + f)
         df.at[f, 'length'] = signal.shape[0] / rate
 
 def calc_fft(y, rate):

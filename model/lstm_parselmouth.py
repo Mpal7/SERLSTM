@@ -22,11 +22,8 @@ from spafe.features.lpc import  lpc, lpcc
 
 #parameters
 mean_signal_length = 32000
-emovo_path_cleaned = r'F:\EMOVO/'
-#emovo_path_cleaned = r'C:\Users\mp95\Desktop\EMOVO/'
-db = 'EMOVO.CSV'
-data_path = emovo_path_cleaned
-class_labels = ("Sad2", "Happy2", "Angry2", "Neutral2")
+data_path = r'F:\EMOVO/'
+class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
@@ -34,7 +31,7 @@ features = ("mfcc")
 splits = 5
 signal_mode = 'fp'
 special_value = 100
-routine_it = 5
+routine_it = 10
 epochs_n = 80
 
 
@@ -247,22 +244,23 @@ def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
 def lstm():
     Multiple_it_acc_te = []
     Multiple_it_loss_te = []
-    counter = 0
+    counter = 1
     data, labels = get_data(data_path, class_labels=class_labels)
 
     if signal_mode == 'fp':
         data = padding(data)
 
-    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",epochs_n,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
+    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",96,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
 
     for i in range(0,routine_it):
+        print("\n####ITERATION NUMBER: ",i+1)
         it = 0
         # even if class are balanced we do not have many datapoints therefore i use stratifiedKFold
         kf = StratifiedKFold(n_splits=splits, shuffle=True)
         acc = []
         loss = []
         for i, (train_index, test_index) in enumerate(kf.split(data, labels)):
-            print('#####FOLDER NUMBER: ' + str(it + 1))
+            print('\n#####FOLDER NUMBER: ' + str(it + 1))
             x_train, x_test = data[train_index], data[test_index]
             y_train, y_test = labels[train_index], labels[test_index]
             x_train = np.array(x_train)
@@ -275,12 +273,12 @@ def lstm():
             y_test_train = np_utils.to_categorical(y_test)
             if it == 0:
                 print('Starting LSTM')
-                query_input = tf.keras.Input(shape=(None,), dtype='int32')
-                value_input = tf.keras.Input(shape=(None,), dtype='int32')
                 model = Sequential()
                 input_shape = x_train[0].shape
                 model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
-                model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1])))
+                model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1]),return_sequences=True))
+                model.add(Dropout(0.5))
+                model.add(LSTM(64))
                 model.add(Dropout(0.5))
                 model.add(Dense(32, activation='tanh'))
                 model.add(Dense(len(class_labels), activation='softmax'))
@@ -301,13 +299,13 @@ def lstm():
             "######### STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(acc)) + "  ###########")
         Multiple_it_acc_te.append(np.mean(acc))
         Multiple_it_loss_te.append(np.mean(loss))
-        print("\n####MEAN LOSSES OF THE FIRST ", counter, " ITERATIONS: ", Multiple_it_loss_te,
-              " MEAN ACC OF THE FIRST ", counter, " ITERATIONS: ",
+        print("\n####MEAN LOSSES OF THE FIRST ", counter+1, " ITERATIONS: ", Multiple_it_loss_te,
+              " MEAN ACC OF THE FIRST ", counter+1, " ITERATIONS: ",
               Multiple_it_acc_te, " #####")
         acc_std = np.std(Multiple_it_acc_te)
         loss_std = np.std(Multiple_it_loss_te)
-        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter, " ITERATIONS: ", acc_std,
-              " ACC STANDARD DEVIATIONS OF THE FIRST ", counter,
+        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter+1, " ITERATIONS: ", acc_std,
+              " ACC STANDARD DEVIATIONS OF THE FIRST ", counter+1,
               " ITERATIONS: ", loss_std, " #####")
         counter = counter + 1
     print("\n####LOSS OVER ", counter, " ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ", counter,
