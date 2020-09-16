@@ -9,7 +9,6 @@ import numpy
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import StratifiedKFold
 import numpy as np
-import tensorflow as tf
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking
 from tqdm import tqdm
@@ -17,7 +16,9 @@ from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
 from tensorflow.keras.models import load_model
 from parselmouth.praat import call
 import sys
-from spafe.features.lpc import  lpc, lpcc
+from spafe.features.lpc import lpcc
+from tensorflow.keras import backend as K
+import gc
 
 
 #parameters
@@ -27,11 +28,11 @@ class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
-features = ("mfcc")
+features = ("lpcc")
 splits = 5
 signal_mode = 'fp'
 special_value = 100
-routine_it = 10
+routine_it = 50
 epochs_n = 80
 
 
@@ -232,7 +233,7 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
     es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
     mc=ModelCheckpoint('best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=1)
-    history=model.fit(x_train, y_train, batch_size=96, epochs=epochs_n,callbacks=[es,mc],validation_data=(x_test,y_test_train))
+    history=model.fit(x_train, y_train, batch_size=32, epochs=epochs_n,callbacks=[es,mc],validation_data=(x_test,y_test_train))
     #retrieve from history best acc and relative loss from early stopping
     best_epoch = np.argmax(history.history['val_accuracy']) + 1
     acc.append(history.history['val_accuracy'][best_epoch-1])
@@ -250,9 +251,10 @@ def lstm():
     if signal_mode == 'fp':
         data = padding(data)
 
-    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",96,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
+    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",32,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
 
     for i in range(0,routine_it):
+        K.clear_session()
         print("\n####ITERATION NUMBER: ",i+1)
         it = 0
         # even if class are balanced we do not have many datapoints therefore i use stratifiedKFold
@@ -289,7 +291,7 @@ def lstm():
             it += 1
             train(x_train, y_train, x_test, y_test_train, model, acc, loss)
             best_epoch = load_model('best_epoch.h5')
-            evaluate(best_epoch, x_test, y_test)
+            #evaluate(best_epoch, x_test, y_test)
         print('\n\n ############# AVERAGE EVALUATIONS ############')
         print("\n######### MEAN LOSS OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
         print("######### MEAN ACCURACY OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(acc)) + "  ###########")
@@ -299,20 +301,22 @@ def lstm():
             "######### STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(acc)) + "  ###########")
         Multiple_it_acc_te.append(np.mean(acc))
         Multiple_it_loss_te.append(np.mean(loss))
-        print("\n####MEAN LOSSES OF THE FIRST ", counter+1, " ITERATIONS: ", Multiple_it_loss_te,
-              " MEAN ACC OF THE FIRST ", counter+1, " ITERATIONS: ",
+        print("\n####MEAN LOSSES OF THE FIRST ", counter, " ITERATIONS: ", Multiple_it_loss_te,
+              " MEAN ACC OF THE FIRST ", counter, " ITERATIONS: ",
               Multiple_it_acc_te, " #####")
         acc_std = np.std(Multiple_it_acc_te)
         loss_std = np.std(Multiple_it_loss_te)
-        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter+1, " ITERATIONS: ", acc_std,
-              " ACC STANDARD DEVIATIONS OF THE FIRST ", counter+1,
+        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter, " ITERATIONS: ", acc_std,
+              " ACC STANDARD DEVIATIONS OF THE FIRST ", counter,
               " ITERATIONS: ", loss_std, " #####")
         counter = counter + 1
-    print("\n####LOSS OVER ", counter, " ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ", counter,
+        gc.collect()
+        del model
+    print("\n####LOSS OVER ", counter-1, " ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ", counter-1,
           " ITERATIONS:",
           np.mean(Multiple_it_acc_te), " #####")
-    print("####LOSS STANDARD DEVIATION OVER ", counter, " ITERATIONS: ", np.std(Multiple_it_loss_te),
-          " ACC STANDARD DEVIATION OVER ", counter, " ITERATIONS:",
+    print("####LOSS STANDARD DEVIATION OVER ", counter-1, " ITERATIONS: ", np.std(Multiple_it_loss_te),
+          " ACC STANDARD DEVIATION OVER ", counter-1, " ITERATIONS:",
           np.std(Multiple_it_acc_te), "#####")
 
 lstm()
