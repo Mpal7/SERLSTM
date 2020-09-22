@@ -1,0 +1,48 @@
+Using TensorFlow backend.
+2020-09-20 15:38:51.264537: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudart64_101.dll'; dlerror: cudart64_101.dll not found
+2020-09-20 15:38:51.264778: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+curdir: C:\Users\mp95\PycharmProjects\Thesis\model
+started reading folder Sad
+  0%|          | 0/84 [00:00<?, ?it/s] 27%|???       | 23/84 [00:00<00:00, 227.92it/s] 55%|??????    | 46/84 [00:00<00:00, 226.58it/s] 80%|????????  | 67/84 [00:00<00:00, 217.95it/s]100%|??????????| 84/84 [00:00<00:00, 218.37it/s]
+ended reading folder Sad
+started reading folder Happy
+  0%|          | 0/84 [00:00<?, ?it/s] 26%|???       | 22/84 [00:00<00:00, 218.00it/s] 55%|??????    | 46/84 [00:00<00:00, 221.74it/s] 80%|????????  | 67/84 [00:00<00:00, 216.79it/s]100%|??????????| 84/84 [00:00<00:00, 214.47it/s]
+ended reading folder Happy
+started reading folder Angry
+  0%|          | 0/84 [00:00<?, ?it/s] 26%|???       | 22/84 [00:00<00:00, 211.72it/s] 51%|?????     | 43/84 [00:00<00:00, 208.74it/s] 77%|????????  | 65/84 [00:00<00:00, 210.22it/s]100%|??????????| 84/84 [00:00<00:00, 209.66it/s]
+ended reading folder Angry
+started reading folder Neutral
+  0%|          | 0/84 [00:00<?, ?it/s] 26%|???       | 22/84 [00:00<00:00, 213.77it/s] 50%|?????     | 42/84 [00:00<00:00, 208.20it/s] 77%|????????  | 65/84 [00:00<00:00, 212.56it/s]100%|??????????| 84/84 [00:00<00:00, 210.71it/s]
+ended reading folder Neutral
+
+2020-09-20 15:38:55.520393: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+EXECUTION PARAMETERS: {NUMBER OF FOLDERS:  5 }-{NUMBER OF EPOCHS:  80 }-{NUMBER OF ROUTINE ITERATIONS:  50 }-{BATCH SIZE :  32 }-{SIGNAL MODE:  fp }-{AUGMENT: Sad }-{FEATURES:  mfcc }-{EMOTIONS: ('Sad', 'Happy', 'Angry', 'Neutral') }
+2020-09-20 15:38:55.520627: W tensorflow/stream_executor/cuda/cuda_driver.cc:312] failed call to cuInit: UNKNOWN ERROR (303)
+
+2020-09-20 15:38:55.524583: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: DESKTOP-OVHAIFS
+####ITERATION NUMBER:  1
+2020-09-20 15:38:55.524864: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: DESKTOP-OVHAIFS
+
+#####FOLDER NUMBER: 1
+Starting LSTM
+2020-09-20 15:38:55.533603: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x29997556bc0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-09-20 15:38:55.533850: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+None
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+masking (Masking)            (None, 44, 13)            0         
+_________________________________________________________________
+lstm (LSTM)                  (None, 256)               276480    
+_________________________________________________________________
+dropout (Dropout)            (None, 256)               0         
+_________________________________________________________________
+dense (Dense)                (None, 32)                8224      
+_________________________________________________________________
+dense_1 (Dense)              (None, 4)                 132       
+=================================================================
+Total params: 284,836
+Trainable params: 284,836
+Non-trainable params: 0
+_________________________________________________________________
