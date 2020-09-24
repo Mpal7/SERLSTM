@@ -5,6 +5,15 @@ model.u5
 preprocessing/__pycache__/
 venv/
 model/best_epoch.h5
+model/best_epoch2.h5
+model/best_epoch3.h5
+model/best_epoch4.h5
 model/checkpoint
 model/model.u5.data-00000-of-00001
 model/model.u5.index
+model/model2.u5.data-00000-of-00001
+model/model2.u5.index
+model/model3.u5.data-00000-of-00001
+model/model3.u5.index
+model/model4.u5.data-00000-of-00001
+model/model4.u5.index

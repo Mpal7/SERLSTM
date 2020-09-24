@@ -249,7 +249,7 @@ def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
 def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
     #can't use early stopping with leave one out
     es = EarlyStopping(monitor='val_accuracy', mode='max', verbose=1, patience=20)
-    mc=ModelCheckpoint('best_epoch.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=0)
+    mc=ModelCheckpoint('best_epoch3.h5', monitor='val_accuracy', mode='max', save_best_only=True,verbose=0)
     history=model.fit(x_train, y_train, batch_size=32, epochs=epochs_n,callbacks=[es,mc],validation_data=(x_test,y_test_train),verbose=2)
     #retrieve from history best acc and relative loss from early stopping
     best_epoch = np.argmax(history.history['val_accuracy']) + 1
@@ -288,7 +288,7 @@ def lstm():
             y_train = np.array(y_train)
             y_test = np.array(y_test)
             if it > 0:
-                model.load_weights('model.u5')
+                model.load_weights('model3.u5')
             y_train = np_utils.to_categorical(y_train)
             y_test_train = np_utils.to_categorical(y_test,num_classes=4) #specify num_classes=4  for leave one out
             if it == 0:
@@ -298,20 +298,20 @@ def lstm():
                 model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
                 model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1]),return_sequences=True))
                 model.add(Dropout(0.5))
-                model.add(LSTM(64,return_sequences=False))
+                model.add(LSTM(64,return_sequences=True))
                 model.add(Dropout(0.5))
-                #model.add(LSTM(32))
+                model.add(LSTM(32))
                 #model.add(Dropout(0.5))
-                model.add(Dense(32, activation='tanh'))
+                #model.add(Dense(128, activation='tanh'))
                 #model.add(Dropout(0.5))
                 model.add(Dense(len(class_labels), activation='softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='adam',
                               metrics=['accuracy'])
                 print(model.summary(), file=sys.stderr)
-                model.save_weights('model.u5')
+                model.save_weights('model3.u5')
             it += 1
             train(x_train, y_train, x_test, y_test_train, model, acc, loss)
-            best_epoch = load_model('best_epoch.h5')
+            best_epoch = load_model('best_epoch3.h5')
             evaluate(best_epoch, x_test, y_test)
         print('\n\n ############# AVERAGE EVALUATIONS ############')
         print("\n######### MEAN LOSS OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
