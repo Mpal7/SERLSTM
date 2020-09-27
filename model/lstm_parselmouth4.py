@@ -305,7 +305,7 @@ def lstm():
                 input_shape = x_train[0].shape
                 model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
                 model.add(LSTM(512,input_shape=(input_shape[0], input_shape[1]),return_sequences=False))
-                #model.add(Dropout(0.5))
+                model.add(Dropout(0.5))
                 #model.add(LSTM(128,return_sequences=False))
                 #model.add(Dropout(0.5))
                 #model.add(LSTM(64))
