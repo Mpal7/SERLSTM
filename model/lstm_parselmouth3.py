@@ -35,7 +35,15 @@ from parselmouth.praat import call
 import sys
 from spafe.features.lpc import lpcc
 import gc
+import time
 
+#redirect prints
+orig_stdout = sys.stdout
+stdoutpath_f = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\fulldropouts\LSTM256_128_64_dense32.txt'
+stdoutpath_l = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\lastdropouts\LSTM256_128_64_dense32.txt'
+stdoutpath_n = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\nodropouts\LSTM256_128_64_dense32.txt'
+f = open(stdoutpath_l, 'w')
+sys.stdout = f
 
 #parameters
 mean_signal_length = 32000
@@ -45,7 +53,7 @@ class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
 features = ("mfcc")
-splits = 5
+splits = 10
 signal_mode = 'fp'
 special_value = 100
 routine_it = 1
@@ -270,6 +278,7 @@ def lstm():
     print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",32,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
 
     for i in range(0,routine_it):
+        start  = time.time()
         K.clear_session()
         print("\n####ITERATION NUMBER: ",i+1)
         it = 0
@@ -296,13 +305,13 @@ def lstm():
                 model = Sequential()
                 input_shape = x_train[0].shape
                 model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
-                model.add(LSTM(128,input_shape=(input_shape[0], input_shape[1]),return_sequences=True))
+                model.add(LSTM(256,input_shape=(input_shape[0], input_shape[1]),return_sequences=True))
                 model.add(Dropout(0.5))
-                model.add(LSTM(64,return_sequences=True))
+                model.add(LSTM(128,return_sequences=True))
                 model.add(Dropout(0.5))
-                model.add(LSTM(32))
-                #model.add(Dropout(0.5))
-                #model.add(Dense(128, activation='tanh'))
+                model.add(LSTM(64))
+                model.add(Dropout(0.5))
+                model.add(Dense(32, activation='tanh'))
                 #model.add(Dropout(0.5))
                 model.add(Dense(len(class_labels), activation='softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='adam',
@@ -339,4 +348,8 @@ def lstm():
     print("####LOSS STANDARD DEVIATION OVER ", counter-1, " ITERATIONS: ", np.std(Multiple_it_loss_te),
           " ACC STANDARD DEVIATION OVER ", counter-1, " ITERATIONS:",
           np.std(Multiple_it_acc_te), "#####")
+    end = time.time()
+    print('###### ELAPSED TIME ', end-start, ' #######')
+    sys.stdout = orig_stdout
+    f.close()
 lstm()
