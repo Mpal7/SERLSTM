@@ -7,14 +7,12 @@ import parselmouth
 from parselmouth.praat import call
 import scipy.io.wavfile as wav
 from speechpy.feature import mfcc
+from pyAudioAnalysis import ShortTermFeatures
 input = r'F:\EMOVO\Sad2/pitch-noise-tri-f1-b1.wav'
+sound=parselmouth.Sound(input)
+print(sound.duration)
+print(np.divide(sound.duration,0.010))
 fs, signal = wav.read(input)
-
-mel_coefficients = mfcc(signal, fs, frame_stride=0.1, num_cepstral=13)
-
-path = (input)
-signal = parselmouth.Sound(path)
-# compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
-pitch = signal.to_pitch_ac(time_step=0.1,pitch_floor = 150,very_accurate=True)
-x_sample = pitch.selected_array['frequency']
-x_sample = np.reshape(x_sample, (len(x_sample), 1))
+F, f_names = ShortTermFeatures.feature_extraction(signal, fs, 0.020*fs, 0.010*fs)
+F_slice = F[:,0:8]
+feature_vector = mfcc(signal, fs, frame_stride=0.01, num_cepstral=13)

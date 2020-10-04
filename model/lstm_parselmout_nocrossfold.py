@@ -24,7 +24,7 @@ from keras.utils import np_utils
 from typing import Tuple
 import numpy
 from sklearn.metrics import accuracy_score, confusion_matrix
-from sklearn.model_selection import StratifiedKFold, LeaveOneOut, KFold
+from sklearn.model_selection import StratifiedKFold, LeaveOneOut, KFold, train_test_split
 import numpy as np
 from tensorflow.keras import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking
@@ -36,13 +36,13 @@ import sys
 from spafe.features.lpc import lpcc
 import gc
 import time
-from pyAudioAnalysis import ShortTermFeatures
 
-
-orig_stdout = sys.stdout
-stdoutpath_f = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\fulldropouts\LSTM256_128_64.txt'
-stdoutpath_l = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\lastdropouts\LSTM256_128_64.txt'
-stdoutpath_n = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\nodropouts\LSTM256_128_64.txt'
+#orig_stdout = sys.stdout
+#stdoutpath_f = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\fulldropouts\LSTM256_128_64.txt'
+#stdoutpath_l = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\lastdropouts\LSTM256_128_64.txt'
+#stdoutpath_n = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\nodropouts\LSTM256_128_64.txt'
+#f = open(stdoutpath_l, 'w')
+#sys.stdout = f
 
 #parameters
 mean_signal_length = 32000
@@ -50,88 +50,15 @@ data_path = r'F:\EMOVO/'
 class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp, beware in sp only mfcc are functioning
-#"mfcc","lpcc","deltas","formants","pitch","intensity","spectrals"
-splits = 10
+#"mfcc","deltas","formants","pitch","intensity"
+features = ("mfcc")
+splits = 5
 signal_mode = 'fp'
 special_value = 100
 routine_it = 1
 epochs_n = 80
 
-def set_features(it):
-    if it == 0:
-        features = ('mfcc')
-    if it == 1:
-        features = ('mfcc','formants')
-    if it == 2:
-        features = ('mfcc','pitch')
-    if it == 3:
-        features = ('mfcc','deltas')
-    if it == 4:
-        features = ('mfcc','intensity')
-    if it == 5:
-        features = ('mfcc','lpcc')
-    if it == 6:
-        features = ('mfcc','deltas','lpcc')
-    if it == 7:
-        features = ('mfcc','deltas','intensity')
-    if it == 8:
-        features = ('mfcc','deltas','formants')
-    if it == 9:
-        features = ('mfcc','deltas','pitch')
-    if it == 10:
-        features = ('mfcc','lpcc','intensity')
-    if it == 11:
-        features = ('mfcc','lpcc','formants')
-    if it == 10:
-        features = ('mfcc','lpcc','pitch')
-    if it == 11:
-        features = ('mfcc','formants','intensity')
-    if it == 12:
-        features = ('mfcc','formants','pitch')
-    if it == 13:
-        features = ('mfcc','intensity','pitch')
-    if it == 14:
-        features = ('mfcc','deltas','lpcc','formants')
-    if it == 15:
-        features = ('mfcc','deltas','lpcc','pitch')
-    if it == 16:
-        features = ('mfcc','deltas','lpcc','formants')
-    if it == 17:
-        features = ('mfcc', 'deltas', 'lpcc','pitch')
-    if it == 18:
-        features = ('mfcc', 'deltas', 'lpcc','intensity')
-    if it == 19:
-        features = ('mfcc', 'deltas', 'formants','pitch')
-    if it == 20:
-        features = ('mfcc', 'deltas', 'formants','intensity')
-    if it == 21:
-        features = ('mfcc', 'deltas', 'intensity','pitch')
-    if it == 22:
-        features = ('mfcc', 'lpcc', 'formants','pitch')
-    if it == 23:
-        features = ('mfcc', 'lpcc', 'formants','intensity')
-    if it == 24:
-        features = ('mfcc', 'lpcc', 'intensity','pitch')
-    if it == 25:
-        features = ('mfcc', 'formants', 'intensity','pitch')
-    if it == 26:
-        features = ('mfcc','deltas','formants','intensity','pitch')
-    if it == 27:
-        features = ('mfcc','lpcc','formants','intensity','pitch')
-    if it == 28:
-        features = ('mfcc','deltas','lpcc','formants','intensity','pitch')
-
-    return features
-
-
-def get_feature_vector_from_pyaudio(signal,fs,feature_vector,features):
-    F, f_names = ShortTermFeatures.feature_extraction(signal, fs, 0.020 * fs, 0.010 * fs)
-    #take only first 8 features of pyaudio: spectrals
-    F_slice = F[:, 0:7]
-    feature_vector = np.concatenate((feature_vector,F_slice),axis=1)
-    return feature_vector
-
-def get_feature_vector_from_formants(filepath,feature_vector,features):
+def get_feature_vector_from_formants(filepath,feature_vector):
     path = (filepath)
     sound = parselmouth.Sound(path)  # read the sound
     pitch = sound.to_pitch_ac()
@@ -140,7 +67,7 @@ def get_feature_vector_from_formants(filepath,feature_vector,features):
         maxFormant = 5500  # women
     else:
         maxFormant = 5000  # men
-    formant = call(sound, "To Formant (burg)", 0.0, 5, maxFormant, 0.025, 50)    # even if i need 3 formants i calculate 5, it behaves better apparently
+    formant = call(sound, "To Formant (burg)", 0.02, 5, maxFormant, 0.01, 50)    # even if i need 3 formants i calculate 5, it behaves better apparently
     local_formant = []
     it = 0
     for x in formant.xs():
@@ -163,7 +90,7 @@ def get_feature_vector_from_formants(filepath,feature_vector,features):
         formant_array = np.concatenate((feature_vector, formant_array), axis=1)
     return formant_array
 
-def get_feature_vector_from_pitch(filepath,feature_vector,features):
+def get_feature_vector_from_pitch(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
     #compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
@@ -182,7 +109,7 @@ def get_feature_vector_from_pitch(filepath,feature_vector,features):
         x_sample = np.concatenate((feature_vector,x_sample),axis=1)
     return x_sample
 
-def get_feature_vector_from_intensity(filepath,feature_vector,features):
+def get_feature_vector_from_intensity(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
     x_intensity_local =[]
@@ -205,7 +132,7 @@ def get_feature_vector_from_intensity(filepath,feature_vector,features):
 
 def get_feature_vector_from_mfcc(signal,fs):
     #window 0.2 , stride 0.1
-    mel_coefficients = mfcc(signal, fs, frame_stride=0.01,num_cepstral=13)
+    mel_coefficients = mfcc(signal, fs, frame_stride=0.1,num_cepstral=13)
     mel_coefficients_for_deltas = mel_coefficients
     return mel_coefficients,mel_coefficients_for_deltas
 
@@ -220,7 +147,7 @@ def get_feature_vector_from_deltas(data):
     feature_vector = concatenated[:, permutation]
     return feature_vector
 
-def get_feature_vector_from_lpcc(signal,fs,feature_vector,features):
+def get_feature_vector_from_lpcc(signal,fs,feature_vector):
     # compute lpccs
     x_sample = lpcc(sig=signal, fs=fs, win_len=0.02, win_hop=0.01, num_ceps=13, lifter=0, normalize=True)
     if features.index('lpcc') is not 0:
@@ -265,7 +192,7 @@ def signal_slicing_padding(signal):
     return signal
 
 
-def get_data(data_path: str,class_labels,features) -> \
+def get_data(data_path: str,class_labels: Tuple) -> \
         Tuple[np.ndarray, np.ndarray]:
     data = []
     labels = []
@@ -288,20 +215,18 @@ def get_data(data_path: str,class_labels,features) -> \
                 else:
                     feature_vector, mel_coefficients = get_feature_vector_from_mfcc(signal, fs)
             if 'lpcc' in features:
-                feature_vector = get_feature_vector_from_lpcc(signal,fs,feature_vector,features)
+                feature_vector = get_feature_vector_from_lpcc(signal,fs,feature_vector)
             if 'deltas' in features:
                 if 'mfcc' in features:
-                    feature_vector = get_feature_vector_from_deltas(mel_coefficients,features)
+                    feature_vector = get_feature_vector_from_deltas(mel_coefficients)
                 else:
                     sys.exit("\n ###### can't compute deltas without mfcc, aborting execution ######")
             if 'formants' in features:
-                feature_vector = get_feature_vector_from_formants(filepath,feature_vector,features)
+                feature_vector = get_feature_vector_from_formants(filepath,feature_vector)
             if 'pitch' in features:
-                feature_vector = get_feature_vector_from_pitch(filepath, feature_vector,features)
+                feature_vector = get_feature_vector_from_pitch(filepath, feature_vector)
             if 'intensity' in features:
-                feature_vector = get_feature_vector_from_intensity(filepath,feature_vector,features)
-            if 'spectrals'  in features:
-                feature_vector = get_feature_vector_from_pyaudio(signal,fs,feature_vector,features)
+                feature_vector = get_feature_vector_from_intensity(filepath,feature_vector)
             data.append(feature_vector)
             labels.append(i)
             names.append(filename)
@@ -340,24 +265,20 @@ def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
     print(loss,acc)
 
 
-def lstm(k,f):
-    features = set_features(k)
+def lstm():
     Multiple_it_acc_mean = []
     Multiple_it_loss_mean = []
     Multiple_it_acc_std = []
     Multiple_it_loss_std = []
     min_max_acc_diff = []
     counter = 1
-    data, labels = get_data(data_path, class_labels,features)
+    data, labels = get_data(data_path, class_labels=class_labels)
 
     if signal_mode == 'fp':
         data = padding(data)
+    print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ",splits,"}-{NUMBER OF EPOCHS: ",epochs_n,"}-{NUMBER OF ROUTINE ITERATIONS: ",routine_it,"}-{BATCH SIZE : ",32,"}-{SIGNAL MODE: ",signal_mode,"}-{AUGMENT:",class_labels[0],"}-{FEATURES: ",features,"}-{EMOTIONS:",class_labels,"}")
 
     for i in range(0,routine_it):
-        print("\nEXECUTION PARAMETERS: {NUMBER OF FOLDERS: ", splits, "}-{NUMBER OF EPOCHS: ", epochs_n,
-              "}-{NUMBER OF ROUTINE ITERATIONS: ", routine_it, "}-{BATCH SIZE : ", 32, "}-{SIGNAL MODE: ", signal_mode,
-              "}-{AUGMENT:", class_labels[0], "}-{FEATURES: ", features, "}-{EMOTIONS:", class_labels, "}")
-
         start = time.time()
         K.clear_session()
         print("\n####ITERATION NUMBER: ",i+1)
@@ -368,40 +289,36 @@ def lstm(k,f):
         #cv = LeaveOneOut()
         acc = []
         loss = []
-        for train_index, test_index in kf.split(data, labels):
-            print('\n#####FOLDER NUMBER: ' + str(it + 1))
-            x_train, x_test = data[train_index], data[test_index]
-            y_train, y_test = labels[train_index], labels[test_index]
-            x_train = np.array(x_train)
-            x_test = np.array(x_test)
-            y_train = np.array(y_train)
-            y_test = np.array(y_test)
-            if it > 0:
-                model.load_weights('model.u5')
-            y_train = np_utils.to_categorical(y_train)
-            y_test_train = np_utils.to_categorical(y_test,num_classes=4) #specify num_classes=4  for leave one out
-            if it == 0:
-                print('Starting LSTM')
-                model = Sequential()
-                input_shape = x_train[0].shape
-                model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
-                model.add(LSTM(256,input_shape=(input_shape[0], input_shape[1]),return_sequences=False))
-                model.add(Dropout(0.5))
-                #model.add(LSTM(128,return_sequences=False))
-                #model.add(Dropout(0.5))
-                #model.add(LSTM(64))
-                #model.add(Dropout(0.5))
-                model.add(Dense(64, activation='tanh'))
-                model.add(Dropout(0.5))
-                model.add(Dense(len(class_labels), activation='softmax'))
-                model.compile(loss='categorical_crossentropy', optimizer='adam',
-                              metrics=['accuracy'])
-                print(model.summary(), file=sys.stderr)
-                model.save_weights('model.u5')
-            it += 1
-            train(x_train, y_train, x_test, y_test_train, model, acc, loss)
-            best_epoch = load_model('best_epoch.h5')
-            evaluate(best_epoch, x_test, y_test)
+        if it > 0:
+            model.load_weights('model.u5')
+        x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size = 0.2, random_state = seed_value,stratify=labels)
+        print(y_test.shape)
+        print(y_train.shape)
+        y_train = np_utils.to_categorical(y_train, num_classes=4)
+        y_test_train = np_utils.to_categorical(y_test, num_classes=4)  # specify num_classes=4  for leave one out
+        print(y_test_train.shape)
+        if it == 0:
+            print('Starting LSTM')
+            model = Sequential()
+            input_shape = x_train[0].shape
+            model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
+            model.add(LSTM(256, input_shape=(input_shape[0], input_shape[1]), return_sequences=False))
+            model.add(Dropout(0.5))
+            # model.add(LSTM(128,return_sequences=True ))
+            # model.add(Dropout(0.5))
+            # model.add(LSTM(64))
+            # model.add(Dropout(0.5))
+            model.add(Dense(64, activation='tanh'))
+            model.add(Dropout(0.5))
+            model.add(Dense(len(class_labels), activation='softmax'))
+            model.compile(loss='categorical_crossentropy', optimizer='adam',
+                          metrics=['accuracy'])
+            print(model.summary(), file=sys.stderr)
+            model.save_weights('model.u5')
+        it += 1
+        train(x_train, y_train, x_test, y_test_train, model, acc, loss)
+        best_epoch = load_model('best_epoch.h5')
+        evaluate(best_epoch, x_test, y_test)
         print('\n\n ############# AVERAGE EVALUATIONS BETWEEN FOLDERS ############')
         print("\n######### MEAN LOSS OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(loss)) + "  ###########")
         print("######### MEAN ACCURACY OVER THE " + str(splits) + " FOLDERS: " + str(np.mean(acc)) + "  ###########")
@@ -443,14 +360,7 @@ def lstm(k,f):
     print("####STD.DEV MAX-MIN DIFFERENCE OVER ", counter - 1, " ITERATIONS: ", np.std(min_max_acc_diff), " #####")
     end = time.time()
     print("\n####### TIME ELAPSED: ", end - start, " #######")
-    sys.stdout = orig_stdout
-    f.close()
+    #sys.stdout = orig_stdout
+    #f.close()
 
-def starter():
-    for k in range(0,28):
-        stdoutpath_featureanalysis = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\selected_feature_analysis\TESTLSTM256DENSE64\\'+str(k)+'.txt'
-        f = open(stdoutpath_featureanalysis, 'w')
-        sys.stdout = f
-        lstm(k,f)
-
-starter()
+lstm()

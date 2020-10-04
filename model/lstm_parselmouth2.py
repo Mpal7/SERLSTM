@@ -42,7 +42,8 @@ orig_stdout = sys.stdout
 stdoutpath_f = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\fulldropouts\LSTM512.txt'
 stdoutpath_l = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\lastdropouts\LSTM512.txt'
 stdoutpath_n = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\nodropouts\LSTM512.txt'
-f = open(stdoutpath_n, 'w')
+stdoutpath_featureanalysis =r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\selected_feature_analysis\LSTM256_128_mfccdeltasformantsintensitypitch.txt'
+f = open(stdoutpath_featureanalysis, 'w')
 sys.stdout = f
 
 #parameters
@@ -52,7 +53,7 @@ class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
-features = ("mfcc")
+features = ("mfcc","deltas","formants","intensity","pitch")
 splits = 10
 signal_mode = 'fp'
 special_value = 100
@@ -69,7 +70,7 @@ def get_feature_vector_from_formants(filepath,feature_vector):
         maxFormant = 5500  # women
     else:
         maxFormant = 5000  # men
-    formant = call(sound, "To Formant (burg)", 0.02, 5, maxFormant, 0.01, 50)    # even if i need 3 formants i calculate 5, it behaves better apparently
+    formant = call(sound, "To Formant (burg)", 0.0, 5, maxFormant, 0.025, 50)    # even if i need 3 formants i calculate 5, it behaves better apparently
     local_formant = []
     it = 0
     for x in formant.xs():
@@ -268,8 +269,11 @@ def train(x_train, y_train,x_test,y_test_train,model,acc,loss):
 
 
 def lstm():
-    Multiple_it_acc_te = []
-    Multiple_it_loss_te = []
+    Multiple_it_acc_mean = []
+    Multiple_it_loss_mean = []
+    Multiple_it_acc_std = []
+    Multiple_it_loss_std = []
+    min_max_acc_diff = []
     counter = 1
     data, labels = get_data(data_path, class_labels=class_labels)
 
@@ -305,12 +309,12 @@ def lstm():
                 model = Sequential()
                 input_shape = x_train[0].shape
                 model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
-                model.add(LSTM(512,input_shape=(input_shape[0], input_shape[1]),return_sequences=False))
+                model.add(LSTM(256, input_shape=(input_shape[0], input_shape[1]), return_sequences=True))
+                model.add(Dropout(0.5))
+                model.add(LSTM(128, return_sequences=False))
                 #model.add(Dropout(0.5))
-                #model.add(LSTM(128,return_sequences=True))
-                #model.add(Dropout(0.5))
-                #model.add(LSTM(64))
-                #model.add(Dropout(0.5))
+                # model.add(LSTM(64))
+                # model.add(Dropout(0.5))
                 #model.add(Dense(64, activation='tanh'))
                 #model.add(Dropout(0.5))
                 model.add(Dense(len(class_labels), activation='softmax'))
@@ -329,27 +333,32 @@ def lstm():
             "######### LOSS STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(loss)) + "  ###########")
         print(
             "######### ACC STANDARD DEVIATION OVER THE " + str(splits) + " FOLDERS: " + str(np.std(acc)) + "  ###########")
-        Multiple_it_acc_te.append(np.mean(acc))
-        Multiple_it_loss_te.append(np.mean(loss))
-        print("\n####MEAN LOSSES OF THE FIRST ", counter, " ITERATIONS: ", Multiple_it_loss_te,
-              " MEAN ACC OF THE FIRST ", counter, " ITERATIONS: ",
-              Multiple_it_acc_te, " #####")
-        acc_std = np.std(Multiple_it_acc_te)
-        loss_std = np.std(Multiple_it_loss_te)
-        print("####LOSSES STANDARD DEVIATIONS OF THE FIRST ", counter, " ITERATIONS: ", acc_std,
-              " ACC STANDARD DEVIATIONS OF THE FIRST ", counter,
-              " ITERATIONS: ", loss_std, " #####")
+        Multiple_it_acc_mean.append(np.mean(acc))
+        Multiple_it_loss_mean.append(np.mean(loss))
+        Multiple_it_acc_std.append(np.std(acc))
+        Multiple_it_loss_std.append(np.std(loss))
+        min_max_acc_diff.append(np.max(acc) - np.min(acc))
         counter = counter + 1
         gc.collect()
         del model
-    print("\n####LOSS OVER ", counter-1, " ITERATIONS: ", np.mean(Multiple_it_loss_te), " ##### ACC OVER ", counter-1,
-          " ITERATIONS:",
-          np.mean(Multiple_it_acc_te), " #####")
-    print("####LOSS STANDARD DEVIATION OVER ", counter-1, " ITERATIONS: ", np.std(Multiple_it_loss_te),
-          " ACC STANDARD DEVIATION OVER ", counter-1, " ITERATIONS:",
-          np.std(Multiple_it_acc_te), "#####")
+    print('\n\n ############# FINAL AVERAGE EVALUATIONS FOR ITERATIONS ############')
+    print("\n#### MEAN OF LOSSES MEAN OVER ", counter, " ITERATIONS: ", np.mean(Multiple_it_loss_mean),
+              " MEAN OF ACC MEAN OVER ", counter, " ITERATIONS: ",
+              np.mean(Multiple_it_acc_mean), " #####")
+    print("####STD OF MEAN LOSS OVER ", counter - 1, " ITERATIONS: ", np.std(Multiple_it_loss_mean),
+              " ##### STD OF ACC MEAN OVER ", counter - 1,
+              " ITERATIONS: ", np.std(Multiple_it_acc_mean), " #####")
+    print("#### MEAN LOSSES STANDARD DEVIATIONS OVER ", counter, " ITERATIONS: ", np.mean(Multiple_it_loss_std),
+              " MEAN ACC STANDARD DEVIATIONS OVER ", counter,
+              " ITERATIONS: ", np.mean(Multiple_it_acc_std), " #####")
+    print("####STANDARD DEVIATION OF LOSS STANDARD DEVIATION OVER ", counter - 1, " ITERATIONS: ",
+              np.std(Multiple_it_loss_std),
+              " STANDARD DEVIATION OF ACC STANDARD DEVIATION OVER ", counter - 1, " ITERATIONS:",
+              np.std(Multiple_it_acc_std), "#####")
+    print("####AVERAGE MAX-MIN DIFFERENCE OVER ", counter - 1, " ITERATIONS: ", np.mean(min_max_acc_diff), " #####")
+    print("####STD.DEV MAX-MIN DIFFERENCE OVER ", counter - 1, " ITERATIONS: ", np.std(min_max_acc_diff), " #####")
     end = time.time()
-    print('###### ELAPSED TIME ', end-start, ' #######')
+    print("\n####### TIME ELAPSED: ", end - start, " #######")
     sys.stdout = orig_stdout
     f.close()
 lstm()
