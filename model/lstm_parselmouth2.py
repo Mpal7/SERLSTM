@@ -42,9 +42,9 @@ orig_stdout = sys.stdout
 stdoutpath_f = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\fulldropouts\LSTM512.txt'
 stdoutpath_l = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\lastdropouts\LSTM512.txt'
 stdoutpath_n = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\nodropouts\LSTM512.txt'
-stdoutpath_featureanalysis =r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\selected_feature_analysis\LSTM256_128_mfccdeltasformantsintensitypitch.txt'
-f = open(stdoutpath_featureanalysis, 'w')
-sys.stdout = f
+#stdoutpath_featureanalysis =r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\selected_feature_analysis\LSTM256_128_mfccdeltasformantsintensitypitch.txt'
+#f = open(stdoutpath_featureanalysis, 'w')
+#sys.stdout = f
 
 #parameters
 mean_signal_length = 32000
@@ -53,7 +53,7 @@ class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
 #fp o sp, beware in sp only mfcc are functioning
 #"mfcc","deltas","formants","pitch","intensity"
-features = ("mfcc","deltas","formants","intensity","pitch")
+features = ("mfcc","pitch")
 splits = 10
 signal_mode = 'fp'
 special_value = 100
@@ -72,7 +72,6 @@ def get_feature_vector_from_formants(filepath,feature_vector):
         maxFormant = 5000  # men
     formant = call(sound, "To Formant (burg)", 0.0, 5, maxFormant, 0.025, 50)    # even if i need 3 formants i calculate 5, it behaves better apparently
     local_formant = []
-    it = 0
     for x in formant.xs():
         for f in range(1, 4):
             local_formant.append(formant.get_value_at_time(f, x))
@@ -96,10 +95,10 @@ def get_feature_vector_from_formants(filepath,feature_vector):
 def get_feature_vector_from_pitch(filepath,feature_vector):
     path = (filepath)
     signal = parselmouth.Sound(path)
-    #compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
-    pitch = signal.to_pitch_ac()
+    pitch = signal.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
+    #pitch = signal.to_pitch_ac()
     x_sample = pitch.selected_array['frequency']
-    x_sample = x_sample/np.linalg.norm(x_sample)
+    #x_sample = x_sample/np.linalg.norm(x_sample)
     if features.index('pitch') is not 0:
         if len(x_sample) < feature_vector.shape[0]:
             x_sample = np.pad(x_sample, ((0, feature_vector.shape[0] - len(x_sample))), 'constant', constant_values=100)
@@ -135,7 +134,7 @@ def get_feature_vector_from_intensity(filepath,feature_vector):
 
 def get_feature_vector_from_mfcc(signal,fs):
     #window 0.2 , stride 0.1
-    mel_coefficients = mfcc(signal, fs, frame_stride=0.1,num_cepstral=13)
+    mel_coefficients = mfcc(signal, fs, frame_stride=0.01,num_cepstral=13)
     mel_coefficients_for_deltas = mel_coefficients
     return mel_coefficients,mel_coefficients_for_deltas
 
@@ -359,6 +358,6 @@ def lstm():
     print("####STD.DEV MAX-MIN DIFFERENCE OVER ", counter - 1, " ITERATIONS: ", np.std(min_max_acc_diff), " #####")
     end = time.time()
     print("\n####### TIME ELAPSED: ", end - start, " #######")
-    sys.stdout = orig_stdout
-    f.close()
+    #sys.stdout = orig_stdout
+    #f.close()
 lstm()

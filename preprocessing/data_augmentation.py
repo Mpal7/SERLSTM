@@ -13,10 +13,7 @@ mean_signal_length=32000
 augm1= False
 augm2= False
 
-#this module it's intended for data augmentation to use parselmouth features
-
-
-
+#this module it's intended for data augmentation to use parselmouth features, it writes on pc folders
 def padding_slicing(signal):
     s_len = len(signal)
 
@@ -67,7 +64,7 @@ def dyn_change(data):
  dyn_change = np.random.uniform(low=1.5,high=3)
  return (data * dyn_change)
 
-#
+
 def pitch_noise_augm_writer():
     if augm1 == True:
         class_labels_origin = ("Sad", "Happy", "Angry", "Neutral", "Scared")

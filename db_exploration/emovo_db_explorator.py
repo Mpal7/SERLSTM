@@ -185,3 +185,5 @@ def plotter():
     plot_mfccs(mfccs)
 
     plt.show()
+
+plotter()

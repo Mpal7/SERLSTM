@@ -1,0 +1,1121 @@
+
+EXECUTION PARAMETERS: {NUMBER OF FOLDERS:  10 }-{NUMBER OF EPOCHS:  80 }-{NUMBER OF ROUTINE ITERATIONS:  1 }-{BATCH SIZE :  32 }-{SIGNAL MODE:  fp }-{AUGMENT: Sad }-{FEATURES:  mfcc }-{EMOTIONS: ('Sad', 'Happy', 'Angry', 'Neutral') }
+
+####ITERATION NUMBER:  1
+
+#####FOLDER NUMBER: 1
+Starting LSTM
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+masking (Masking)            (None, 443, 13)           0         
+_________________________________________________________________
+lstm (LSTM)                  (None, 443, 128)          72704     
+_________________________________________________________________
+dropout (Dropout)            (None, 443, 128)          0         
+_________________________________________________________________
+lstm_1 (LSTM)                (None, 64)                49408     
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 64)                0         
+_________________________________________________________________
+dense (Dense)                (None, 4)                 260       
+=================================================================
+Total params: 122,372
+Trainable params: 122,372
+Non-trainable params: 0
+_________________________________________________________________
+Epoch 1/80
+10/10 - 3s - loss: 1.4136 - accuracy: 0.2815 - val_loss: 1.1562 - val_accuracy: 0.5588
+Epoch 2/80
+10/10 - 0s - loss: 1.2721 - accuracy: 0.4272 - val_loss: 1.0722 - val_accuracy: 0.4706
+Epoch 3/80
+10/10 - 0s - loss: 1.1729 - accuracy: 0.4669 - val_loss: 1.0304 - val_accuracy: 0.5000
+Epoch 4/80
+10/10 - 0s - loss: 1.0463 - accuracy: 0.5066 - val_loss: 1.0058 - val_accuracy: 0.5882
+Epoch 5/80
+10/10 - 0s - loss: 0.9638 - accuracy: 0.5861 - val_loss: 1.0195 - val_accuracy: 0.4706
+Epoch 6/80
+10/10 - 0s - loss: 0.8737 - accuracy: 0.6159 - val_loss: 1.1514 - val_accuracy: 0.4412
+Epoch 7/80
+10/10 - 0s - loss: 0.8412 - accuracy: 0.6391 - val_loss: 1.2011 - val_accuracy: 0.4706
+Epoch 8/80
+10/10 - 0s - loss: 0.7757 - accuracy: 0.6623 - val_loss: 1.1919 - val_accuracy: 0.5588
+Epoch 9/80
+10/10 - 0s - loss: 0.6769 - accuracy: 0.7252 - val_loss: 1.1329 - val_accuracy: 0.4706
+Epoch 10/80
+10/10 - 0s - loss: 0.6264 - accuracy: 0.7252 - val_loss: 1.2491 - val_accuracy: 0.5294
+Epoch 11/80
+10/10 - 0s - loss: 0.5842 - accuracy: 0.7848 - val_loss: 1.0464 - val_accuracy: 0.5882
+Epoch 12/80
+10/10 - 0s - loss: 0.5173 - accuracy: 0.8179 - val_loss: 1.0045 - val_accuracy: 0.5882
+Epoch 13/80
+10/10 - 0s - loss: 0.5031 - accuracy: 0.8079 - val_loss: 1.0656 - val_accuracy: 0.6176
+Epoch 14/80
+10/10 - 0s - loss: 0.4652 - accuracy: 0.8245 - val_loss: 1.2044 - val_accuracy: 0.5882
+Epoch 15/80
+10/10 - 0s - loss: 0.4338 - accuracy: 0.8212 - val_loss: 1.1264 - val_accuracy: 0.6471
+Epoch 16/80
+10/10 - 0s - loss: 0.3366 - accuracy: 0.8907 - val_loss: 1.2450 - val_accuracy: 0.6176
+Epoch 17/80
+10/10 - 0s - loss: 0.3373 - accuracy: 0.8841 - val_loss: 1.2551 - val_accuracy: 0.5294
+Epoch 18/80
+10/10 - 0s - loss: 0.2563 - accuracy: 0.9106 - val_loss: 1.3573 - val_accuracy: 0.5294
+Epoch 19/80
+10/10 - 0s - loss: 0.2550 - accuracy: 0.9007 - val_loss: 1.3585 - val_accuracy: 0.5000
+Epoch 20/80
+10/10 - 0s - loss: 0.1825 - accuracy: 0.9470 - val_loss: 1.3904 - val_accuracy: 0.5882
+Epoch 21/80
+10/10 - 0s - loss: 0.1450 - accuracy: 0.9636 - val_loss: 1.3496 - val_accuracy: 0.5882
+Epoch 22/80
+10/10 - 0s - loss: 0.1633 - accuracy: 0.9603 - val_loss: 1.3310 - val_accuracy: 0.5588
+Epoch 23/80
+10/10 - 0s - loss: 0.1874 - accuracy: 0.9470 - val_loss: 1.1529 - val_accuracy: 0.6471
+Epoch 24/80
+10/10 - 0s - loss: 0.1866 - accuracy: 0.9371 - val_loss: 1.3660 - val_accuracy: 0.6471
+Epoch 25/80
+10/10 - 0s - loss: 0.1834 - accuracy: 0.9404 - val_loss: 1.5123 - val_accuracy: 0.5882
+Epoch 26/80
+10/10 - 0s - loss: 0.1369 - accuracy: 0.9503 - val_loss: 1.5621 - val_accuracy: 0.4412
+Epoch 27/80
+10/10 - 0s - loss: 0.1250 - accuracy: 0.9702 - val_loss: 1.4989 - val_accuracy: 0.6176
+Epoch 28/80
+10/10 - 0s - loss: 0.1165 - accuracy: 0.9570 - val_loss: 1.2151 - val_accuracy: 0.6765
+Epoch 29/80
+10/10 - 0s - loss: 0.1852 - accuracy: 0.9338 - val_loss: 1.3170 - val_accuracy: 0.5882
+Epoch 30/80
+10/10 - 0s - loss: 0.1651 - accuracy: 0.9437 - val_loss: 1.6993 - val_accuracy: 0.5588
+Epoch 31/80
+10/10 - 0s - loss: 0.1795 - accuracy: 0.9371 - val_loss: 1.4798 - val_accuracy: 0.5588
+Epoch 32/80
+10/10 - 0s - loss: 0.0994 - accuracy: 0.9669 - val_loss: 1.6283 - val_accuracy: 0.5882
+Epoch 33/80
+10/10 - 0s - loss: 0.1038 - accuracy: 0.9669 - val_loss: 1.7081 - val_accuracy: 0.6176
+Epoch 34/80
+10/10 - 0s - loss: 0.0628 - accuracy: 0.9834 - val_loss: 1.5811 - val_accuracy: 0.6765
+Epoch 35/80
+10/10 - 0s - loss: 0.0587 - accuracy: 0.9901 - val_loss: 1.6841 - val_accuracy: 0.6471
+Epoch 36/80
+10/10 - 0s - loss: 0.0318 - accuracy: 0.9967 - val_loss: 1.5961 - val_accuracy: 0.6471
+Epoch 37/80
+10/10 - 0s - loss: 0.0264 - accuracy: 0.9967 - val_loss: 1.5829 - val_accuracy: 0.6471
+Epoch 38/80
+10/10 - 0s - loss: 0.0315 - accuracy: 0.9901 - val_loss: 1.8181 - val_accuracy: 0.6176
+Epoch 39/80
+10/10 - 0s - loss: 0.0384 - accuracy: 0.9868 - val_loss: 1.2310 - val_accuracy: 0.7059
+Epoch 40/80
+10/10 - 0s - loss: 0.0390 - accuracy: 0.9901 - val_loss: 1.5983 - val_accuracy: 0.7059
+Epoch 41/80
+10/10 - 0s - loss: 0.0476 - accuracy: 0.9934 - val_loss: 1.6442 - val_accuracy: 0.6471
+Epoch 42/80
+10/10 - 0s - loss: 0.0260 - accuracy: 0.9934 - val_loss: 1.6304 - val_accuracy: 0.5882
+Epoch 43/80
+10/10 - 0s - loss: 0.0127 - accuracy: 1.0000 - val_loss: 1.6784 - val_accuracy: 0.6765
+Epoch 44/80
+10/10 - 0s - loss: 0.0170 - accuracy: 0.9967 - val_loss: 1.5817 - val_accuracy: 0.6471
+Epoch 45/80
+10/10 - 0s - loss: 0.0172 - accuracy: 0.9967 - val_loss: 1.8740 - val_accuracy: 0.6471
+Epoch 46/80
+10/10 - 0s - loss: 0.0291 - accuracy: 0.9934 - val_loss: 1.5528 - val_accuracy: 0.6471
+Epoch 47/80
+10/10 - 0s - loss: 0.0437 - accuracy: 0.9901 - val_loss: 2.0095 - val_accuracy: 0.6176
+Epoch 48/80
+10/10 - 0s - loss: 0.0278 - accuracy: 0.9934 - val_loss: 1.8902 - val_accuracy: 0.6471
+Epoch 49/80
+10/10 - 0s - loss: 0.0145 - accuracy: 1.0000 - val_loss: 1.6727 - val_accuracy: 0.6471
+Epoch 50/80
+10/10 - 0s - loss: 0.0114 - accuracy: 1.0000 - val_loss: 1.5563 - val_accuracy: 0.7059
+Epoch 51/80
+10/10 - 0s - loss: 0.0083 - accuracy: 1.0000 - val_loss: 1.6058 - val_accuracy: 0.6765
+Epoch 52/80
+10/10 - 0s - loss: 0.0072 - accuracy: 1.0000 - val_loss: 1.6539 - val_accuracy: 0.6471
+Epoch 53/80
+10/10 - 0s - loss: 0.0075 - accuracy: 1.0000 - val_loss: 1.6620 - val_accuracy: 0.6471
+Epoch 54/80
+10/10 - 0s - loss: 0.0053 - accuracy: 1.0000 - val_loss: 1.6715 - val_accuracy: 0.6471
+Epoch 55/80
+10/10 - 0s - loss: 0.0043 - accuracy: 1.0000 - val_loss: 1.6856 - val_accuracy: 0.6471
+Epoch 56/80
+10/10 - 0s - loss: 0.0040 - accuracy: 1.0000 - val_loss: 1.6922 - val_accuracy: 0.6471
+Epoch 57/80
+10/10 - 0s - loss: 0.0057 - accuracy: 1.0000 - val_loss: 1.6993 - val_accuracy: 0.6765
+Epoch 58/80
+10/10 - 0s - loss: 0.0049 - accuracy: 1.0000 - val_loss: 1.7169 - val_accuracy: 0.6765
+Epoch 59/80
+10/10 - 0s - loss: 0.0042 - accuracy: 1.0000 - val_loss: 1.7262 - val_accuracy: 0.6765
+Epoch 00059: early stopping
+best epoch: 39  loss: 1.231024980545044  acc: 0.7058823704719543
+[1.231024980545044] [0.7058823704719543]
+Accuracy:0.706
+
+Confusion matrix:
+ [[9 0 0 0]
+ [0 6 1 1]
+ [0 3 5 1]
+ [1 1 2 4]]
+
+#####FOLDER NUMBER: 2
+Epoch 1/80
+10/10 - 0s - loss: 1.4595 - accuracy: 0.2682 - val_loss: 1.3205 - val_accuracy: 0.4412
+Epoch 2/80
+10/10 - 0s - loss: 1.3372 - accuracy: 0.3245 - val_loss: 1.2851 - val_accuracy: 0.3824
+Epoch 3/80
+10/10 - 0s - loss: 1.2461 - accuracy: 0.4073 - val_loss: 1.2314 - val_accuracy: 0.5000
+Epoch 4/80
+10/10 - 0s - loss: 1.1433 - accuracy: 0.5000 - val_loss: 1.1508 - val_accuracy: 0.5294
+Epoch 5/80
+10/10 - 0s - loss: 1.0529 - accuracy: 0.5298 - val_loss: 1.1283 - val_accuracy: 0.5588
+Epoch 6/80
+10/10 - 0s - loss: 1.0082 - accuracy: 0.5762 - val_loss: 1.0597 - val_accuracy: 0.5588
+Epoch 7/80
+10/10 - 0s - loss: 0.9448 - accuracy: 0.5762 - val_loss: 0.9903 - val_accuracy: 0.5882
+Epoch 8/80
+10/10 - 0s - loss: 0.8965 - accuracy: 0.5993 - val_loss: 0.9325 - val_accuracy: 0.6176
+Epoch 9/80
+10/10 - 0s - loss: 0.8701 - accuracy: 0.5960 - val_loss: 0.9271 - val_accuracy: 0.6471
+Epoch 10/80
+10/10 - 0s - loss: 0.7874 - accuracy: 0.6689 - val_loss: 1.1122 - val_accuracy: 0.5588
+Epoch 11/80
+10/10 - 0s - loss: 0.7762 - accuracy: 0.6821 - val_loss: 1.0606 - val_accuracy: 0.6765
+Epoch 12/80
+10/10 - 0s - loss: 0.6823 - accuracy: 0.7318 - val_loss: 1.1533 - val_accuracy: 0.5588
+Epoch 13/80
+10/10 - 0s - loss: 0.6938 - accuracy: 0.7119 - val_loss: 0.9265 - val_accuracy: 0.6471
+Epoch 14/80
+10/10 - 0s - loss: 0.6724 - accuracy: 0.7086 - val_loss: 0.9990 - val_accuracy: 0.6176
+Epoch 15/80
+10/10 - 0s - loss: 0.6642 - accuracy: 0.7318 - val_loss: 0.9477 - val_accuracy: 0.6176
+Epoch 16/80
+10/10 - 0s - loss: 0.7028 - accuracy: 0.7053 - val_loss: 1.0698 - val_accuracy: 0.5882
+Epoch 17/80
+10/10 - 0s - loss: 0.6634 - accuracy: 0.7583 - val_loss: 0.9629 - val_accuracy: 0.6176
+Epoch 18/80
+10/10 - 0s - loss: 0.5753 - accuracy: 0.7848 - val_loss: 1.0219 - val_accuracy: 0.5588
+Epoch 19/80
+10/10 - 0s - loss: 0.5024 - accuracy: 0.8113 - val_loss: 1.1812 - val_accuracy: 0.5000
+Epoch 20/80
+10/10 - 0s - loss: 0.4991 - accuracy: 0.7980 - val_loss: 1.0820 - val_accuracy: 0.5588
+Epoch 21/80
+10/10 - 0s - loss: 0.4945 - accuracy: 0.8212 - val_loss: 1.0207 - val_accuracy: 0.5294
+Epoch 22/80
+10/10 - 0s - loss: 0.3551 - accuracy: 0.8940 - val_loss: 0.9468 - val_accuracy: 0.6765
+Epoch 23/80
+10/10 - 0s - loss: 0.3127 - accuracy: 0.9139 - val_loss: 0.9557 - val_accuracy: 0.5882
+Epoch 24/80
+10/10 - 0s - loss: 0.2852 - accuracy: 0.9040 - val_loss: 1.3435 - val_accuracy: 0.5588
+Epoch 25/80
+10/10 - 0s - loss: 0.3143 - accuracy: 0.8874 - val_loss: 1.0263 - val_accuracy: 0.6471
+Epoch 26/80
+10/10 - 0s - loss: 0.3331 - accuracy: 0.8742 - val_loss: 1.1719 - val_accuracy: 0.6176
+Epoch 27/80
+10/10 - 0s - loss: 0.2511 - accuracy: 0.9238 - val_loss: 1.1788 - val_accuracy: 0.6471
+Epoch 28/80
+10/10 - 0s - loss: 0.2252 - accuracy: 0.9172 - val_loss: 1.2706 - val_accuracy: 0.6471
+Epoch 29/80
+10/10 - 0s - loss: 0.2010 - accuracy: 0.9338 - val_loss: 1.1927 - val_accuracy: 0.6765
+Epoch 30/80
+10/10 - 0s - loss: 0.2360 - accuracy: 0.9238 - val_loss: 1.3068 - val_accuracy: 0.6176
+Epoch 31/80
+10/10 - 0s - loss: 0.2399 - accuracy: 0.9305 - val_loss: 1.3679 - val_accuracy: 0.6176
+Epoch 00031: early stopping
+best epoch: 11  loss: 1.0606327056884766  acc: 0.6764705777168274
+[1.231024980545044, 1.0606327056884766] [0.7058823704719543, 0.6764705777168274]
+Accuracy:0.676
+
+Confusion matrix:
+ [[9 0 0 0]
+ [2 5 1 0]
+ [1 3 5 0]
+ [3 1 0 4]]
+
+#####FOLDER NUMBER: 3
+Epoch 1/80
+10/10 - 1s - loss: 1.4536 - accuracy: 0.2682 - val_loss: 1.3394 - val_accuracy: 0.4706
+Epoch 2/80
+10/10 - 0s - loss: 1.3531 - accuracy: 0.2914 - val_loss: 1.2709 - val_accuracy: 0.4118
+Epoch 3/80
+10/10 - 0s - loss: 1.2988 - accuracy: 0.3775 - val_loss: 1.2574 - val_accuracy: 0.4118
+Epoch 4/80
+10/10 - 0s - loss: 1.2598 - accuracy: 0.4437 - val_loss: 1.2220 - val_accuracy: 0.4706
+Epoch 5/80
+10/10 - 0s - loss: 1.1711 - accuracy: 0.4834 - val_loss: 1.1897 - val_accuracy: 0.3824
+Epoch 6/80
+10/10 - 0s - loss: 1.0680 - accuracy: 0.5331 - val_loss: 1.1531 - val_accuracy: 0.4706
+Epoch 7/80
+10/10 - 0s - loss: 1.0047 - accuracy: 0.5728 - val_loss: 1.1938 - val_accuracy: 0.5000
+Epoch 8/80
+10/10 - 0s - loss: 0.9865 - accuracy: 0.5861 - val_loss: 1.1504 - val_accuracy: 0.4706
+Epoch 9/80
+10/10 - 0s - loss: 0.8743 - accuracy: 0.6854 - val_loss: 1.2137 - val_accuracy: 0.5000
+Epoch 10/80
+10/10 - 0s - loss: 0.8327 - accuracy: 0.6490 - val_loss: 1.2081 - val_accuracy: 0.5588
+Epoch 11/80
+10/10 - 0s - loss: 0.7738 - accuracy: 0.6788 - val_loss: 1.1273 - val_accuracy: 0.5000
+Epoch 12/80
+10/10 - 0s - loss: 0.7169 - accuracy: 0.7318 - val_loss: 1.1417 - val_accuracy: 0.5588
+Epoch 13/80
+10/10 - 0s - loss: 0.6913 - accuracy: 0.7252 - val_loss: 1.2419 - val_accuracy: 0.5882
+Epoch 14/80
+10/10 - 0s - loss: 0.5984 - accuracy: 0.7715 - val_loss: 1.3002 - val_accuracy: 0.5000
+Epoch 15/80
+10/10 - 0s - loss: 0.6062 - accuracy: 0.7483 - val_loss: 1.3067 - val_accuracy: 0.5294
+Epoch 16/80
+10/10 - 0s - loss: 0.5706 - accuracy: 0.7748 - val_loss: 1.1728 - val_accuracy: 0.6176
+Epoch 17/80
+10/10 - 0s - loss: 0.5417 - accuracy: 0.7815 - val_loss: 1.3519 - val_accuracy: 0.5588
+Epoch 18/80
+10/10 - 0s - loss: 0.4605 - accuracy: 0.8278 - val_loss: 1.2904 - val_accuracy: 0.5294
+Epoch 19/80
+10/10 - 0s - loss: 0.4961 - accuracy: 0.8079 - val_loss: 1.2502 - val_accuracy: 0.5294
+Epoch 20/80
+10/10 - 0s - loss: 0.4451 - accuracy: 0.8344 - val_loss: 1.2963 - val_accuracy: 0.5588
+Epoch 21/80
+10/10 - 0s - loss: 0.4342 - accuracy: 0.8444 - val_loss: 1.3321 - val_accuracy: 0.5294
+Epoch 22/80
+10/10 - 0s - loss: 0.3377 - accuracy: 0.8742 - val_loss: 1.3302 - val_accuracy: 0.6176
+Epoch 23/80
+10/10 - 0s - loss: 0.2923 - accuracy: 0.8907 - val_loss: 1.2687 - val_accuracy: 0.6176
+Epoch 24/80
+10/10 - 0s - loss: 0.3526 - accuracy: 0.8940 - val_loss: 1.3416 - val_accuracy: 0.6765
+Epoch 25/80
+10/10 - 0s - loss: 0.2382 - accuracy: 0.9073 - val_loss: 1.4750 - val_accuracy: 0.6471
+Epoch 26/80
+10/10 - 0s - loss: 0.2201 - accuracy: 0.9305 - val_loss: 1.5330 - val_accuracy: 0.6176
+Epoch 27/80
+10/10 - 0s - loss: 0.2232 - accuracy: 0.9139 - val_loss: 1.3506 - val_accuracy: 0.6471
+Epoch 28/80
+10/10 - 0s - loss: 0.1984 - accuracy: 0.9272 - val_loss: 1.3471 - val_accuracy: 0.7353
+Epoch 29/80
+10/10 - 0s - loss: 0.2452 - accuracy: 0.9040 - val_loss: 1.5666 - val_accuracy: 0.5882
+Epoch 30/80
+10/10 - 0s - loss: 0.2151 - accuracy: 0.9305 - val_loss: 1.4240 - val_accuracy: 0.6471
+Epoch 31/80
+10/10 - 0s - loss: 0.1284 - accuracy: 0.9636 - val_loss: 1.5168 - val_accuracy: 0.6765
+Epoch 32/80
+10/10 - 0s - loss: 0.1193 - accuracy: 0.9669 - val_loss: 1.5495 - val_accuracy: 0.6765
+Epoch 33/80
+10/10 - 0s - loss: 0.1483 - accuracy: 0.9636 - val_loss: 1.6984 - val_accuracy: 0.6471
+Epoch 34/80
+10/10 - 0s - loss: 0.1485 - accuracy: 0.9503 - val_loss: 1.6848 - val_accuracy: 0.5588
+Epoch 35/80
+10/10 - 0s - loss: 0.0876 - accuracy: 0.9801 - val_loss: 1.6503 - val_accuracy: 0.6471
+Epoch 36/80
+10/10 - 0s - loss: 0.0929 - accuracy: 0.9636 - val_loss: 1.8548 - val_accuracy: 0.5588
+Epoch 37/80
+10/10 - 0s - loss: 0.1711 - accuracy: 0.9470 - val_loss: 1.4970 - val_accuracy: 0.6176
+Epoch 38/80
+10/10 - 0s - loss: 0.2083 - accuracy: 0.9371 - val_loss: 1.5005 - val_accuracy: 0.6471
+Epoch 39/80
+10/10 - 0s - loss: 0.1887 - accuracy: 0.9371 - val_loss: 1.4630 - val_accuracy: 0.6176
+Epoch 40/80
+10/10 - 0s - loss: 0.1279 - accuracy: 0.9536 - val_loss: 1.5937 - val_accuracy: 0.6471
+Epoch 41/80
+10/10 - 0s - loss: 0.1252 - accuracy: 0.9636 - val_loss: 1.6151 - val_accuracy: 0.6176
+Epoch 42/80
+10/10 - 0s - loss: 0.0832 - accuracy: 0.9834 - val_loss: 1.4184 - val_accuracy: 0.7059
+Epoch 43/80
+10/10 - 0s - loss: 0.0643 - accuracy: 0.9834 - val_loss: 1.5652 - val_accuracy: 0.6765
+Epoch 44/80
+10/10 - 0s - loss: 0.0560 - accuracy: 0.9868 - val_loss: 1.5599 - val_accuracy: 0.6471
+Epoch 45/80
+10/10 - 0s - loss: 0.0584 - accuracy: 0.9901 - val_loss: 1.9762 - val_accuracy: 0.6176
+Epoch 46/80
+10/10 - 0s - loss: 0.0315 - accuracy: 0.9967 - val_loss: 1.7135 - val_accuracy: 0.6176
+Epoch 47/80
+10/10 - 0s - loss: 0.0295 - accuracy: 0.9967 - val_loss: 1.7925 - val_accuracy: 0.6176
+Epoch 48/80
+10/10 - 0s - loss: 0.0161 - accuracy: 1.0000 - val_loss: 1.8292 - val_accuracy: 0.6765
+Epoch 00048: early stopping
+best epoch: 28  loss: 1.347060203552246  acc: 0.7352941036224365
+[1.231024980545044, 1.0606327056884766, 1.347060203552246] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365]
+Accuracy:0.735
+
+Confusion matrix:
+ [[8 1 0 0]
+ [1 4 1 2]
+ [0 1 6 1]
+ [1 1 0 7]]
+
+#####FOLDER NUMBER: 4
+Epoch 1/80
+10/10 - 1s - loss: 1.4311 - accuracy: 0.2748 - val_loss: 1.3441 - val_accuracy: 0.2941
+Epoch 2/80
+10/10 - 0s - loss: 1.3777 - accuracy: 0.3046 - val_loss: 1.2736 - val_accuracy: 0.5294
+Epoch 3/80
+10/10 - 0s - loss: 1.2905 - accuracy: 0.4106 - val_loss: 1.2212 - val_accuracy: 0.5882
+Epoch 4/80
+10/10 - 0s - loss: 1.2141 - accuracy: 0.4636 - val_loss: 1.1731 - val_accuracy: 0.5588
+Epoch 5/80
+10/10 - 0s - loss: 1.1795 - accuracy: 0.4669 - val_loss: 1.1130 - val_accuracy: 0.5588
+Epoch 6/80
+10/10 - 0s - loss: 1.1271 - accuracy: 0.5033 - val_loss: 1.0577 - val_accuracy: 0.5882
+Epoch 7/80
+10/10 - 0s - loss: 1.0557 - accuracy: 0.5430 - val_loss: 1.0692 - val_accuracy: 0.5882
+Epoch 8/80
+10/10 - 0s - loss: 0.9990 - accuracy: 0.5894 - val_loss: 1.0095 - val_accuracy: 0.4706
+Epoch 9/80
+10/10 - 0s - loss: 0.9942 - accuracy: 0.5497 - val_loss: 0.9864 - val_accuracy: 0.6176
+Epoch 10/80
+10/10 - 0s - loss: 0.9275 - accuracy: 0.5762 - val_loss: 0.9375 - val_accuracy: 0.5882
+Epoch 11/80
+10/10 - 0s - loss: 0.8695 - accuracy: 0.6391 - val_loss: 0.8820 - val_accuracy: 0.5882
+Epoch 12/80
+10/10 - 0s - loss: 0.9171 - accuracy: 0.6225 - val_loss: 1.1296 - val_accuracy: 0.5294
+Epoch 13/80
+10/10 - 0s - loss: 0.8798 - accuracy: 0.6225 - val_loss: 0.9886 - val_accuracy: 0.5882
+Epoch 14/80
+10/10 - 0s - loss: 0.8377 - accuracy: 0.6523 - val_loss: 0.9069 - val_accuracy: 0.6765
+Epoch 15/80
+10/10 - 0s - loss: 0.7458 - accuracy: 0.6987 - val_loss: 0.8761 - val_accuracy: 0.6176
+Epoch 16/80
+10/10 - 0s - loss: 0.7039 - accuracy: 0.7384 - val_loss: 0.8612 - val_accuracy: 0.6471
+Epoch 17/80
+10/10 - 0s - loss: 0.6527 - accuracy: 0.7649 - val_loss: 1.0193 - val_accuracy: 0.5588
+Epoch 18/80
+10/10 - 0s - loss: 0.5843 - accuracy: 0.7748 - val_loss: 0.8668 - val_accuracy: 0.6765
+Epoch 19/80
+10/10 - 0s - loss: 0.5245 - accuracy: 0.8377 - val_loss: 0.9071 - val_accuracy: 0.6176
+Epoch 20/80
+10/10 - 0s - loss: 0.4947 - accuracy: 0.8013 - val_loss: 0.9891 - val_accuracy: 0.5882
+Epoch 21/80
+10/10 - 0s - loss: 0.4721 - accuracy: 0.8212 - val_loss: 0.9367 - val_accuracy: 0.6176
+Epoch 22/80
+10/10 - 0s - loss: 0.4555 - accuracy: 0.8344 - val_loss: 0.9881 - val_accuracy: 0.5588
+Epoch 23/80
+10/10 - 0s - loss: 0.4541 - accuracy: 0.8245 - val_loss: 0.9630 - val_accuracy: 0.5882
+Epoch 24/80
+10/10 - 0s - loss: 0.3870 - accuracy: 0.8642 - val_loss: 0.9730 - val_accuracy: 0.5882
+Epoch 25/80
+10/10 - 0s - loss: 0.4064 - accuracy: 0.8576 - val_loss: 0.8599 - val_accuracy: 0.6471
+Epoch 26/80
+10/10 - 0s - loss: 0.3911 - accuracy: 0.8510 - val_loss: 0.9090 - val_accuracy: 0.6471
+Epoch 27/80
+10/10 - 0s - loss: 0.3608 - accuracy: 0.8642 - val_loss: 0.9889 - val_accuracy: 0.6176
+Epoch 28/80
+10/10 - 0s - loss: 0.3142 - accuracy: 0.8874 - val_loss: 0.7306 - val_accuracy: 0.7647
+Epoch 29/80
+10/10 - 0s - loss: 0.2222 - accuracy: 0.9272 - val_loss: 0.5373 - val_accuracy: 0.7647
+Epoch 30/80
+10/10 - 0s - loss: 0.2172 - accuracy: 0.9338 - val_loss: 0.9100 - val_accuracy: 0.6765
+Epoch 31/80
+10/10 - 0s - loss: 0.2743 - accuracy: 0.9040 - val_loss: 0.9436 - val_accuracy: 0.7059
+Epoch 32/80
+10/10 - 0s - loss: 0.3178 - accuracy: 0.8841 - val_loss: 1.2312 - val_accuracy: 0.5294
+Epoch 33/80
+10/10 - 0s - loss: 0.2690 - accuracy: 0.9106 - val_loss: 1.0487 - val_accuracy: 0.6765
+Epoch 34/80
+10/10 - 0s - loss: 0.2357 - accuracy: 0.9205 - val_loss: 1.1058 - val_accuracy: 0.6176
+Epoch 35/80
+10/10 - 0s - loss: 0.1751 - accuracy: 0.9470 - val_loss: 1.1902 - val_accuracy: 0.6176
+Epoch 36/80
+10/10 - 0s - loss: 0.1496 - accuracy: 0.9669 - val_loss: 0.9099 - val_accuracy: 0.7941
+Epoch 37/80
+10/10 - 0s - loss: 0.2051 - accuracy: 0.9238 - val_loss: 0.9953 - val_accuracy: 0.6765
+Epoch 38/80
+10/10 - 0s - loss: 0.1852 - accuracy: 0.9305 - val_loss: 1.1610 - val_accuracy: 0.6765
+Epoch 39/80
+10/10 - 0s - loss: 0.2476 - accuracy: 0.9106 - val_loss: 1.3072 - val_accuracy: 0.6471
+Epoch 40/80
+10/10 - 0s - loss: 0.2153 - accuracy: 0.9338 - val_loss: 0.9563 - val_accuracy: 0.6765
+Epoch 41/80
+10/10 - 0s - loss: 0.1690 - accuracy: 0.9503 - val_loss: 0.8941 - val_accuracy: 0.6765
+Epoch 42/80
+10/10 - 0s - loss: 0.1057 - accuracy: 0.9735 - val_loss: 0.8466 - val_accuracy: 0.7941
+Epoch 43/80
+10/10 - 0s - loss: 0.0754 - accuracy: 0.9868 - val_loss: 0.8608 - val_accuracy: 0.7353
+Epoch 44/80
+10/10 - 0s - loss: 0.0579 - accuracy: 0.9868 - val_loss: 0.8465 - val_accuracy: 0.7647
+Epoch 45/80
+10/10 - 0s - loss: 0.0715 - accuracy: 0.9768 - val_loss: 0.9546 - val_accuracy: 0.7353
+Epoch 46/80
+10/10 - 0s - loss: 0.0375 - accuracy: 0.9967 - val_loss: 0.8247 - val_accuracy: 0.7941
+Epoch 47/80
+10/10 - 0s - loss: 0.0316 - accuracy: 0.9967 - val_loss: 0.7961 - val_accuracy: 0.7941
+Epoch 48/80
+10/10 - 0s - loss: 0.0320 - accuracy: 0.9934 - val_loss: 0.9190 - val_accuracy: 0.7941
+Epoch 49/80
+10/10 - 0s - loss: 0.0336 - accuracy: 0.9967 - val_loss: 0.8919 - val_accuracy: 0.7353
+Epoch 50/80
+10/10 - 0s - loss: 0.0343 - accuracy: 0.9901 - val_loss: 0.9502 - val_accuracy: 0.7647
+Epoch 51/80
+10/10 - 0s - loss: 0.0173 - accuracy: 1.0000 - val_loss: 1.2016 - val_accuracy: 0.7353
+Epoch 52/80
+10/10 - 0s - loss: 0.0223 - accuracy: 0.9967 - val_loss: 1.1139 - val_accuracy: 0.7647
+Epoch 53/80
+10/10 - 0s - loss: 0.0287 - accuracy: 0.9901 - val_loss: 0.9314 - val_accuracy: 0.7941
+Epoch 54/80
+10/10 - 0s - loss: 0.0173 - accuracy: 1.0000 - val_loss: 0.9560 - val_accuracy: 0.7941
+Epoch 55/80
+10/10 - 0s - loss: 0.0239 - accuracy: 0.9934 - val_loss: 0.9931 - val_accuracy: 0.7941
+Epoch 56/80
+10/10 - 0s - loss: 0.0170 - accuracy: 1.0000 - val_loss: 1.0480 - val_accuracy: 0.7647
+Epoch 00056: early stopping
+best epoch: 36  loss: 0.9099166989326477  acc: 0.7941176295280457
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457]
+Accuracy:0.794
+
+Confusion matrix:
+ [[8 1 0 0]
+ [0 7 1 0]
+ [0 1 7 0]
+ [3 0 1 5]]
+
+#####FOLDER NUMBER: 5
+Epoch 1/80
+10/10 - 1s - loss: 1.4317 - accuracy: 0.2980 - val_loss: 1.4393 - val_accuracy: 0.2059
+Epoch 2/80
+10/10 - 0s - loss: 1.3589 - accuracy: 0.3245 - val_loss: 1.4062 - val_accuracy: 0.3529
+Epoch 3/80
+10/10 - 0s - loss: 1.2922 - accuracy: 0.3841 - val_loss: 1.3469 - val_accuracy: 0.3529
+Epoch 4/80
+10/10 - 0s - loss: 1.2200 - accuracy: 0.4470 - val_loss: 1.3384 - val_accuracy: 0.4118
+Epoch 5/80
+10/10 - 0s - loss: 1.1344 - accuracy: 0.4735 - val_loss: 1.3417 - val_accuracy: 0.5000
+Epoch 6/80
+10/10 - 0s - loss: 1.0625 - accuracy: 0.5530 - val_loss: 1.3204 - val_accuracy: 0.4706
+Epoch 7/80
+10/10 - 0s - loss: 1.0166 - accuracy: 0.5795 - val_loss: 1.3520 - val_accuracy: 0.4118
+Epoch 8/80
+10/10 - 0s - loss: 0.9735 - accuracy: 0.5662 - val_loss: 1.3383 - val_accuracy: 0.5000
+Epoch 9/80
+10/10 - 0s - loss: 0.9071 - accuracy: 0.6358 - val_loss: 1.2461 - val_accuracy: 0.5294
+Epoch 10/80
+10/10 - 0s - loss: 0.8210 - accuracy: 0.6523 - val_loss: 1.2244 - val_accuracy: 0.5000
+Epoch 11/80
+10/10 - 0s - loss: 0.8547 - accuracy: 0.5993 - val_loss: 1.0606 - val_accuracy: 0.5882
+Epoch 12/80
+10/10 - 0s - loss: 0.7878 - accuracy: 0.6623 - val_loss: 1.0554 - val_accuracy: 0.5588
+Epoch 13/80
+10/10 - 0s - loss: 0.8100 - accuracy: 0.6523 - val_loss: 1.0715 - val_accuracy: 0.5294
+Epoch 14/80
+10/10 - 0s - loss: 0.7210 - accuracy: 0.6821 - val_loss: 1.0767 - val_accuracy: 0.5294
+Epoch 15/80
+10/10 - 0s - loss: 0.7232 - accuracy: 0.6921 - val_loss: 0.8996 - val_accuracy: 0.7059
+Epoch 16/80
+10/10 - 0s - loss: 0.6772 - accuracy: 0.7219 - val_loss: 1.0113 - val_accuracy: 0.5882
+Epoch 17/80
+10/10 - 0s - loss: 0.6463 - accuracy: 0.7252 - val_loss: 1.0608 - val_accuracy: 0.5882
+Epoch 18/80
+10/10 - 0s - loss: 0.6412 - accuracy: 0.7219 - val_loss: 0.9404 - val_accuracy: 0.6765
+Epoch 19/80
+10/10 - 0s - loss: 0.5112 - accuracy: 0.8113 - val_loss: 0.9027 - val_accuracy: 0.7059
+Epoch 20/80
+10/10 - 0s - loss: 0.5014 - accuracy: 0.8079 - val_loss: 0.8377 - val_accuracy: 0.7353
+Epoch 21/80
+10/10 - 0s - loss: 0.4498 - accuracy: 0.8278 - val_loss: 0.9921 - val_accuracy: 0.6765
+Epoch 22/80
+10/10 - 0s - loss: 0.4455 - accuracy: 0.8344 - val_loss: 0.8464 - val_accuracy: 0.7059
+Epoch 23/80
+10/10 - 0s - loss: 0.4468 - accuracy: 0.8377 - val_loss: 0.8842 - val_accuracy: 0.7059
+Epoch 24/80
+10/10 - 0s - loss: 0.3871 - accuracy: 0.8742 - val_loss: 1.1526 - val_accuracy: 0.5882
+Epoch 25/80
+10/10 - 0s - loss: 0.3859 - accuracy: 0.8576 - val_loss: 1.0363 - val_accuracy: 0.6176
+Epoch 26/80
+10/10 - 0s - loss: 0.3473 - accuracy: 0.8775 - val_loss: 1.2446 - val_accuracy: 0.5588
+Epoch 27/80
+10/10 - 0s - loss: 0.3390 - accuracy: 0.8742 - val_loss: 1.0515 - val_accuracy: 0.7353
+Epoch 28/80
+10/10 - 0s - loss: 0.3206 - accuracy: 0.8907 - val_loss: 1.1306 - val_accuracy: 0.6471
+Epoch 29/80
+10/10 - 0s - loss: 0.2917 - accuracy: 0.9205 - val_loss: 1.3093 - val_accuracy: 0.6176
+Epoch 30/80
+10/10 - 0s - loss: 0.2650 - accuracy: 0.9139 - val_loss: 1.0791 - val_accuracy: 0.6471
+Epoch 31/80
+10/10 - 0s - loss: 0.3743 - accuracy: 0.8642 - val_loss: 1.2312 - val_accuracy: 0.6765
+Epoch 32/80
+10/10 - 0s - loss: 0.2797 - accuracy: 0.8808 - val_loss: 1.2979 - val_accuracy: 0.5588
+Epoch 33/80
+10/10 - 0s - loss: 0.2593 - accuracy: 0.9073 - val_loss: 1.0602 - val_accuracy: 0.7647
+Epoch 34/80
+10/10 - 0s - loss: 0.1790 - accuracy: 0.9371 - val_loss: 0.9600 - val_accuracy: 0.7647
+Epoch 35/80
+10/10 - 0s - loss: 0.1327 - accuracy: 0.9636 - val_loss: 1.3063 - val_accuracy: 0.6765
+Epoch 36/80
+10/10 - 0s - loss: 0.1139 - accuracy: 0.9702 - val_loss: 1.2244 - val_accuracy: 0.7353
+Epoch 37/80
+10/10 - 0s - loss: 0.0825 - accuracy: 0.9801 - val_loss: 1.3350 - val_accuracy: 0.7353
+Epoch 38/80
+10/10 - 0s - loss: 0.0747 - accuracy: 0.9901 - val_loss: 1.2305 - val_accuracy: 0.6765
+Epoch 39/80
+10/10 - 0s - loss: 0.1196 - accuracy: 0.9536 - val_loss: 1.1992 - val_accuracy: 0.7059
+Epoch 40/80
+10/10 - 0s - loss: 0.0677 - accuracy: 0.9901 - val_loss: 1.4743 - val_accuracy: 0.6176
+Epoch 41/80
+10/10 - 0s - loss: 0.0763 - accuracy: 0.9735 - val_loss: 0.9421 - val_accuracy: 0.7647
+Epoch 42/80
+10/10 - 0s - loss: 0.0607 - accuracy: 0.9868 - val_loss: 1.2439 - val_accuracy: 0.7353
+Epoch 43/80
+10/10 - 0s - loss: 0.1360 - accuracy: 0.9702 - val_loss: 1.2025 - val_accuracy: 0.7059
+Epoch 44/80
+10/10 - 0s - loss: 0.1285 - accuracy: 0.9603 - val_loss: 1.1616 - val_accuracy: 0.7353
+Epoch 45/80
+10/10 - 0s - loss: 0.1213 - accuracy: 0.9603 - val_loss: 1.3200 - val_accuracy: 0.7059
+Epoch 46/80
+10/10 - 0s - loss: 0.0786 - accuracy: 0.9702 - val_loss: 1.3525 - val_accuracy: 0.7647
+Epoch 47/80
+10/10 - 0s - loss: 0.0727 - accuracy: 0.9834 - val_loss: 1.4757 - val_accuracy: 0.7059
+Epoch 48/80
+10/10 - 0s - loss: 0.0502 - accuracy: 0.9934 - val_loss: 1.1694 - val_accuracy: 0.7647
+Epoch 49/80
+10/10 - 0s - loss: 0.0423 - accuracy: 0.9967 - val_loss: 1.1740 - val_accuracy: 0.7647
+Epoch 50/80
+10/10 - 0s - loss: 0.0572 - accuracy: 0.9801 - val_loss: 1.5312 - val_accuracy: 0.7647
+Epoch 51/80
+10/10 - 0s - loss: 0.1126 - accuracy: 0.9702 - val_loss: 1.4832 - val_accuracy: 0.6176
+Epoch 52/80
+10/10 - 0s - loss: 0.1015 - accuracy: 0.9735 - val_loss: 1.1819 - val_accuracy: 0.7353
+Epoch 53/80
+10/10 - 0s - loss: 0.0612 - accuracy: 0.9901 - val_loss: 1.1458 - val_accuracy: 0.6765
+Epoch 00053: early stopping
+best epoch: 33  loss: 1.0602290630340576  acc: 0.7647058963775635
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477, 1.0602290630340576] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457, 0.7647058963775635]
+Accuracy:0.765
+
+Confusion matrix:
+ [[5 2 0 1]
+ [0 6 1 2]
+ [0 1 7 0]
+ [0 0 1 8]]
+
+#####FOLDER NUMBER: 6
+Epoch 1/80
+10/10 - 0s - loss: 1.4665 - accuracy: 0.2815 - val_loss: 1.3199 - val_accuracy: 0.4118
+Epoch 2/80
+10/10 - 0s - loss: 1.3346 - accuracy: 0.3510 - val_loss: 1.2912 - val_accuracy: 0.4706
+Epoch 3/80
+10/10 - 0s - loss: 1.2804 - accuracy: 0.4073 - val_loss: 1.2067 - val_accuracy: 0.4706
+Epoch 4/80
+10/10 - 0s - loss: 1.2384 - accuracy: 0.3675 - val_loss: 1.1576 - val_accuracy: 0.4412
+Epoch 5/80
+10/10 - 0s - loss: 1.1923 - accuracy: 0.4834 - val_loss: 1.1180 - val_accuracy: 0.5294
+Epoch 6/80
+10/10 - 0s - loss: 1.0889 - accuracy: 0.5132 - val_loss: 1.0141 - val_accuracy: 0.5882
+Epoch 7/80
+10/10 - 0s - loss: 1.0458 - accuracy: 0.5099 - val_loss: 0.9511 - val_accuracy: 0.5882
+Epoch 8/80
+10/10 - 0s - loss: 1.0205 - accuracy: 0.5397 - val_loss: 1.0389 - val_accuracy: 0.5294
+Epoch 9/80
+10/10 - 0s - loss: 0.9498 - accuracy: 0.5695 - val_loss: 1.2819 - val_accuracy: 0.5294
+Epoch 10/80
+10/10 - 0s - loss: 0.9401 - accuracy: 0.5993 - val_loss: 1.1422 - val_accuracy: 0.5294
+Epoch 11/80
+10/10 - 0s - loss: 0.9282 - accuracy: 0.6225 - val_loss: 1.1273 - val_accuracy: 0.4706
+Epoch 12/80
+10/10 - 0s - loss: 0.8734 - accuracy: 0.6258 - val_loss: 0.9562 - val_accuracy: 0.5588
+Epoch 13/80
+10/10 - 0s - loss: 0.9140 - accuracy: 0.6325 - val_loss: 1.1041 - val_accuracy: 0.5000
+Epoch 14/80
+10/10 - 0s - loss: 0.8321 - accuracy: 0.6523 - val_loss: 0.8876 - val_accuracy: 0.5882
+Epoch 15/80
+10/10 - 0s - loss: 0.7263 - accuracy: 0.7020 - val_loss: 0.8884 - val_accuracy: 0.6765
+Epoch 16/80
+10/10 - 0s - loss: 0.6762 - accuracy: 0.7252 - val_loss: 0.9222 - val_accuracy: 0.5882
+Epoch 17/80
+10/10 - 0s - loss: 0.6433 - accuracy: 0.7550 - val_loss: 0.9643 - val_accuracy: 0.6176
+Epoch 18/80
+10/10 - 0s - loss: 0.5665 - accuracy: 0.7980 - val_loss: 0.8193 - val_accuracy: 0.6471
+Epoch 19/80
+10/10 - 0s - loss: 0.4908 - accuracy: 0.8212 - val_loss: 0.7492 - val_accuracy: 0.7059
+Epoch 20/80
+10/10 - 0s - loss: 0.5052 - accuracy: 0.7947 - val_loss: 0.8295 - val_accuracy: 0.6471
+Epoch 21/80
+10/10 - 0s - loss: 0.4281 - accuracy: 0.8377 - val_loss: 0.9409 - val_accuracy: 0.6176
+Epoch 22/80
+10/10 - 0s - loss: 0.4605 - accuracy: 0.8079 - val_loss: 0.9421 - val_accuracy: 0.6471
+Epoch 23/80
+10/10 - 0s - loss: 0.4202 - accuracy: 0.8477 - val_loss: 0.8649 - val_accuracy: 0.6765
+Epoch 24/80
+10/10 - 0s - loss: 0.3849 - accuracy: 0.8675 - val_loss: 1.3068 - val_accuracy: 0.5294
+Epoch 25/80
+10/10 - 0s - loss: 0.3918 - accuracy: 0.8543 - val_loss: 0.9908 - val_accuracy: 0.5882
+Epoch 26/80
+10/10 - 0s - loss: 0.2900 - accuracy: 0.9172 - val_loss: 0.9468 - val_accuracy: 0.6176
+Epoch 27/80
+10/10 - 0s - loss: 0.2708 - accuracy: 0.9007 - val_loss: 0.8441 - val_accuracy: 0.6471
+Epoch 28/80
+10/10 - 0s - loss: 0.2257 - accuracy: 0.9272 - val_loss: 1.0933 - val_accuracy: 0.6471
+Epoch 29/80
+10/10 - 0s - loss: 0.1898 - accuracy: 0.9470 - val_loss: 0.8213 - val_accuracy: 0.6765
+Epoch 30/80
+10/10 - 0s - loss: 0.1973 - accuracy: 0.9272 - val_loss: 1.1524 - val_accuracy: 0.5588
+Epoch 31/80
+10/10 - 0s - loss: 0.2429 - accuracy: 0.9040 - val_loss: 1.2919 - val_accuracy: 0.5588
+Epoch 32/80
+10/10 - 0s - loss: 0.2697 - accuracy: 0.9305 - val_loss: 1.0096 - val_accuracy: 0.6471
+Epoch 33/80
+10/10 - 0s - loss: 0.1669 - accuracy: 0.9503 - val_loss: 0.9447 - val_accuracy: 0.6765
+Epoch 34/80
+10/10 - 0s - loss: 0.1351 - accuracy: 0.9669 - val_loss: 0.8767 - val_accuracy: 0.6471
+Epoch 35/80
+10/10 - 0s - loss: 0.1133 - accuracy: 0.9735 - val_loss: 0.9199 - val_accuracy: 0.7059
+Epoch 36/80
+10/10 - 0s - loss: 0.0932 - accuracy: 0.9801 - val_loss: 1.1685 - val_accuracy: 0.6765
+Epoch 37/80
+10/10 - 0s - loss: 0.0964 - accuracy: 0.9834 - val_loss: 1.5410 - val_accuracy: 0.6176
+Epoch 38/80
+10/10 - 0s - loss: 0.1101 - accuracy: 0.9636 - val_loss: 1.2754 - val_accuracy: 0.5882
+Epoch 39/80
+10/10 - 0s - loss: 0.1222 - accuracy: 0.9669 - val_loss: 1.0766 - val_accuracy: 0.6176
+Epoch 00039: early stopping
+best epoch: 19  loss: 0.7492202520370483  acc: 0.7058823704719543
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477, 1.0602290630340576, 0.7492202520370483] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457, 0.7647058963775635, 0.7058823704719543]
+Accuracy:0.706
+
+Confusion matrix:
+ [[5 0 1 2]
+ [0 7 1 1]
+ [0 1 6 1]
+ [2 1 0 6]]
+
+#####FOLDER NUMBER: 7
+Epoch 1/80
+10/10 - 0s - loss: 1.4547 - accuracy: 0.2739 - val_loss: 1.3672 - val_accuracy: 0.3333
+Epoch 2/80
+10/10 - 0s - loss: 1.3806 - accuracy: 0.2970 - val_loss: 1.2802 - val_accuracy: 0.4545
+Epoch 3/80
+10/10 - 0s - loss: 1.3305 - accuracy: 0.3531 - val_loss: 1.2259 - val_accuracy: 0.5152
+Epoch 4/80
+10/10 - 0s - loss: 1.2747 - accuracy: 0.4026 - val_loss: 1.1829 - val_accuracy: 0.5152
+Epoch 5/80
+10/10 - 0s - loss: 1.2149 - accuracy: 0.4356 - val_loss: 1.1521 - val_accuracy: 0.5455
+Epoch 6/80
+10/10 - 0s - loss: 1.1445 - accuracy: 0.5050 - val_loss: 1.0466 - val_accuracy: 0.5758
+Epoch 7/80
+10/10 - 0s - loss: 1.0807 - accuracy: 0.5611 - val_loss: 1.0292 - val_accuracy: 0.5758
+Epoch 8/80
+10/10 - 0s - loss: 1.0306 - accuracy: 0.5413 - val_loss: 0.9888 - val_accuracy: 0.6061
+Epoch 9/80
+10/10 - 0s - loss: 1.0153 - accuracy: 0.5875 - val_loss: 0.9381 - val_accuracy: 0.6061
+Epoch 10/80
+10/10 - 0s - loss: 0.8971 - accuracy: 0.6403 - val_loss: 0.8993 - val_accuracy: 0.5152
+Epoch 11/80
+10/10 - 0s - loss: 0.8060 - accuracy: 0.6370 - val_loss: 0.8439 - val_accuracy: 0.6364
+Epoch 12/80
+10/10 - 0s - loss: 0.8255 - accuracy: 0.6667 - val_loss: 0.8640 - val_accuracy: 0.6667
+Epoch 13/80
+10/10 - 0s - loss: 0.8205 - accuracy: 0.6502 - val_loss: 0.9145 - val_accuracy: 0.6061
+Epoch 14/80
+10/10 - 0s - loss: 0.7405 - accuracy: 0.7129 - val_loss: 0.8101 - val_accuracy: 0.6667
+Epoch 15/80
+10/10 - 0s - loss: 0.6838 - accuracy: 0.7096 - val_loss: 0.8090 - val_accuracy: 0.6364
+Epoch 16/80
+10/10 - 0s - loss: 0.6303 - accuracy: 0.7360 - val_loss: 0.7540 - val_accuracy: 0.6667
+Epoch 17/80
+10/10 - 0s - loss: 0.6091 - accuracy: 0.7063 - val_loss: 0.8313 - val_accuracy: 0.6061
+Epoch 18/80
+10/10 - 0s - loss: 0.4970 - accuracy: 0.8218 - val_loss: 0.7503 - val_accuracy: 0.6667
+Epoch 19/80
+10/10 - 0s - loss: 0.5615 - accuracy: 0.7723 - val_loss: 0.8057 - val_accuracy: 0.7576
+Epoch 20/80
+10/10 - 0s - loss: 0.5213 - accuracy: 0.8020 - val_loss: 1.0145 - val_accuracy: 0.6364
+Epoch 21/80
+10/10 - 0s - loss: 0.4505 - accuracy: 0.8152 - val_loss: 0.9900 - val_accuracy: 0.6061
+Epoch 22/80
+10/10 - 0s - loss: 0.3821 - accuracy: 0.8515 - val_loss: 0.9506 - val_accuracy: 0.6364
+Epoch 23/80
+10/10 - 0s - loss: 0.4461 - accuracy: 0.8086 - val_loss: 1.2348 - val_accuracy: 0.6061
+Epoch 24/80
+10/10 - 0s - loss: 0.4715 - accuracy: 0.8020 - val_loss: 0.8276 - val_accuracy: 0.6970
+Epoch 25/80
+10/10 - 0s - loss: 0.3869 - accuracy: 0.8350 - val_loss: 1.2841 - val_accuracy: 0.5152
+Epoch 26/80
+10/10 - 0s - loss: 0.3760 - accuracy: 0.8746 - val_loss: 0.8625 - val_accuracy: 0.6667
+Epoch 27/80
+10/10 - 0s - loss: 0.3161 - accuracy: 0.8845 - val_loss: 0.9926 - val_accuracy: 0.6364
+Epoch 28/80
+10/10 - 0s - loss: 0.2770 - accuracy: 0.8977 - val_loss: 0.9946 - val_accuracy: 0.6364
+Epoch 29/80
+10/10 - 0s - loss: 0.2203 - accuracy: 0.9208 - val_loss: 0.9801 - val_accuracy: 0.6364
+Epoch 30/80
+10/10 - 0s - loss: 0.2009 - accuracy: 0.9241 - val_loss: 0.9721 - val_accuracy: 0.7273
+Epoch 31/80
+10/10 - 0s - loss: 0.1958 - accuracy: 0.9406 - val_loss: 1.0898 - val_accuracy: 0.6667
+Epoch 32/80
+10/10 - 0s - loss: 0.1939 - accuracy: 0.9439 - val_loss: 0.7704 - val_accuracy: 0.8182
+Epoch 33/80
+10/10 - 0s - loss: 0.2306 - accuracy: 0.9274 - val_loss: 1.5398 - val_accuracy: 0.6364
+Epoch 34/80
+10/10 - 0s - loss: 0.3635 - accuracy: 0.8911 - val_loss: 1.1311 - val_accuracy: 0.6667
+Epoch 35/80
+10/10 - 0s - loss: 0.2258 - accuracy: 0.9340 - val_loss: 1.0439 - val_accuracy: 0.6364
+Epoch 36/80
+10/10 - 0s - loss: 0.1356 - accuracy: 0.9703 - val_loss: 0.8634 - val_accuracy: 0.6667
+Epoch 37/80
+10/10 - 0s - loss: 0.1088 - accuracy: 0.9769 - val_loss: 0.9555 - val_accuracy: 0.6667
+Epoch 38/80
+10/10 - 0s - loss: 0.0726 - accuracy: 0.9835 - val_loss: 0.9954 - val_accuracy: 0.6970
+Epoch 39/80
+10/10 - 0s - loss: 0.0577 - accuracy: 0.9967 - val_loss: 1.1164 - val_accuracy: 0.6667
+Epoch 40/80
+10/10 - 0s - loss: 0.0478 - accuracy: 0.9934 - val_loss: 1.3226 - val_accuracy: 0.6364
+Epoch 41/80
+10/10 - 0s - loss: 0.0655 - accuracy: 0.9901 - val_loss: 1.2566 - val_accuracy: 0.6667
+Epoch 42/80
+10/10 - 0s - loss: 0.0348 - accuracy: 0.9967 - val_loss: 1.2357 - val_accuracy: 0.6364
+Epoch 43/80
+10/10 - 0s - loss: 0.0591 - accuracy: 0.9868 - val_loss: 1.5962 - val_accuracy: 0.6061
+Epoch 44/80
+10/10 - 0s - loss: 0.2979 - accuracy: 0.9142 - val_loss: 1.1672 - val_accuracy: 0.6667
+Epoch 45/80
+10/10 - 0s - loss: 0.1770 - accuracy: 0.9340 - val_loss: 1.0808 - val_accuracy: 0.6970
+Epoch 46/80
+10/10 - 0s - loss: 0.1209 - accuracy: 0.9736 - val_loss: 1.1475 - val_accuracy: 0.6667
+Epoch 47/80
+10/10 - 0s - loss: 0.1090 - accuracy: 0.9637 - val_loss: 1.3498 - val_accuracy: 0.6667
+Epoch 48/80
+10/10 - 0s - loss: 0.0438 - accuracy: 0.9934 - val_loss: 1.5133 - val_accuracy: 0.5758
+Epoch 49/80
+10/10 - 0s - loss: 0.0588 - accuracy: 0.9868 - val_loss: 1.2346 - val_accuracy: 0.6667
+Epoch 50/80
+10/10 - 0s - loss: 0.0429 - accuracy: 0.9901 - val_loss: 1.3102 - val_accuracy: 0.6667
+Epoch 51/80
+10/10 - 0s - loss: 0.0740 - accuracy: 0.9769 - val_loss: 1.3791 - val_accuracy: 0.6061
+Epoch 52/80
+10/10 - 0s - loss: 0.1486 - accuracy: 0.9571 - val_loss: 1.6584 - val_accuracy: 0.6364
+Epoch 00052: early stopping
+best epoch: 32  loss: 0.7704200744628906  acc: 0.8181818127632141
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477, 1.0602290630340576, 0.7492202520370483, 0.7704200744628906] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457, 0.7647058963775635, 0.7058823704719543, 0.8181818127632141]
+Accuracy:0.818
+
+Confusion matrix:
+ [[8 0 0 0]
+ [0 9 0 0]
+ [0 2 4 2]
+ [2 0 0 6]]
+
+#####FOLDER NUMBER: 8
+Epoch 1/80
+10/10 - 1s - loss: 1.4804 - accuracy: 0.2343 - val_loss: 1.3653 - val_accuracy: 0.3636
+Epoch 2/80
+10/10 - 0s - loss: 1.3748 - accuracy: 0.3135 - val_loss: 1.3538 - val_accuracy: 0.3333
+Epoch 3/80
+10/10 - 0s - loss: 1.2509 - accuracy: 0.4356 - val_loss: 1.3597 - val_accuracy: 0.3030
+Epoch 4/80
+10/10 - 0s - loss: 1.2289 - accuracy: 0.4620 - val_loss: 1.3376 - val_accuracy: 0.3333
+Epoch 5/80
+10/10 - 0s - loss: 1.1840 - accuracy: 0.4917 - val_loss: 1.3140 - val_accuracy: 0.3333
+Epoch 6/80
+10/10 - 0s - loss: 1.0927 - accuracy: 0.4917 - val_loss: 1.2155 - val_accuracy: 0.3939
+Epoch 7/80
+10/10 - 0s - loss: 1.0840 - accuracy: 0.5248 - val_loss: 1.2317 - val_accuracy: 0.3939
+Epoch 8/80
+10/10 - 0s - loss: 1.0340 - accuracy: 0.5644 - val_loss: 1.1025 - val_accuracy: 0.4848
+Epoch 9/80
+10/10 - 0s - loss: 0.9753 - accuracy: 0.6106 - val_loss: 1.1095 - val_accuracy: 0.4848
+Epoch 10/80
+10/10 - 0s - loss: 0.8756 - accuracy: 0.6667 - val_loss: 1.0738 - val_accuracy: 0.4848
+Epoch 11/80
+10/10 - 0s - loss: 0.8858 - accuracy: 0.6304 - val_loss: 1.2141 - val_accuracy: 0.3636
+Epoch 12/80
+10/10 - 0s - loss: 0.8200 - accuracy: 0.6667 - val_loss: 1.1529 - val_accuracy: 0.4848
+Epoch 13/80
+10/10 - 0s - loss: 0.7241 - accuracy: 0.7261 - val_loss: 1.0597 - val_accuracy: 0.5152
+Epoch 14/80
+10/10 - 0s - loss: 0.7331 - accuracy: 0.6898 - val_loss: 1.0978 - val_accuracy: 0.5455
+Epoch 15/80
+10/10 - 0s - loss: 0.6834 - accuracy: 0.7393 - val_loss: 1.0487 - val_accuracy: 0.5152
+Epoch 16/80
+10/10 - 0s - loss: 0.6153 - accuracy: 0.7393 - val_loss: 1.0460 - val_accuracy: 0.5455
+Epoch 17/80
+10/10 - 0s - loss: 0.5910 - accuracy: 0.7657 - val_loss: 1.1226 - val_accuracy: 0.5152
+Epoch 18/80
+10/10 - 0s - loss: 0.5350 - accuracy: 0.7921 - val_loss: 1.0799 - val_accuracy: 0.5758
+Epoch 19/80
+10/10 - 0s - loss: 0.4978 - accuracy: 0.8152 - val_loss: 1.0986 - val_accuracy: 0.5758
+Epoch 20/80
+10/10 - 0s - loss: 0.4552 - accuracy: 0.8086 - val_loss: 1.2904 - val_accuracy: 0.4848
+Epoch 21/80
+10/10 - 0s - loss: 0.4601 - accuracy: 0.8317 - val_loss: 1.2087 - val_accuracy: 0.5152
+Epoch 22/80
+10/10 - 0s - loss: 0.4601 - accuracy: 0.8185 - val_loss: 1.2352 - val_accuracy: 0.5455
+Epoch 23/80
+10/10 - 0s - loss: 0.4938 - accuracy: 0.7954 - val_loss: 1.1513 - val_accuracy: 0.5152
+Epoch 24/80
+10/10 - 0s - loss: 0.4005 - accuracy: 0.8581 - val_loss: 1.2499 - val_accuracy: 0.4848
+Epoch 25/80
+10/10 - 0s - loss: 0.3344 - accuracy: 0.8911 - val_loss: 1.2404 - val_accuracy: 0.5455
+Epoch 26/80
+10/10 - 0s - loss: 0.3291 - accuracy: 0.8680 - val_loss: 1.3022 - val_accuracy: 0.5455
+Epoch 27/80
+10/10 - 0s - loss: 0.3429 - accuracy: 0.8779 - val_loss: 1.1903 - val_accuracy: 0.5455
+Epoch 28/80
+10/10 - 0s - loss: 0.2449 - accuracy: 0.9175 - val_loss: 1.1569 - val_accuracy: 0.5758
+Epoch 29/80
+10/10 - 0s - loss: 0.2015 - accuracy: 0.9439 - val_loss: 1.4005 - val_accuracy: 0.6061
+Epoch 30/80
+10/10 - 0s - loss: 0.1915 - accuracy: 0.9439 - val_loss: 1.4093 - val_accuracy: 0.5455
+Epoch 31/80
+10/10 - 0s - loss: 0.1792 - accuracy: 0.9274 - val_loss: 1.6519 - val_accuracy: 0.4848
+Epoch 32/80
+10/10 - 0s - loss: 0.2024 - accuracy: 0.9340 - val_loss: 1.5728 - val_accuracy: 0.6061
+Epoch 33/80
+10/10 - 0s - loss: 0.1459 - accuracy: 0.9571 - val_loss: 1.5103 - val_accuracy: 0.6364
+Epoch 34/80
+10/10 - 0s - loss: 0.1901 - accuracy: 0.9406 - val_loss: 1.7088 - val_accuracy: 0.6061
+Epoch 35/80
+10/10 - 0s - loss: 0.1543 - accuracy: 0.9472 - val_loss: 1.6382 - val_accuracy: 0.5758
+Epoch 36/80
+10/10 - 0s - loss: 0.1322 - accuracy: 0.9604 - val_loss: 1.6185 - val_accuracy: 0.5758
+Epoch 37/80
+10/10 - 0s - loss: 0.1020 - accuracy: 0.9703 - val_loss: 1.7943 - val_accuracy: 0.5152
+Epoch 38/80
+10/10 - 0s - loss: 0.1202 - accuracy: 0.9736 - val_loss: 2.0321 - val_accuracy: 0.5758
+Epoch 39/80
+10/10 - 0s - loss: 0.0803 - accuracy: 0.9802 - val_loss: 1.9473 - val_accuracy: 0.5455
+Epoch 40/80
+10/10 - 0s - loss: 0.0510 - accuracy: 0.9868 - val_loss: 1.8428 - val_accuracy: 0.5152
+Epoch 41/80
+10/10 - 0s - loss: 0.0581 - accuracy: 0.9835 - val_loss: 2.0103 - val_accuracy: 0.4848
+Epoch 42/80
+10/10 - 0s - loss: 0.0537 - accuracy: 0.9868 - val_loss: 1.9556 - val_accuracy: 0.4848
+Epoch 43/80
+10/10 - 0s - loss: 0.1178 - accuracy: 0.9538 - val_loss: 2.0636 - val_accuracy: 0.5758
+Epoch 44/80
+10/10 - 0s - loss: 0.1034 - accuracy: 0.9703 - val_loss: 1.9919 - val_accuracy: 0.5758
+Epoch 45/80
+10/10 - 0s - loss: 0.0638 - accuracy: 0.9835 - val_loss: 2.1160 - val_accuracy: 0.5455
+Epoch 46/80
+10/10 - 0s - loss: 0.0602 - accuracy: 0.9868 - val_loss: 1.8405 - val_accuracy: 0.5758
+Epoch 47/80
+10/10 - 0s - loss: 0.1017 - accuracy: 0.9670 - val_loss: 2.0147 - val_accuracy: 0.5152
+Epoch 48/80
+10/10 - 0s - loss: 0.0574 - accuracy: 0.9835 - val_loss: 1.9252 - val_accuracy: 0.6061
+Epoch 49/80
+10/10 - 0s - loss: 0.1788 - accuracy: 0.9439 - val_loss: 2.3023 - val_accuracy: 0.6061
+Epoch 50/80
+10/10 - 0s - loss: 0.1692 - accuracy: 0.9406 - val_loss: 1.9598 - val_accuracy: 0.5455
+Epoch 51/80
+10/10 - 0s - loss: 0.1128 - accuracy: 0.9736 - val_loss: 1.9319 - val_accuracy: 0.4242
+Epoch 52/80
+10/10 - 0s - loss: 0.1320 - accuracy: 0.9637 - val_loss: 2.1194 - val_accuracy: 0.4848
+Epoch 53/80
+10/10 - 0s - loss: 0.0845 - accuracy: 0.9769 - val_loss: 2.2275 - val_accuracy: 0.4545
+Epoch 00053: early stopping
+best epoch: 33  loss: 1.5103057622909546  acc: 0.6363636255264282
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477, 1.0602290630340576, 0.7492202520370483, 0.7704200744628906, 1.5103057622909546] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457, 0.7647058963775635, 0.7058823704719543, 0.8181818127632141, 0.6363636255264282]
+Accuracy:0.636
+
+Confusion matrix:
+ [[5 0 0 3]
+ [0 5 2 2]
+ [0 3 5 0]
+ [1 1 0 6]]
+
+#####FOLDER NUMBER: 9
+Epoch 1/80
+10/10 - 1s - loss: 1.4708 - accuracy: 0.2739 - val_loss: 1.3629 - val_accuracy: 0.2727
+Epoch 2/80
+10/10 - 0s - loss: 1.3774 - accuracy: 0.3465 - val_loss: 1.3241 - val_accuracy: 0.3333
+Epoch 3/80
+10/10 - 0s - loss: 1.2929 - accuracy: 0.4224 - val_loss: 1.2405 - val_accuracy: 0.4545
+Epoch 4/80
+10/10 - 0s - loss: 1.2148 - accuracy: 0.4356 - val_loss: 1.1607 - val_accuracy: 0.4848
+Epoch 5/80
+10/10 - 0s - loss: 1.1249 - accuracy: 0.4917 - val_loss: 1.1062 - val_accuracy: 0.5758
+Epoch 6/80
+10/10 - 0s - loss: 1.0766 - accuracy: 0.5710 - val_loss: 1.0988 - val_accuracy: 0.5455
+Epoch 7/80
+10/10 - 0s - loss: 1.0451 - accuracy: 0.5380 - val_loss: 1.0639 - val_accuracy: 0.5455
+Epoch 8/80
+10/10 - 0s - loss: 0.9932 - accuracy: 0.5611 - val_loss: 1.0950 - val_accuracy: 0.4545
+Epoch 9/80
+10/10 - 0s - loss: 0.9709 - accuracy: 0.5545 - val_loss: 0.9948 - val_accuracy: 0.5152
+Epoch 10/80
+10/10 - 0s - loss: 0.9183 - accuracy: 0.5974 - val_loss: 0.9511 - val_accuracy: 0.5758
+Epoch 11/80
+10/10 - 0s - loss: 0.8720 - accuracy: 0.6040 - val_loss: 0.9591 - val_accuracy: 0.5152
+Epoch 12/80
+10/10 - 0s - loss: 0.8449 - accuracy: 0.6436 - val_loss: 0.9230 - val_accuracy: 0.5455
+Epoch 13/80
+10/10 - 0s - loss: 0.7785 - accuracy: 0.6865 - val_loss: 0.8599 - val_accuracy: 0.6970
+Epoch 14/80
+10/10 - 0s - loss: 0.6873 - accuracy: 0.7360 - val_loss: 0.8768 - val_accuracy: 0.6667
+Epoch 15/80
+10/10 - 0s - loss: 0.7069 - accuracy: 0.6964 - val_loss: 0.9813 - val_accuracy: 0.5455
+Epoch 16/80
+10/10 - 0s - loss: 0.6374 - accuracy: 0.7426 - val_loss: 1.1969 - val_accuracy: 0.4545
+Epoch 17/80
+10/10 - 0s - loss: 0.6178 - accuracy: 0.7393 - val_loss: 0.9900 - val_accuracy: 0.6061
+Epoch 18/80
+10/10 - 0s - loss: 0.5837 - accuracy: 0.7657 - val_loss: 0.9527 - val_accuracy: 0.6364
+Epoch 19/80
+10/10 - 0s - loss: 0.4964 - accuracy: 0.8317 - val_loss: 0.9452 - val_accuracy: 0.6970
+Epoch 20/80
+10/10 - 0s - loss: 0.5243 - accuracy: 0.7987 - val_loss: 0.9366 - val_accuracy: 0.6667
+Epoch 21/80
+10/10 - 0s - loss: 0.5626 - accuracy: 0.7657 - val_loss: 1.2448 - val_accuracy: 0.4848
+Epoch 22/80
+10/10 - 0s - loss: 0.5499 - accuracy: 0.7888 - val_loss: 0.9489 - val_accuracy: 0.6364
+Epoch 23/80
+10/10 - 0s - loss: 0.4927 - accuracy: 0.8020 - val_loss: 0.9121 - val_accuracy: 0.6970
+Epoch 24/80
+10/10 - 0s - loss: 0.5041 - accuracy: 0.7987 - val_loss: 0.9892 - val_accuracy: 0.6364
+Epoch 25/80
+10/10 - 0s - loss: 0.4312 - accuracy: 0.8383 - val_loss: 0.9799 - val_accuracy: 0.6061
+Epoch 26/80
+10/10 - 0s - loss: 0.3342 - accuracy: 0.9109 - val_loss: 1.0053 - val_accuracy: 0.6667
+Epoch 27/80
+10/10 - 0s - loss: 0.3147 - accuracy: 0.9076 - val_loss: 1.1386 - val_accuracy: 0.6364
+Epoch 28/80
+10/10 - 0s - loss: 0.2836 - accuracy: 0.9175 - val_loss: 1.3505 - val_accuracy: 0.5758
+Epoch 29/80
+10/10 - 0s - loss: 0.2942 - accuracy: 0.9142 - val_loss: 0.9635 - val_accuracy: 0.6970
+Epoch 30/80
+10/10 - 0s - loss: 0.2454 - accuracy: 0.9307 - val_loss: 1.0784 - val_accuracy: 0.6667
+Epoch 31/80
+10/10 - 0s - loss: 0.1901 - accuracy: 0.9406 - val_loss: 1.0644 - val_accuracy: 0.6364
+Epoch 32/80
+10/10 - 0s - loss: 0.1516 - accuracy: 0.9571 - val_loss: 1.3486 - val_accuracy: 0.5758
+Epoch 33/80
+10/10 - 0s - loss: 0.1484 - accuracy: 0.9538 - val_loss: 1.2675 - val_accuracy: 0.6364
+Epoch 00033: early stopping
+best epoch: 13  loss: 0.8599383234977722  acc: 0.6969696879386902
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477, 1.0602290630340576, 0.7492202520370483, 0.7704200744628906, 1.5103057622909546, 0.8599383234977722] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457, 0.7647058963775635, 0.7058823704719543, 0.8181818127632141, 0.6363636255264282, 0.6969696879386902]
+Accuracy:0.697
+
+Confusion matrix:
+ [[6 0 0 2]
+ [0 6 2 0]
+ [0 0 8 1]
+ [3 1 1 3]]
+
+#####FOLDER NUMBER: 10
+Epoch 1/80
+10/10 - 0s - loss: 1.4849 - accuracy: 0.2244 - val_loss: 1.4198 - val_accuracy: 0.2121
+Epoch 2/80
+10/10 - 0s - loss: 1.3699 - accuracy: 0.3201 - val_loss: 1.3496 - val_accuracy: 0.3939
+Epoch 3/80
+10/10 - 0s - loss: 1.2818 - accuracy: 0.4224 - val_loss: 1.2940 - val_accuracy: 0.4242
+Epoch 4/80
+10/10 - 0s - loss: 1.2253 - accuracy: 0.4620 - val_loss: 1.2712 - val_accuracy: 0.3939
+Epoch 5/80
+10/10 - 0s - loss: 1.1829 - accuracy: 0.4785 - val_loss: 1.2431 - val_accuracy: 0.3333
+Epoch 6/80
+10/10 - 0s - loss: 1.0996 - accuracy: 0.5116 - val_loss: 1.2154 - val_accuracy: 0.4242
+Epoch 7/80
+10/10 - 0s - loss: 1.0427 - accuracy: 0.5677 - val_loss: 1.1571 - val_accuracy: 0.5152
+Epoch 8/80
+10/10 - 0s - loss: 1.0281 - accuracy: 0.5710 - val_loss: 1.0856 - val_accuracy: 0.5152
+Epoch 9/80
+10/10 - 0s - loss: 0.9863 - accuracy: 0.5611 - val_loss: 0.9787 - val_accuracy: 0.5758
+Epoch 10/80
+10/10 - 0s - loss: 0.9055 - accuracy: 0.6007 - val_loss: 1.0068 - val_accuracy: 0.5152
+Epoch 11/80
+10/10 - 0s - loss: 0.8750 - accuracy: 0.6568 - val_loss: 1.0451 - val_accuracy: 0.6061
+Epoch 12/80
+10/10 - 0s - loss: 0.8674 - accuracy: 0.6469 - val_loss: 1.0971 - val_accuracy: 0.5152
+Epoch 13/80
+10/10 - 0s - loss: 0.8039 - accuracy: 0.6535 - val_loss: 0.7955 - val_accuracy: 0.6364
+Epoch 14/80
+10/10 - 0s - loss: 0.8303 - accuracy: 0.6436 - val_loss: 0.9030 - val_accuracy: 0.5758
+Epoch 15/80
+10/10 - 0s - loss: 0.6825 - accuracy: 0.7096 - val_loss: 0.8094 - val_accuracy: 0.6061
+Epoch 16/80
+10/10 - 0s - loss: 0.6870 - accuracy: 0.7030 - val_loss: 0.7962 - val_accuracy: 0.6667
+Epoch 17/80
+10/10 - 0s - loss: 0.6443 - accuracy: 0.7294 - val_loss: 0.8223 - val_accuracy: 0.6667
+Epoch 18/80
+10/10 - 0s - loss: 0.5217 - accuracy: 0.8053 - val_loss: 0.8462 - val_accuracy: 0.6364
+Epoch 19/80
+10/10 - 0s - loss: 0.5169 - accuracy: 0.7954 - val_loss: 0.9109 - val_accuracy: 0.7273
+Epoch 20/80
+10/10 - 0s - loss: 0.6048 - accuracy: 0.7558 - val_loss: 0.7309 - val_accuracy: 0.6667
+Epoch 21/80
+10/10 - 0s - loss: 0.5771 - accuracy: 0.7789 - val_loss: 0.7136 - val_accuracy: 0.6667
+Epoch 22/80
+10/10 - 0s - loss: 0.4566 - accuracy: 0.8185 - val_loss: 0.6599 - val_accuracy: 0.6970
+Epoch 23/80
+10/10 - 0s - loss: 0.4570 - accuracy: 0.8449 - val_loss: 0.5006 - val_accuracy: 0.7273
+Epoch 24/80
+10/10 - 0s - loss: 0.3789 - accuracy: 0.8779 - val_loss: 0.8106 - val_accuracy: 0.6970
+Epoch 25/80
+10/10 - 0s - loss: 0.4316 - accuracy: 0.8581 - val_loss: 0.5616 - val_accuracy: 0.7879
+Epoch 26/80
+10/10 - 0s - loss: 0.6391 - accuracy: 0.7360 - val_loss: 1.2060 - val_accuracy: 0.6364
+Epoch 27/80
+10/10 - 0s - loss: 0.6493 - accuracy: 0.7393 - val_loss: 0.7881 - val_accuracy: 0.7273
+Epoch 28/80
+10/10 - 0s - loss: 0.4228 - accuracy: 0.8317 - val_loss: 0.8346 - val_accuracy: 0.6667
+Epoch 29/80
+10/10 - 0s - loss: 0.4116 - accuracy: 0.8416 - val_loss: 0.6897 - val_accuracy: 0.6970
+Epoch 30/80
+10/10 - 0s - loss: 0.3320 - accuracy: 0.8878 - val_loss: 0.7928 - val_accuracy: 0.6970
+Epoch 31/80
+10/10 - 0s - loss: 0.3862 - accuracy: 0.8878 - val_loss: 0.4661 - val_accuracy: 0.7879
+Epoch 32/80
+10/10 - 0s - loss: 0.3062 - accuracy: 0.8878 - val_loss: 0.5844 - val_accuracy: 0.7273
+Epoch 33/80
+10/10 - 0s - loss: 0.2324 - accuracy: 0.9340 - val_loss: 0.4970 - val_accuracy: 0.8182
+Epoch 34/80
+10/10 - 0s - loss: 0.2173 - accuracy: 0.9274 - val_loss: 0.6404 - val_accuracy: 0.7576
+Epoch 35/80
+10/10 - 0s - loss: 0.2156 - accuracy: 0.9307 - val_loss: 0.6339 - val_accuracy: 0.7273
+Epoch 36/80
+10/10 - 0s - loss: 0.1683 - accuracy: 0.9307 - val_loss: 0.6322 - val_accuracy: 0.7576
+Epoch 37/80
+10/10 - 0s - loss: 0.1521 - accuracy: 0.9505 - val_loss: 0.6050 - val_accuracy: 0.6970
+Epoch 38/80
+10/10 - 0s - loss: 0.1482 - accuracy: 0.9571 - val_loss: 0.6193 - val_accuracy: 0.6970
+Epoch 39/80
+10/10 - 0s - loss: 0.0789 - accuracy: 0.9868 - val_loss: 0.7459 - val_accuracy: 0.6970
+Epoch 40/80
+10/10 - 0s - loss: 0.1361 - accuracy: 0.9604 - val_loss: 0.7573 - val_accuracy: 0.7879
+Epoch 41/80
+10/10 - 0s - loss: 0.1593 - accuracy: 0.9571 - val_loss: 0.9924 - val_accuracy: 0.6970
+Epoch 42/80
+10/10 - 0s - loss: 0.1429 - accuracy: 0.9571 - val_loss: 0.6519 - val_accuracy: 0.7273
+Epoch 43/80
+10/10 - 0s - loss: 0.0905 - accuracy: 0.9703 - val_loss: 0.8746 - val_accuracy: 0.6364
+Epoch 44/80
+10/10 - 0s - loss: 0.1525 - accuracy: 0.9505 - val_loss: 0.8941 - val_accuracy: 0.7273
+Epoch 45/80
+10/10 - 0s - loss: 0.1224 - accuracy: 0.9637 - val_loss: 0.8418 - val_accuracy: 0.7273
+Epoch 46/80
+10/10 - 0s - loss: 0.1674 - accuracy: 0.9472 - val_loss: 0.6342 - val_accuracy: 0.7576
+Epoch 47/80
+10/10 - 0s - loss: 0.1507 - accuracy: 0.9505 - val_loss: 0.5521 - val_accuracy: 0.8182
+Epoch 48/80
+10/10 - 0s - loss: 0.1108 - accuracy: 0.9637 - val_loss: 0.8233 - val_accuracy: 0.7576
+Epoch 49/80
+10/10 - 0s - loss: 0.0743 - accuracy: 0.9802 - val_loss: 0.8623 - val_accuracy: 0.7273
+Epoch 50/80
+10/10 - 0s - loss: 0.0700 - accuracy: 0.9769 - val_loss: 0.6945 - val_accuracy: 0.7576
+Epoch 51/80
+10/10 - 0s - loss: 0.0635 - accuracy: 0.9868 - val_loss: 0.5816 - val_accuracy: 0.8182
+Epoch 52/80
+10/10 - 0s - loss: 0.0656 - accuracy: 0.9868 - val_loss: 0.7359 - val_accuracy: 0.8182
+Epoch 53/80
+10/10 - 0s - loss: 0.0669 - accuracy: 0.9868 - val_loss: 0.4782 - val_accuracy: 0.7879
+Epoch 00053: early stopping
+best epoch: 33  loss: 0.49699604511260986  acc: 0.8181818127632141
+[1.231024980545044, 1.0606327056884766, 1.347060203552246, 0.9099166989326477, 1.0602290630340576, 0.7492202520370483, 0.7704200744628906, 1.5103057622909546, 0.8599383234977722, 0.49699604511260986] [0.7058823704719543, 0.6764705777168274, 0.7352941036224365, 0.7941176295280457, 0.7647058963775635, 0.7058823704719543, 0.8181818127632141, 0.6363636255264282, 0.6969696879386902, 0.8181818127632141]
+Accuracy:0.818
+
+Confusion matrix:
+ [[8 0 0 0]
+ [0 6 0 2]
+ [0 0 8 1]
+ [3 0 0 5]]
+
+
+ ############# AVERAGE EVALUATIONS BETWEEN FOLDERS ############
+
+######### MEAN LOSS OVER THE 10 FOLDERS: 0.9995744109153748  ###########
+######### MEAN ACCURACY OVER THE 10 FOLDERS: 0.7352049887180329  ###########
+######### LOSS STANDARD DEVIATION OVER THE 10 FOLDERS: 0.28946157404937894  ###########
+######### ACC STANDARD DEVIATION OVER THE 10 FOLDERS: 0.05874711364755923  ###########
+######### MAX ACCURACY OVER 10 FOLDERS: 0.8181818127632141  ###########
+######### MIN ACCURACY OVER 10 FOLDERS: 0.6363636255264282  ###########
+
+
+ ############# FINAL AVERAGE EVALUATIONS FOR ITERATIONS ############
+
+#### MEAN OF LOSSES MEAN OVER  2  ITERATIONS:  0.9995744109153748  MEAN OF ACC MEAN OVER  2  ITERATIONS:  0.7352049887180329  #####
+####STD OF MEAN LOSS OVER  1  ITERATIONS:  0.0  ##### STD OF ACC MEAN OVER  1  ITERATIONS:  0.0  #####
+#### MEAN LOSSES STANDARD DEVIATIONS OVER  2  ITERATIONS:  0.28946157404937894  MEAN ACC STANDARD DEVIATIONS OVER  2  ITERATIONS:  0.05874711364755923  #####
+####STANDARD DEVIATION OF LOSS STANDARD DEVIATION OVER  1  ITERATIONS:  0.0  STANDARD DEVIATION OF ACC STANDARD DEVIATION OVER  1  ITERATIONS: 0.0 #####
+####AVERAGE MAX-MIN DIFFERENCE OVER  1  ITERATIONS:  0.1818181872367859  #####
+####STD.DEV MAX-MIN DIFFERENCE OVER  1  ITERATIONS:  0.0  #####
+
+####### TIME ELAPSED:  250.14596509933472  #######

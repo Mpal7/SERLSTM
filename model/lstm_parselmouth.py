@@ -1,5 +1,4 @@
-#reproducibility
-
+#keep the following for code reproducibility
 seed_value = 1
 import os
 os.environ['PYTHONHASHSEED']=str(seed_value)
@@ -13,6 +12,9 @@ from tensorflow.keras import backend as K
 session_conf = tensorflow.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
 sess = tensorflow.compat.v1.Session(graph=tensorflow.compat.v1.get_default_graph(), config=session_conf)
 tensorflow.compat.v1.keras.backend.set_session(sess)
+#GPU reproducibility need to install tensorflow_determinsm
+os.environ['TF_DETERMINISTIC_OPS'] = '1'
+
 
 #other imports
 import parselmouth
@@ -27,7 +29,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import StratifiedKFold, LeaveOneOut, KFold
 import numpy as np
 from tensorflow.keras import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking
+from tensorflow.keras.layers import LSTM, Dense, Dropout,Masking, Bidirectional
 from tqdm import tqdm
 from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
 from tensorflow.keras.models import load_model
@@ -39,19 +41,14 @@ import time
 from pyAudioAnalysis import ShortTermFeatures
 
 
-orig_stdout = sys.stdout
-stdoutpath_f = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\fulldropouts\LSTM256_128_64.txt'
-stdoutpath_l = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\lastdropouts\LSTM256_128_64.txt'
-stdoutpath_n = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\nodropouts\LSTM256_128_64.txt'
-
 #parameters
 mean_signal_length = 32000
 data_path = r'F:\EMOVO/'
 class_labels = ("Sad", "Happy", "Angry", "Neutral")
 #parselmouth can be used only with full padding without altering original files
-#fp o sp, beware in sp only mfcc are functioning
-#"mfcc","lpcc","deltas","formants","pitch","intensity","spectrals"
+#parameters
 splits = 10
+#fp o sp, beware in sp only mfcc are functioning
 signal_mode = 'fp'
 special_value = 100
 routine_it = 1
@@ -125,10 +122,19 @@ def set_features(it):
 
 
 def get_feature_vector_from_pyaudio(signal,fs,feature_vector,features):
-    F, f_names = ShortTermFeatures.feature_extraction(signal, fs, 0.020 * fs, 0.010 * fs)
+    F, f_names = ShortTermFeatures.feature_extraction(signal, fs, 0.020 * fs, 0.10 * fs)
     #take only first 8 features of pyaudio: spectrals
     F_slice = F[:, 0:7]
-    feature_vector = np.concatenate((feature_vector,F_slice),axis=1)
+    if features.index('spectrals') is not 0:
+        if F_slice.shape[0] < feature_vector.shape[0]:
+            F_slice = np.pad(F_slice, ((0, feature_vector.shape[0] - F_slice.shape[0]), (0, 0)),
+                                   'constant', constant_values=(0, 100))
+        if F_slice.shape[0] > feature_vector.shape[0]:
+            pad_len = F_slice.shape[0] - feature_vector.shape[0]
+            pad_len //= 2
+            F_slice = F_slice[pad_len:pad_len + feature_vector.shape[0]]
+    if features.index('spectral') is not 0:
+        feature_vector = np.concatenate((feature_vector, F_slice), axis=1)
     return feature_vector
 
 def get_feature_vector_from_formants(filepath,feature_vector,features):
@@ -140,7 +146,8 @@ def get_feature_vector_from_formants(filepath,feature_vector,features):
         maxFormant = 5500  # women
     else:
         maxFormant = 5000  # men
-    formant = call(sound, "To Formant (burg)", 0.0, 5, maxFormant, 0.025, 50)    # even if i need 3 formants i calculate 5, it behaves better apparently
+    formant = call(sound, "To Formant (burg)", 0.01, 5, maxFormant, 0.021, 50)    # even if i need 3 formants i\
+    # calculate 5, it behaves better apparently
     local_formant = []
     it = 0
     for x in formant.xs():
@@ -166,7 +173,7 @@ def get_feature_vector_from_formants(filepath,feature_vector,features):
 def get_feature_vector_from_pitch(filepath,feature_vector,features):
     path = (filepath)
     signal = parselmouth.Sound(path)
-    #compare with pitch = sound.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
+    #pitch = signal.to_pitch_ac(time_step = 0.01,pitch_floor=150,very_accurate=True)
     pitch = signal.to_pitch_ac()
     x_sample = pitch.selected_array['frequency']
     x_sample = x_sample/np.linalg.norm(x_sample)
@@ -204,8 +211,8 @@ def get_feature_vector_from_intensity(filepath,feature_vector,features):
     return x_sample
 
 def get_feature_vector_from_mfcc(signal,fs):
-    #window 0.2 , stride 0.1
-    mel_coefficients = mfcc(signal, fs, frame_stride=0.01,num_cepstral=13)
+    #window 0.02 , stride 0.01
+    mel_coefficients = mfcc(signal, fs,frame_length=0.02, frame_stride=0.01,num_cepstral=13)
     mel_coefficients_for_deltas = mel_coefficients
     return mel_coefficients,mel_coefficients_for_deltas
 
@@ -265,8 +272,7 @@ def signal_slicing_padding(signal):
     return signal
 
 
-def get_data(data_path: str,class_labels,features) -> \
-        Tuple[np.ndarray, np.ndarray]:
+def get_data(data_path: str,class_labels,features):
     data = []
     labels = []
     names = []
@@ -291,7 +297,7 @@ def get_data(data_path: str,class_labels,features) -> \
                 feature_vector = get_feature_vector_from_lpcc(signal,fs,feature_vector,features)
             if 'deltas' in features:
                 if 'mfcc' in features:
-                    feature_vector = get_feature_vector_from_deltas(mel_coefficients,features)
+                    feature_vector = get_feature_vector_from_deltas(mel_coefficients)
                 else:
                     sys.exit("\n ###### can't compute deltas without mfcc, aborting execution ######")
             if 'formants' in features:
@@ -319,6 +325,7 @@ def predict(model, samples: numpy.ndarray) -> Tuple:
     return tuple(results)
 
 
+#need to print confusion matrix
 def evaluate(model, x_test: numpy.ndarray, y_test: numpy.ndarray) -> None:
     predictions = predict(model, x_test)
     print('Accuracy:%.3f\n' % accuracy_score(y_pred=predictions,
@@ -363,12 +370,12 @@ def lstm(k,f):
         print("\n####ITERATION NUMBER: ",i+1)
         it = 0
         # even if class are balanced we do not have many datapoints therefore i use stratifiedKFold
-        kf = KFold(n_splits=splits, shuffle=True)
+        kf = StratifiedKFold(n_splits=splits, shuffle=True)
         #leave one out
         #cv = LeaveOneOut()
         acc = []
         loss = []
-        for train_index, test_index in kf.split(data, labels):
+        for i, (train_index, test_index) in enumerate(kf.split(data, labels)):
             print('\n#####FOLDER NUMBER: ' + str(it + 1))
             x_train, x_test = data[train_index], data[test_index]
             y_train, y_test = labels[train_index], labels[test_index]
@@ -385,13 +392,13 @@ def lstm(k,f):
                 model = Sequential()
                 input_shape = x_train[0].shape
                 model.add(Masking(mask_value=special_value, input_shape=(input_shape[0], input_shape[1])))
-                model.add(LSTM(256,input_shape=(input_shape[0], input_shape[1]),return_sequences=False))
+                model.add(Bidirectional(LSTM(128,return_sequences=False),input_shape=(input_shape[0], input_shape[1])))
                 model.add(Dropout(0.5))
                 #model.add(LSTM(128,return_sequences=False))
                 #model.add(Dropout(0.5))
                 #model.add(LSTM(64))
                 #model.add(Dropout(0.5))
-                model.add(Dense(64, activation='tanh'))
+                model.add(Dense(32, activation='tanh'))
                 model.add(Dropout(0.5))
                 model.add(Dense(len(class_labels), activation='softmax'))
                 model.compile(loss='categorical_crossentropy', optimizer='adam',
@@ -443,14 +450,17 @@ def lstm(k,f):
     print("####STD.DEV MAX-MIN DIFFERENCE OVER ", counter - 1, " ITERATIONS: ", np.std(min_max_acc_diff), " #####")
     end = time.time()
     print("\n####### TIME ELAPSED: ", end - start, " #######")
-    sys.stdout = orig_stdout
-    f.close()
+    # uncomment following if need to write to txt all feature combinations recursively
+    #sys.stdout = orig_stdout
+    #f.close()
 
 def starter():
-    for k in range(0,28):
-        stdoutpath_featureanalysis = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\selected_feature_analysis\TESTLSTM256DENSE64\\'+str(k)+'.txt'
-        f = open(stdoutpath_featureanalysis, 'w')
-        sys.stdout = f
+    for k in range(0,1):
+        #uncomment following if need to write to txt all feature combinations recursively
+        #stdoutpath_featureanalysis = r'C:\Users\mp95\PycharmProjects\Thesis\logs\no_it_10k\selected_feature_analysis\TESTLSTM256DENSE64\\'+str(k)+'.txt'
+        #f = open(stdoutpath_featureanalysis, 'w')
+        #sys.stdout = f
+        f="dummy"
         lstm(k,f)
 
 starter()
